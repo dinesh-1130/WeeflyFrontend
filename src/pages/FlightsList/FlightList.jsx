@@ -191,9 +191,17 @@ const SearchBox = ({
                     width={32}
                   />
                 </label>
-                <div className="flex items-center mt-3.5">
+                <div className="flex items-center gap-2 mt-3.5">
                   <MapPin className="h-4 w-4 text-gray-500" />
-                  <select
+                  <input
+                    type="text"
+                    name="leavingFrom"
+                    id="leavingFrom"
+                    className="block w-full placeholder:text-gray-400 text-black focus:outline-none appearance-none"
+                    value={from}
+                    onChange={(e) => setFrom(e.target.value)}
+                  />
+{/*                   <select
                     name="leavingFrom"
                     id="leavingFrom"
                     className="block w-full placeholder:text-gray-400 text-black focus:outline-none appearance-none"
@@ -205,7 +213,7 @@ const SearchBox = ({
                     </option>
                     <option value="london">London, United Kingdom</option>
                     <option value="mumbai">Mumbai,India</option>
-                  </select>
+                  </select> */}
                 </div>
               </div>
             </div>
@@ -251,9 +259,17 @@ const SearchBox = ({
                     width={32}
                   />
                 </label>
-                <div className="flex items-center mt-3.5">
+                <div className="flex gap-2 items-center mt-3.5">
                   <MapPin className="h-4 w-4 text-gray-500" />
-                  <select
+                   <input
+                    type="text"
+                    name="to"
+                    id="to"
+                    className="block w-full placeholder:text-gray-400 text-black focus:outline-none appearance-none"
+                    value={to}
+                    onChange={(e) => setTo(e.target.value)}
+                  />
+{/*                   <select
                     name="leavingFrom"
                     id="leavingFrom"
                     className="block w-full placeholder:text-gray-400 text-black focus:outline-none appearance-none"
@@ -265,7 +281,7 @@ const SearchBox = ({
                     </option>
                     <option value="London">London, United Kingdom</option>
                     <option value="Mumbai">Mumbai,India</option>
-                  </select>
+                  </select> */}
                 </div>
               </div>
             </div>
