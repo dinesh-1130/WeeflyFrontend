@@ -17,9 +17,9 @@ function TravelersDetails() {
 
   return (
     <div className=" font-sans flex justify-center">
-      <div className="w-full px-4">
+      <div className="w-full flex flex-col items-start">
         {/* Travelers + Booking side-by-side */}
-        <div className="flex flex-col lg:flex-row gap-10 justify-center items-start">
+        <div className="flex flex-col lg:flex-row gap-10 items-start w-full">
           {/* Travelers Details */}
           <div className="max-w-[656px] w-full min-h-[339px] bg-white rounded-md">
             <div className="bg-[#FFE4DB] p-3 rounded-t-md">
@@ -58,7 +58,11 @@ function TravelersDetails() {
             <div className="flex justify-between items-center px-6 mt-[20px]">
               <div className="text-center">
                 <p className="text-[20px] font-bold font-jakarta">
-                  {flight.departureTime}
+                  {/* {flight.departureTime} */}
+                  {new Date(flight?.departureTime).toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
                 </p>
                 <p className="text-xs text-gray-500 mt-1">
                   {flight.departureCity}
@@ -81,7 +85,11 @@ function TravelersDetails() {
               </div>
               <div className="text-center">
                 <p className="text-[20px] font-bold font-jakarta">
-                  {flight.arrivalTime}
+                  {/* {flight.arrivalTime} */}
+                  {new Date(flight?.arrivalTime).toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
                 </p>
                 <p className="text-xs text-gray-500 mt-1">
                   {flight.arrivalCity}
@@ -117,7 +125,7 @@ function TravelersDetails() {
         </div>
 
         {/* Save Details Section */}
-        <div className="w-full max-w-[656px] bg-white rounded-md p-6 mt-6 font-sans ml-12">
+        <div className="w-full max-w-[656px] bg-white rounded-md p-6 mt-6 font-sans">
           <h3 className="font-semibold text-black mb-1 font-jakarta">
             Save your details!
           </h3>
@@ -134,10 +142,12 @@ function TravelersDetails() {
         </div>
 
         {/* Continue Button */}
-        <div className="xl:mt-6 max-w-[656px] text-left xl:ml-[29px]">
+        <div className="mt-6  max-w-[656px] text-left">
           <button
-            onClick={() => navigate("/booking/SeatSelection", { state: { flight } })}
-            className="bg-[#EE5128] text-white px-6 py-2 relative xl:left-5 rounded font-semibold font-jakarta"
+            onClick={() =>
+              navigate("/booking/SeatSelection", { state: { flight } })
+            }
+            className="bg-[#EE5128] text-white px-6 py-2 relative rounded font-semibold font-jakarta"
           >
             Continue booking
           </button>

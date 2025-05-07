@@ -1,7 +1,7 @@
 import WeeFlyLogo from "../assets/Auth/OrangeWeeflyLogo.svg";
 import MobileIcon from "../assets/Auth/MobileIcon.svg";
 import ForgetPasswordBg from "../assets/Auth/ForgotPasswordBg.png";
-
+import MailIcon from "../assets/Auth/MailIcon.svg";
 import { Link } from "react-router";
 
 function ForgotPassword() {
@@ -22,7 +22,7 @@ function ForgotPassword() {
             Forgot password?
           </h1>
           <h1 className="font-jakarta font-normal text-[16px] text-[#555555] text-center max-w-[430px]">
-            Enter your Registered Mobile Number and we’ll send a link to reset
+            Enter your Registered Email address and we’ll send a link to reset
             password
           </h1>
           <form action="" className="max-w-[430px] w-full">
@@ -31,16 +31,16 @@ function ForgotPassword() {
                 htmlFor=""
                 className="font-jakarta font-normal text-base text-[#555555]"
               >
-                Mobile number
+                Email address
               </label>
               <div className="relative bg-[#F1F3F6] flex rounded-l-[8px] w-full mt-[14px]">
                 <input
                   type="email"
-                  placeholder="+91 | "
+                  placeholder="alex@email.com"
                   className="px-[20px] py-[14px] w-full outline-[#EE5128]"
                 />
                 <div className="px-[20px] py-[14px] rounded-[8px] bg-[#EE5128] grid place-items-center">
-                  <img src={MobileIcon} alt="Mobile Icon" />
+                  <img src={MailIcon} alt="Mail Icon" />
                 </div>
               </div>
             </div>

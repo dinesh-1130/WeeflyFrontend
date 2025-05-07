@@ -6,8 +6,9 @@ import GoogleIcon from "../assets/Auth/GoogleIcon.svg";
 import AppleIcon from "../assets/Auth/AppleIcon.svg";
 import LoginBg from "../assets/Auth/LoginBg.png";
 import { useState } from "react";
-import { Eye, EyeClosed } from "lucide-react";
+import { Eye, EyeClosed, Lock, Unlock } from "lucide-react";
 import { Link } from "react-router";
+import { HandleGoogleLogin } from "../features/firebase";
 
 function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -59,12 +60,18 @@ function LoginPage() {
                   placeholder="Enter your password"
                   className="px-[20px] py-[14px] w-full outline-[#EE5128] relative"
                 />
-
                 <div
                   className="my-auto px-2"
                   onClick={() => setShowPassword((prev) => !prev)}
                 >
-                  {showPassword ? <Eye /> : <EyeClosed />}
+                  {showPassword ? (
+                    <div className="relative">
+                      <Eye />
+                      <div className="absolute h-[2px] bg-black top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[30px] rotate-45"></div>
+                    </div>
+                  ) : (
+                    <Eye />
+                  )}
                 </div>
                 <div className="px-[20px] py-[14px] rounded-[8px] bg-[#EE5128] grid place-items-center">
                   <img src={LockIcon} alt="Mail Icon" />
@@ -89,16 +96,20 @@ function LoginPage() {
             <p className="text-[#C2C2C2]">OR</p>
             <div className="h-[2px] w-full bg-[#C2C2C2]"></div>
           </div>
-          <div className="flex gap-[8px]">
-            <div className="px-[37px] py-[15px] border border-[#E8ECF4] rounded-[8px]">
+          <div className="flex gap-[8px] w-full justify-center max-w-[430px]">
+            {/* <div className="px-[37px] py-[15px] border border-[#E8ECF4] rounded-[8px]">
               <img src={FacebookIcon} alt="Facebook icon" />
-            </div>
-            <div className="px-[37px] py-[15px] border border-[#E8ECF4] rounded-[8px]">
+            </div> */}
+            <div
+              className="px-[37px] py-[15px] border border-[#E8ECF4] rounded-[8px] w-full  flex justify-center gap-4 cursor-pointer"
+              onClick={() => HandleGoogleLogin()}
+            >
               <img src={GoogleIcon} alt="Google icon" />
+              <p className="font-jakarta font-medium">Login with Google</p>
             </div>
-            <div className="px-[37px] py-[15px] border border-[#E8ECF4] rounded-[8px]">
+            {/* <div className="px-[37px] py-[15px] border border-[#E8ECF4] rounded-[8px]">
               <img src={AppleIcon} alt="Apple icon" />
-            </div>
+            </div> */}
           </div>
           <p className="mt-[30px] font-jakarta font-normal text-[16px]">
             Don’t have an account?{" "}

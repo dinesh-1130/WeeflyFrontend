@@ -125,7 +125,7 @@ export default function ExploreAfrica() {
     >
       <div className="max-w-[1600px] mx-auto flex flex-col md:flex-row items-start justify-between relative">
         {/* Left Image - Desktop Only */}
-        <div className="relative w-full md:w-[50%] md:left-10 mb-8 md:mb-0 top-6 hidden md:block">
+        <div className="relative w-full md:w-[50%] md:left-20 mb-8 md:mb-0 top-6 hidden md:block">
           <img
             src={AfricaMap}
             alt="Africa Pattern"
@@ -136,7 +136,7 @@ export default function ExploreAfrica() {
         </div>
 
         {/* Right Section (Text + Slider) */}
-        <div className="relative w-full md:w-[58%] md:pl-20 md:left-[190px]">
+        <div className="relative w-full md:w-[58%] md:pl-20 md:left-[138px]">
           {/* Desktop Layout */}
           <div className="hidden lg:block">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
@@ -144,7 +144,7 @@ export default function ExploreAfrica() {
                 Explore Africa
               </h2>
 
-              <div className="flex justify-center sm:justify-end sm:relative sm:top-3 sm:left-[-170px] mt-4 sm:mt-0">
+              <div className="flex justify-center sm:justify-end sm:relative sm:top-3 sm:left-[-250px] mt-4 sm:mt-0">
                 <select className="border border-red-400 text-gray-700 text-[13px] rounded-md py-[6px] px-2">
                   <option>Select country</option>
                 </select>
@@ -177,11 +177,14 @@ export default function ExploreAfrica() {
                 →
               </button>
             </div>
-
             <div
               className="mt-10 flex items-start overflow-hidden h-[320px] relative w-full max-w-[760px] mx-auto"
-              onMouseEnter={startAutoSlide}
-              onMouseLeave={stopAutoSlide}
+              onMouseEnter={() => {
+                if (window.innerWidth > 820) startAutoSlide();
+              }}
+              onMouseLeave={() => {
+                if (window.innerWidth > 820) stopAutoSlide();
+              }}
             >
               <div
                 className={`flex gap-6 ${

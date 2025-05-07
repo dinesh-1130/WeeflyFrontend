@@ -21,6 +21,7 @@ import ReviewYourBooking from "./pages/FlightBooking/ReviewYourBooking";
 import TravelersDetails from "./pages/FlightBooking/TravelersDetails";
 import SeatSelectionPage from "./pages/FlightBooking/SeatSelectionPage";
 import PaymentPage from "./pages/FlightBooking/PaymentPage";
+import ProfilePage from "./pages/Profile/ProfilePage";
 
 const App = () => {
   useEffect(() => {
@@ -39,6 +40,7 @@ const App = () => {
             <Route path="SeatSelection" element={<SeatSelectionPage />} />
             <Route path="Payment" element={<PaymentPage />} />
           </Route>
+          <Route path="profile" element={<ProfilePage />} />
         </Route>
         {/* Authentication Route */}
         <Route path="SignUp" element={<SignupPage />} />

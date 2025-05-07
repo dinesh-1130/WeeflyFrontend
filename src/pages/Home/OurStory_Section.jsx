@@ -131,21 +131,24 @@ export default function OurStory() {
       {/* ✅ Desktop Layout */}
       <div className="hidden lg:flex max-w-[1200px] mx-auto items-center justify-between gap-12 relative z-10">
         <div
-          className={`w-full md:w-[60%] text-center md:text-left px-2 sm:px-4 md:px-0 transition-all duration-1000 ease-in-out ${textAnimationClass}`}
+          className={`w-full  md:w-[60%] text-center md:text-left px-2 sm:px-4 md:px-0 transition-all duration-1000 ease-in-out ${textAnimationClass}`}
         >
           <h4 className="text-lg font-jakarta text-[#0F172A] mb-1">
             Our Story
           </h4>
-          <h2 className="text-4xl font-jakarta text-[#F15623] font-semibold mb-5 leading-snug">
+          <h2 className="text-[40px] font-jakarta text-[#F15623] font-semibold mb-5 leading-tight">
             Born in Africa, Built for
             <br className="hidden md:inline" /> the World
           </h2>
-          <p className="text-base text-gray-700 font-lato mb-6 leading-[1.7rem] tracking-tight">
+          <p className="text-base md:text-[18px]  max-w-[580px]  text-gray-800 font-lato mb-6 leading-[1.7rem] tracking-wide">
             What started as a simple idea for making travel across Africa
             easier, smarter, and more connected, has now taken form into a
-            powerful and comprehensive booking platform.
+            powerful and comprehensive booking platform. We’re a team of
+            passionate travelers, tech innovators, and local experts united by a
+            shared vision to unlock the beauty, culture, and opportunity within
+            Africa through seamless and convenient travel experiences.
           </p>
-          <p className="text-base text-black font-lato font-bold mb-6 leading-[1.8rem] tracking-tight">
+          <p className="text-base md:text-[25px] max-w-[520px] text-black font-lato font-bold mb-14 leading-snug tracking-normal">
             This is more than a platform. It’s a movement. A celebration of
             Africa, built by Africans, for the world.
           </p>

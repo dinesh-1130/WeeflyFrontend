@@ -42,7 +42,7 @@ exports.getFlightOffers = async (req, res) => {
       departureDate: flightDepatureDate,
       returnDate: flightReturnDate,
       travelClass: travelClass.replace(" ", "_").toUpperCase(), // Format: "Premium Economy" -> "PREMIUM_ECONOMY"
-      currencyCode: "INR",
+      currencyCode: "ZAR",
       adults: 2,
     });
 

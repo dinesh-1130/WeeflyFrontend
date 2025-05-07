@@ -54,19 +54,19 @@ export default function PaymentOptionSection() {
             <LogoMarquee logos={PaymentBrands} />
           </div>
           <div className="flex flex-wrap lg:hidden gap-[30px] items-center justify-center">
-              {PaymentBrands.map((brand) => (
-                <div className="" key={brand.id}>
-                  <img
-                    src={brand.src}
-                    alt={brand.alt}
-                    loading="lazy"
-                    width={60}
-                    height={50}
-                    className="object-contain max-h-10 sm:max-h-12"
-                  />
-                </div>
-              ))}
-            </div>
+            {PaymentBrands.map((brand) => (
+              <div className="" key={brand.id}>
+                <img
+                  src={brand.src}
+                  alt={brand.alt}
+                  loading="lazy"
+                  width={60}
+                  height={50}
+                  className="object-contain max-h-10 sm:max-h-12"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 

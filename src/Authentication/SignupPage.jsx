@@ -3,9 +3,9 @@ import UserIcon from "../assets/Auth/UserIcon.svg";
 import MobileIcon from "../assets/Auth/MobileIcon.svg";
 import MailIcon from "../assets/Auth/MailIcon.svg";
 import LockIcon from "../assets/Auth/LockIcon.svg";
-import FacebookIcon from "../assets/Auth/FBIcon.svg";
+// import FacebookIcon from "../assets/Auth/FBIcon.svg";
 import GoogleIcon from "../assets/Auth/GoogleIcon.svg";
-import AppleIcon from "../assets/Auth/AppleIcon.svg";
+// import AppleIcon from "../assets/Auth/AppleIcon.svg";
 import SignUpBg from "../assets/Auth/SignUpBg.png";
 import { useState } from "react";
 import { Eye, EyeClosed } from "lucide-react";
@@ -105,15 +105,25 @@ function SignupPage() {
                   className="my-auto px-2"
                   onClick={() => setShowPassword((prev) => !prev)}
                 >
-                  {showPassword ? <Eye /> : <EyeClosed />}
+                  {showPassword ? (
+                    <div className="relative">
+                      <Eye />
+                      <div className="absolute h-[2px] bg-black top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[30px] rotate-45"></div>
+                    </div>
+                  ) : (
+                    <Eye />
+                  )}
                 </div>
-                <div className="px-[20px] py-[14px] xl:py-[10px] xl:px-[10px] rounded-[8px] bg-[#EE5128] grid place-items-center">
+                <div
+                  className="px-[20px] py-[14px] xl:py-[10px] xl:px-[10px] rounded-[8px] bg-[#EE5128] grid place-items-center"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                >
                   <img src={LockIcon} alt="Mail Icon" />
                 </div>
               </div>
             </div>
             <button className="font-jakarta font-semibold text-[18px] w-full bg-[#EE5128] py-[14px] xl:py-[10px] rounded-[8px] text-white mt-[20px] drop-shadow-xl drop-shadow-[#FD74014D]">
-              Login now
+              Sign Up now
             </button>
           </form>
           <div className="flex items-center w-full gap-[11px] mt-[10px] max-w-[430px]">
@@ -121,16 +131,17 @@ function SignupPage() {
             <p className="text-[#C2C2C2]">OR</p>
             <div className="h-px w-full bg-[#C2C2C2]"></div>
           </div>
-          <div className="flex gap-[8px]">
-            <div className="px-[37px] py-[15px] border border-[#E8ECF4] rounded-[8px]">
-              <img src={FacebookIcon} alt="Facebook icon" />
-            </div>
-            <div className="px-[37px] py-[15px] border border-[#E8ECF4] rounded-[8px]">
+          <div className="flex gap-[8px] max-w-[430px] w-full">
+            {/* <div className="px-[37px] py-[15px] border border-[#E8ECF4] rounded-[8px]">
+                <img src={FacebookIcon} alt="Facebook icon" />
+              </div> */}
+            <div className="px-[37px] py-[15px] border border-[#E8ECF4] rounded-[8px] w-full  flex justify-center gap-4">
               <img src={GoogleIcon} alt="Google icon" />
+              <p className="font-jakarta font-medium">Sign up with Google</p>
             </div>
-            <div className="px-[37px] py-[15px] border border-[#E8ECF4] rounded-[8px]">
-              <img src={AppleIcon} alt="Apple icon" />
-            </div>
+            {/* <div className="px-[37px] py-[15px] border border-[#E8ECF4] rounded-[8px]">
+                <img src={AppleIcon} alt="Apple icon" />
+              </div> */}
           </div>
           <p className="mt-[30px] xl:mt-[5px] font-jakarta font-normal text-[16px]">
             Already have an account?

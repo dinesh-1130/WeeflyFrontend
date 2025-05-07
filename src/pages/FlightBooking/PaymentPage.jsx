@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 const paymentIcons = {
-  "UPI": "/assets/paymentpage/upi.png",
+  UPI: "/assets/paymentpage/upi.png",
   "Debit & credit cards": "/assets/paymentpage/card.png",
   "Net Banking": "/assets/paymentpage/netbanking.png",
-  "Wallet": "/assets/paymentpage/wallet.png",
-  "EMI": "/assets/paymentpage/emi.png",
+  Wallet: "/assets/paymentpage/wallet.png",
+  EMI: "/assets/paymentpage/emi.png",
   "Pay later": "/assets/paymentpage/paylater.png",
 };
 
@@ -23,7 +23,8 @@ export default function PaymentPage() {
     }
   }, [location]);
 
-  if (!flight) return <p className="text-center mt-20 font-['Lato']">Loading...</p>;
+  if (!flight)
+    return <p className="text-center mt-20 font-['Lato']">Loading...</p>;
 
   return (
     <div className=" font-sans flex justify-center">
@@ -50,18 +51,34 @@ export default function PaymentPage() {
           {/* Left */}
           <div className="w-full lg:w-[740px] space-y-6">
             <div className="rounded-md bg-white">
-              <div className="flex justify-between items-center px-4 pt-4">
+              <div className="flex flex-col lg:flex-row space-y-6 py-6 justify-between items-center px-4 pt-4">
                 <div className="flex flex-col min-w-[170px] relative">
-                  <img src={flight.logo} alt={flight.airline} className="w-[120px] h-[40px] object-contain mb-[25px]" />
+                  <img
+                    src={flight.logo}
+                    alt={flight.airline}
+                    className="w-[120px] h-[40px] object-contain mb-[25px]"
+                  />
                   <div className="absolute top-[38px] left-[4px] flex items-center space-x-2">
-                    <span className="text-[13px] text-gray-500">{flight.flightNumber}</span>
-                    <span className="text-[12px] bg-[#008905] text-white px-[10px] py-[2px] rounded font-semibold">{flight.class}</span>
+                    <span className="text-[13px] text-gray-500">
+                      {flight.flightNumber}
+                    </span>
+                    <span className="text-[12px] bg-[#008905] text-white px-[10px] py-[2px] rounded font-semibold">
+                      {flight.class}
+                    </span>
                   </div>
                 </div>
-                <div className="flex items-center gap-8">
+                <div className="flex items-center gap-4">
                   <div className="text-center">
-                    <p className="text-[22px] font-bold text-black">{flight.departureTime}</p>
-                    <p className="text-[13px] text-gray-500">{flight.departureCity}</p>
+                    <p className="text-[22px] font-bold text-black">
+                      {" "}
+                      {new Date(flight?.departureTime).toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                    </p>
+                    <p className="text-[13px] text-gray-500">
+                      {flight.departureCity}
+                    </p>
                   </div>
                   <div className="flex flex-col items-center">
                     <div className="flex items-center">
@@ -71,40 +88,65 @@ export default function PaymentPage() {
                       <div className="border-t border-dashed w-8 border-gray-300 mx-2" />
                       <span className="w-[6px] h-[6px] bg-gray-300 rounded-full" />
                     </div>
-                    <span className="text-[12px] text-gray-400 mt-[4px]">{flight.duration}</span>
+                    <span className="text-[12px] text-gray-400 mt-[4px]">
+                      {flight.duration}
+                    </span>
                   </div>
                   <div className="text-center">
-                    <p className="text-[22px] font-bold text-black">{flight.arrivalTime}</p>
-                    <p className="text-[13px] text-gray-500">{flight.arrivalCity}</p>
+                    <p className="text-[22px] font-bold text-black">
+                      {new Date(flight?.arrivalTime).toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                    </p>
+                    <p className="text-[13px] text-gray-500">
+                      {flight.arrivalCity}
+                    </p>
                   </div>
                 </div>
-                <div className="text-right space-y-[2px] w-[152px]">
+                <div className="text-right flex flex-col items-center lg:items-end space-y-[2px] w-[152px]">
                   <p className="text-[#EE5128] text-[26px] font-black leading-none">
-                    {flight.currency}{flight.price.toLocaleString()}<span className="text-[12px] text-black font-normal">/pax</span>
+                    {flight.currency}
+                    {flight.price.toLocaleString()}
+                    <span className="text-[12px] text-black font-normal">
+                      /pax
+                    </span>
                   </p>
                   <p className="text-[13px] text-gray-400 line-through font-normal leading-none">
-                    {flight.currency}{flight.originalPrice.toLocaleString()}
+                    {flight.currency}
+                    {flight.originalPrice.toLocaleString()}
                   </p>
                 </div>
               </div>
               <div className="flex justify-between items-center px-4 py-2 border-t border-[#CCCCCC] text-sm font-medium text-[#EE5128]">
                 <div className="flex space-x-8">
                   <span>Flight Details</span>
-                  <span>Price Details</span>
-                  <span>Policy</span>
-                  <span>Refund</span>
-                  <span>Reschedule</span>
+                  <span className="hidden lg:block">Price Details</span>
+                  <span className="hidden lg:block">Policy</span>
+                  <span className="hidden lg:block">Refund</span>
+                  <span className="hidden lg:block">Reschedule</span>
                 </div>
-                <button className="bg-[#EE5128] text-white px-4 py-1.5 rounded font-semibold">Book now</button>
+                <button className="bg-[#EE5128] text-white px-4 py-1.5 rounded font-semibold">
+                  Book now
+                </button>
               </div>
             </div>
 
             {/* Payment Timing */}
             <div className="bg-white p-6 rounded-md shadow-sm ">
-              <h2 className="text-[18px] font-semibold text-black mb-1">When would you like to pay?</h2>
-              <p className="text-sm text-gray-500 mb-3">Lorem ipsum Lorem ipsum Lorem ipsum</p>
+              <h2 className="text-[18px] font-semibold text-black mb-1">
+                When would you like to pay?
+              </h2>
+              <p className="text-sm text-gray-500 mb-3">
+                Lorem ipsum Lorem ipsum Lorem ipsum
+              </p>
               <label className="flex items-center gap-3">
-                <input type="checkbox" checked className="accent-[#EE5128]" readOnly />
+                <input
+                  type="checkbox"
+                  checked
+                  className="accent-[#EE5128]"
+                  readOnly
+                />
                 <span className="text-sm text-black">Pay now</span>
                 <input type="checkbox" disabled className="accent-[#ccc]" />
                 <span className="text-sm text-gray-400">Pay later</span>
@@ -112,26 +154,36 @@ export default function PaymentPage() {
             </div>
 
             {/* Payment Methods */}
-          
-<div className="bg-white rounded-md shadow-sm overflow-hidden">
-  <div className="bg-[#FFE4DB] p-4 font-semibold">Payment methods</div>
-  <div className="divide-y divide-gray-300">
-    {Object.entries(paymentIcons).map(([method, icon]) => (
-      <div key={method} className="flex items-center justify-between px-4 py-4">
-        <div className="flex items-center gap-3">
-          <img src={icon} alt={method} className="w-6 h-6 object-contain" />
-          <div>
-            <p className="font-semibold">{method}</p>
-            <p className="text-sm text-gray-500">Lorem ipsum Lorem ipsum Lorem</p>
-          </div>
-        </div>
-        <ChevronDown className="text-gray-400" size={20} />
-      </div>
-    ))}
-  </div>
-</div>
-</div>
 
+            <div className="bg-white rounded-md shadow-sm overflow-hidden">
+              <div className="bg-[#FFE4DB] p-4 font-semibold">
+                Payment methods
+              </div>
+              <div className="divide-y divide-gray-300">
+                {Object.entries(paymentIcons).map(([method, icon]) => (
+                  <div
+                    key={method}
+                    className="flex items-center justify-between px-4 py-4"
+                  >
+                    <div className="flex items-center gap-3">
+                      <img
+                        src={icon}
+                        alt={method}
+                        className="w-6 h-6 object-contain"
+                      />
+                      <div>
+                        <p className="font-semibold">{method}</p>
+                        <p className="text-sm text-gray-500">
+                          Lorem ipsum Lorem ipsum Lorem
+                        </p>
+                      </div>
+                    </div>
+                    <ChevronDown className="text-gray-400" size={20} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
 
           {/* Right Column */}
           <div className="w-full relative lg:w-[360px] space-y-6">
@@ -141,11 +193,20 @@ export default function PaymentPage() {
               </div>
               <div className="flex justify-between items-center px-6 mt-[20px]">
                 <div className="text-center">
-                  <p className="text-[20px] font-bold">{flight.departureTime}</p>
-                  <p className="text-xs text-gray-500 mt-1">{flight.departureCity}</p>
+                  <p className="text-[20px] font-bold">
+                    {new Date(flight?.departureTime).toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {flight.departureCity}
+                  </p>
                 </div>
                 <div className="flex flex-col items-center relative">
-                  <p className="text-xs text-gray-500 mb-[2px]">{flight.duration}</p>
+                  <p className="text-xs text-gray-500 mb-[2px]">
+                    {flight.duration}
+                  </p>
                   <div className="flex items-center justify-center">
                     <span className="w-[6px] h-[6px] bg-gray-300 rounded-full" />
                     <div className="border-t border-dashed w-8 border-gray-300 mx-2" />
@@ -153,21 +214,35 @@ export default function PaymentPage() {
                     <div className="border-t border-dashed w-8 border-gray-300 mx-2" />
                     <span className="w-[6px] h-[6px] bg-gray-300 rounded-full" />
                   </div>
-                  <div className="mt-[6px] bg-green-600 text-white text-xs px-2 py-[2px] rounded">Refundable</div>
+                  <div className="mt-[6px] bg-green-600 text-white text-xs px-2 py-[2px] rounded">
+                    Refundable
+                  </div>
                 </div>
                 <div className="text-center">
-                  <p className="text-[20px] font-bold">{flight.arrivalTime}</p>
-                  <p className="text-xs text-gray-500 mt-1">{flight.arrivalCity}</p>
+                  <p className="text-[20px] font-bold">
+                    {" "}
+                    {new Date(flight?.arrivalTime).toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {flight.arrivalCity}
+                  </p>
                 </div>
               </div>
               <div className="flex justify-between px-6 mt-6">
                 <div className="text-left w-1/2 border-r pr-4">
                   <p className="text-sm font-semibold">Departure Flight</p>
-                  <p className="text-xs text-gray-500 mt-[2px]">Thu, 06 Jul, 2025</p>
+                  <p className="text-xs text-gray-500 mt-[2px]">
+                    Thu, 06 Jul, 2025
+                  </p>
                 </div>
                 <div className="text-left w-1/2 pl-4">
                   <p className="text-sm font-semibold">Departure Flight</p>
-                  <p className="text-xs text-gray-500 mt-[2px]">Thu, 06 Jul, 2025</p>
+                  <p className="text-xs text-gray-500 mt-[2px]">
+                    Thu, 06 Jul, 2025
+                  </p>
                 </div>
               </div>
               <div className="flex justify-around mt-6 text-sm font-medium ml-2">
@@ -178,7 +253,9 @@ export default function PaymentPage() {
             </div>
 
             <div className="bg-white rounded-md  shadow-sm overflow-hidden">
-              <div className="bg-[#FFE4DB] p-4 font-semibold">Price summary</div>
+              <div className="bg-[#FFE4DB] p-4 font-semibold">
+                Price summary
+              </div>
               <div className="p-4 space-y-3 text-[14px] text-black">
                 <div className="flex justify-between">
                   <span>Adult x 1</span>

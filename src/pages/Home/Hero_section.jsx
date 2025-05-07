@@ -10,8 +10,11 @@ import TravelerIcon from "../../assets/images/TravelerIcon.svg";
 import BannerBottom from "../../assets/images/banner-bottom.png";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useNavigate } from "react-router";
+import LoadingScreen from "../../components/LoadingScreen";
 
 const HeroSection = () => {
+  const navigate = useNavigate();
   // const [departureDate, setDepartureDate] = useState(null);
   // const [returnDate, setReturnDate] = useState(null);
   const [from, setFrom] = useState("");
@@ -22,6 +25,7 @@ const HeroSection = () => {
   const [flightReturnDate, setflightReturnDate] = useState(null);
   const [searchCount, setSearchCount] = useState(0);
   const [flightsData, setFlightsData] = useState([]);
+  const [loading, setLoading] = useState(false);
   const handleDate = (newDate) => {
     if (!newDate) {
       return;
@@ -38,21 +42,6 @@ const HeroSection = () => {
       return formattedDate;
     }
   };
-  const handleSearch = (e) => {
-    e.preventDefault();
-    const formattedDepartureDate = handleDate(flightDepatureDate);
-    const formattedReturnDate = handleDate(flightReturnDate);
-
-    console.log({
-      from,
-      to,
-      flightDepatureDate: formattedDepartureDate,
-      flightReturnDate: formattedReturnDate,
-      travelClass,
-    });
-
-    setSearchCount((prev) => prev + 1);
-  };
 
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -62,6 +51,7 @@ const HeroSection = () => {
       const formattedDepartureDate = handleDate(flightDepatureDate);
       const formattedReturnDate = handleDate(flightReturnDate);
       console.log("Search API Call");
+      setLoading(true);
       try {
         const response = await fetch(`${backendUrl}/search`, {
           method: "POST",
@@ -76,22 +66,58 @@ const HeroSection = () => {
             travelClass,
           }),
         });
-  
+
         if (!response.ok) {
           throw new Error("Failed to fetch flight data");
         }
-  
+
         const data = await response.json();
         console.log(data);
         setFlightsData(data);
+        setLoading(false);
+        navigate("/list", {
+          state: {
+            flightsData: data, // use freshly fetched data here
+            searchData: {
+              from,
+              to,
+              flightDepatureDate: formattedDepartureDate,
+              flightReturnDate: formattedReturnDate,
+              travelClass,
+            },
+          },
+        });
       } catch (error) {
         console.error(error);
+      } finally {
+        setLoading(false); // Stop loading
       }
     };
-  
+
     fetchFlights();
   }, [searchCount]);
-  
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const formattedDepartureDate = handleDate(flightDepatureDate);
+    const formattedReturnDate = handleDate(flightReturnDate);
+
+    console.log({
+      from,
+      to,
+      flightDepatureDate: formattedDepartureDate,
+      flightReturnDate: formattedReturnDate,
+      travelClass,
+    });
+
+    setSearchCount((prev) => prev + 1);
+
+    // navigate("/list", { state: { fight: flightsData } });
+  };
+
+  if (loading) {
+    return <LoadingScreen />;
+  }
   return (
     <>
       <div
@@ -180,7 +206,7 @@ const HeroSection = () => {
                             onChange={(e) => setFrom(e.target.value)}
                             placeholder="leavingFrom"
                           />
-{/*                           <select
+                          {/*                           <select
                             name="leavingFrom"
                             id="leavingFrom"
                             className="block w-full placeholder:text-gray-400 text-black focus:outline-none appearance-none"
@@ -195,7 +221,6 @@ const HeroSection = () => {
                             </option>
                             <option value="mumbai">Mumbai,India</option>
                           </select> */}
-                          
                         </div>
                       </div>
                     </div>
@@ -252,7 +277,7 @@ const HeroSection = () => {
                             onChange={(e) => setTo(e.target.value)}
                             placeholder="Going to"
                           />
-{/*                           <select
+                          {/*                           <select
                             name="leavingFrom"
                             id="leavingFrom"
                             className="block w-full placeholder:text-gray-400 text-black focus:outline-none appearance-none"
