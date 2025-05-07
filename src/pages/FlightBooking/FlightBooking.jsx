@@ -137,7 +137,7 @@ function FlightBooking() {
   const location = useLocation();
   return (
     <div className="px-4 xl:px-40 py-[59px] relative bg-neutral-100">
-      <div className="sticky z-10 top-20 lg:top-0 w-full bg-neutral-100">
+      <div className="sticky md:relative z-10 top-20 md:top-0 w-full bg-neutral-100">
         <div className="flex justify-between items-center">
           <h3 className="hidden lg:block font-jakarta font-semibold text-[30px]">
             Complete Your Booking
