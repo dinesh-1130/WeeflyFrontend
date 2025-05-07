@@ -1,5 +1,5 @@
 import { ArrowLeftRightIcon, MapPin, User } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PaperDesktop from "../../assets/images/paper.svg";
 import PaperMobile from "../../assets/images/paper-mobile.png";
 import TakeOffPlane from "../../assets/images/TakeOffPlane.svg";
@@ -12,25 +12,86 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const HeroSection = () => {
-  const [departureDate, setDepartureDate] = useState(null);
-  const [returnDate, setReturnDate] = useState(null);
+  // const [departureDate, setDepartureDate] = useState(null);
+  // const [returnDate, setReturnDate] = useState(null);
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
-  const [travelers, setTravelers] = useState(1);
+  // const [travelers, setTravelers] = useState(1);
   const [travelClass, setTravelClass] = useState("Economy");
+  const [flightDepatureDate, setflightDepatureDate] = useState(null);
+  const [flightReturnDate, setflightReturnDate] = useState(null);
+  const [searchCount, setSearchCount] = useState(0);
+  const [flightsData, setFlightsData] = useState([]);
+  const handleDate = (newDate) => {
+    if (!newDate) {
+      return;
+    } // Handle null or invalid date
+    else {
+      // Ensure newDate is a Date object
+      const selectedDate = new Date(newDate);
 
+      const year = selectedDate.getFullYear();
+      const month = String(selectedDate.getMonth() + 1).padStart(2, "0");
+      const day = String(selectedDate.getDate()).padStart(2, "0");
+
+      const formattedDate = `${year}-${month}-${day}`;
+      return formattedDate;
+    }
+  };
   const handleSearch = (e) => {
     e.preventDefault();
+    const formattedDepartureDate = handleDate(flightDepatureDate);
+    const formattedReturnDate = handleDate(flightReturnDate);
+
     console.log({
       from,
       to,
-      departureDate,
-      returnDate,
-      travelers,
+      flightDepatureDate: formattedDepartureDate,
+      flightReturnDate: formattedReturnDate,
       travelClass,
     });
+
+    setSearchCount((prev) => prev + 1);
   };
 
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+  // Fetch flights based on the search parameters
+  useEffect(() => {
+    const fetchFlights = async () => {
+      const formattedDepartureDate = handleDate(flightDepatureDate);
+      const formattedReturnDate = handleDate(flightReturnDate);
+      console.log("Search API Call");
+      try {
+        const response = await fetch(`${backendUrl}/search`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            from,
+            to,
+            flightDepatureDate: formattedDepartureDate,
+            flightReturnDate: formattedReturnDate,
+            travelClass,
+          }),
+        });
+  
+        if (!response.ok) {
+          throw new Error("Failed to fetch flight data");
+        }
+  
+        const data = await response.json();
+        console.log(data);
+        setFlightsData(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    fetchFlights();
+  }, [searchCount]);
+  
   return (
     <>
       <div
@@ -120,13 +181,10 @@ const HeroSection = () => {
                             <option value="" disabled>
                               Leaving From
                             </option>
-                            <option value="johannesburg">
-                              Johannesburg, South Africa
+                            <option value="london">
+                              London, United Kingdom
                             </option>
-                            <option value="cape-town">
-                              Cape Town, South Africa
-                            </option>
-                            <option value="durban">Durban, South Africa</option>
+                            <option value="mumbai">Mumbai,India</option>
                           </select>
                         </div>
                       </div>
@@ -185,13 +243,10 @@ const HeroSection = () => {
                             <option value="" disabled>
                               Going to
                             </option>
-                            <option value="johannesburg">
-                              Johannesburg, South Africa
+                            <option value="london">
+                              London, United Kingdom
                             </option>
-                            <option value="cape-town">
-                              Cape Town, South Africa
-                            </option>
-                            <option value="durban">Durban, South Africa</option>
+                            <option value="mumbai">Mumbai,India</option>
                           </select>
                         </div>
                       </div>
@@ -213,8 +268,8 @@ const HeroSection = () => {
                         </label>
                         <div className="flex items-center mt-3.5">
                           <DatePicker
-                            selected={departureDate}
-                            onChange={(date) => setDepartureDate(date)}
+                            selected={flightDepatureDate}
+                            onChange={(date) => setflightDepatureDate(date)}
                             placeholderText="Date from"
                             className="block w-full placeholder:text-gray-400 text-black z-20 focus:outline-none"
                             dateFormat="MMM d, yyyy"
@@ -255,12 +310,12 @@ const HeroSection = () => {
                         </label>
                         <div className="flex items-center mt-3.5">
                           <DatePicker
-                            selected={returnDate}
-                            onChange={(date) => setReturnDate(date)}
+                            selected={flightReturnDate}
+                            onChange={(date) => setflightReturnDate(date)}
                             placeholderText="Return Date"
                             className="block w-full placeholder:text-gray-400 text-black focus:outline-none"
                             dateFormat="MMM d, yyyy"
-                            minDate={departureDate}
+                            minDate={flightDepatureDate}
                           />
                           <svg
                             xmlns="http://www.w3.org/2000/svg"

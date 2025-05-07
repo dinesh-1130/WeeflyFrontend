@@ -21,7 +21,7 @@ import TravelerIcon from "../../assets/images/TravelerIcon.svg";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import flightsData from "../../assets/data/flights.json";
+// import flightsData from "../../assets/data/flights.json";
 
 import TicketIcon from "../../assets/images/TicketIcon.svg";
 import DepartureFlightIcon from "../../assets/images/WhiteFlightTakeoff.svg";
@@ -34,19 +34,43 @@ import MoonSetIcon from "../../assets/images/MoonSetIcon.svg";
 import { useNavigate } from "react-router";
 
 function FlightList() {
+  const [flightsData, setFlightsData] = useState([]);
+  const [origin, setOrigin] = useState("");
+  const [destination, setDestination] = useState("");
+  const [searchData, setSearchdata] = useState({
+    from: "",
+    to: "",
+    flightDepatureDate: null,
+    flightReturnDate: null,
+    travelClass: "",
+  });
+
   return (
     <div className="relative">
-      <SearchBox />
+      <SearchBox
+        setFlightsData={setFlightsData}
+        setOrigin={setOrigin}
+        setDestination={setDestination}
+        setSearchdata={setSearchdata}
+      />
       <div className="min-h-screen px-4 xl:px-40 bg-neutral-100 flex relative py-[66px] gap-[43px] flex-col xl:flex-row">
         <div className="sticky top-0 flex-col gap-[29px] hidden xl:flex">
           <RecentlyBookedTickets />
-          <FilterFlight />
+          <FilterFlight
+            searchData={searchData}
+            setFlightsData={setFlightsData}
+            flights={flightsData}
+          />
         </div>
         <div className="flex-1 flex flex-col gap-[50px]">
           <div className="hidden xl:block">
             <FlightDatePicker />
           </div>
-          <FlightResults />
+          <FlightResults
+            flights={flightsData}
+            origin={origin}
+            destination={destination}
+          />
         </div>
       </div>
     </div>
@@ -61,24 +85,95 @@ export default FlightList;
 //
 // ////////////////////////////////////////////////
 
-const SearchBox = () => {
-  const [departureDate, setDepartureDate] = useState(null);
-  const [returnDate, setReturnDate] = useState(null);
+const SearchBox = ({
+  setFlightsData,
+  setOrigin,
+  setDestination,
+  setSearchdata,
+}) => {
+  const [flightDepatureDate, setflightDepatureDate] = useState(null);
+  const [flightReturnDate, setflightReturnDate] = useState(null);
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
-  const [travelers, setTravelers] = useState(1);
+  // const [travelers, setTravelers] = useState(1);
   const [travelClass, setTravelClass] = useState("Economy");
+
+  const [searchCount, setSearchCount] = useState(0);
+  const handleDate = (newDate) => {
+    if (!newDate) {
+      return;
+    } // Handle null or invalid date
+    else {
+      // Ensure newDate is a Date object
+      const selectedDate = new Date(newDate);
+
+      const year = selectedDate.getFullYear();
+      const month = String(selectedDate.getMonth() + 1).padStart(2, "0");
+      const day = String(selectedDate.getDate()).padStart(2, "0");
+
+      const formattedDate = `${year}-${month}-${day}`;
+      return formattedDate;
+    }
+  };
+
   const handleSearch = (e) => {
     e.preventDefault();
+    const formattedFlightDepatureDate = handleDate(flightDepatureDate);
+    const formattedFlightReturnDate = handleDate(flightReturnDate);
+
     console.log({
       from,
       to,
-      departureDate,
-      returnDate,
-      travelers,
+      flightDepatureDate,
+      flightReturnDate,
       travelClass,
     });
+    setSearchdata({
+      from: from,
+      to: to,
+      flightDepatureDate: formattedFlightDepatureDate,
+      flightReturnDate: formattedFlightReturnDate,
+      travelClass: travelClass,
+    });
+
+    setOrigin(from);
+    setDestination(to);
+    setSearchCount((prev) => prev + 1);
   };
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  // Fetch flights based on the search parameters
+  useEffect(() => {
+    const fetchFlights = async () => {
+      console.log("Search API Call");
+      try {
+        const response = await fetch(`${backendUrl}/search`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            from,
+            to,
+            flightDepatureDate: handleDate(flightDepatureDate),
+            flightReturnDate: handleDate(flightReturnDate),
+            travelClass,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch flight data");
+        }
+
+        const data = await response.json();
+        console.log(data);
+        setFlightsData(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchFlights();
+  }, [searchCount]);
   return (
     <div className="border-t-2 border-b-2 px-4 xl:px-40 border-gray-200">
       <form onSubmit={handleSearch} className="bg-white rounded-lg">
@@ -108,11 +203,8 @@ const SearchBox = () => {
                     <option value="" disabled>
                       Leaving From
                     </option>
-                    <option value="johannesburg">
-                      Johannesburg, South Africa
-                    </option>
-                    <option value="cape-town">Cape Town, South Africa</option>
-                    <option value="durban">Durban, South Africa</option>
+                    <option value="london">London, United Kingdom</option>
+                    <option value="mumbai">Mumbai,India</option>
                   </select>
                 </div>
               </div>
@@ -171,11 +263,8 @@ const SearchBox = () => {
                     <option value="" disabled>
                       Going to
                     </option>
-                    <option value="johannesburg">
-                      Johannesburg, South Africa
-                    </option>
-                    <option value="cape-town">Cape Town, South Africa</option>
-                    <option value="durban">Durban, South Africa</option>
+                    <option value="London">London, United Kingdom</option>
+                    <option value="Mumbai">Mumbai,India</option>
                   </select>
                 </div>
               </div>
@@ -192,8 +281,8 @@ const SearchBox = () => {
                 </label>
                 <div className="flex items-center mt-3.5">
                   <DatePicker
-                    selected={departureDate}
-                    onChange={(date) => setDepartureDate(date)}
+                    selected={flightDepatureDate}
+                    onChange={(date) => setflightDepatureDate(date)}
                     placeholderText="Date from"
                     className="block w-full placeholder:text-gray-400 text-black z-20 focus:outline-none"
                     dateFormat="MMM d, yyyy"
@@ -229,12 +318,12 @@ const SearchBox = () => {
                 </label>
                 <div className="flex items-center mt-3.5">
                   <DatePicker
-                    selected={returnDate}
-                    onChange={(date) => setReturnDate(date)}
+                    selected={flightReturnDate}
+                    onChange={(date) => setflightReturnDate(date)}
                     placeholderText="Return Date"
                     className="block w-full placeholder:text-gray-400 text-black focus:outline-none"
                     dateFormat="MMM d, yyyy"
-                    minDate={departureDate}
+                    minDate={flightDepatureDate}
                   />
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -430,12 +519,132 @@ const RecentlyBookedTickets = () => {
 //
 // ////////////////////////////////////////////////
 
-const FilterFlight = () => {
+const FilterFlight = ({ searchData, setFlightsData, flights }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [priceRange, setPriceRange] = useState(7000);
+  const [travelClassFilters, setTravelClassFilters] = useState([]);
+  const [stops, setStops] = useState([]);
+  const [airlineFilters, setAirlineFilters] = useState([]);
+  const [departureTimeSlot, setDepartureTimeSlot] = useState(null);
+  const [arrivalTimeSlot, setArrivalTimeSlot] = useState(null);
+  // const [filterTriggered, setFilterTriggered] = useState(false);
+  console.log(searchData);
+  const from = searchData.from;
+  const to = searchData.to;
+  const flightDepatureDate = searchData.flightDepatureDate;
+  const flightReturnDate = searchData.flightReturnDate;
 
   const toggleFilter = () => {
     setIsOpen(!isOpen);
+  };
+  const handleCheckboxChange = (e) => {
+    const { value, checked } = e.target;
+
+    setTravelClassFilters((prev) => {
+      if (checked) {
+        // Add selected class
+        return [...prev, value];
+      } else {
+        // Remove unselected class
+        return prev.filter((item) => item !== value);
+      }
+    });
+  };
+
+  const handleCheckboxChangeStops = (e) => {
+    const { value, checked } = e.target;
+
+    setStops((prev) => {
+      if (checked) {
+        // Add selected class
+        return [...prev, value];
+      } else {
+        // Remove unselected class
+        return prev.filter((item) => item !== value);
+      }
+    });
+  };
+  const handleCheckboxChangeAirlines = (e) => {
+    const { value, checked } = e.target;
+
+    setAirlineFilters((prev) => {
+      if (checked) {
+        // Add selected class
+        return [...prev, value];
+      } else {
+        // Remove unselected class
+        return prev.filter((item) => item !== value);
+      }
+    });
+  };
+  console.log(from);
+  console.log(to);
+  console.log(flightDepatureDate);
+  console.log(flightReturnDate);
+  console.log(priceRange);
+  console.log(stops);
+  console.log(travelClassFilters);
+  console.log(airlineFilters);
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+  // // Fetch flights based on the search parameters
+  useEffect(() => {
+    const fetchFlights = async () => {
+      console.log("Filter API Call");
+
+      try {
+        const response = await fetch(`${backendUrl}/filter`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            from: from,
+            to: to,
+            flightDepatureDate: flightDepatureDate,
+            flightReturnDate: flightReturnDate,
+            travelClass:
+              travelClassFilters.length > 0
+                ? travelClassFilters
+                : searchData.travelClass,
+            maxPrice: priceRange,
+            stops: stops,
+            airlineFilter: airlineFilters,
+            departureSlot: departureTimeSlot,
+            arrivalSlot: arrivalTimeSlot,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch flight data");
+        }
+
+        const data = await response.json();
+        console.log(data);
+        setFlightsData(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchFlights();
+  }, [
+    stops,
+    travelClassFilters,
+    airlineFilters,
+    departureTimeSlot,
+    arrivalTimeSlot,
+  ]);
+
+  const uniqueAirlines = [
+    ...new Set((flights || []).map((flight) => flight.airline)),
+  ];
+
+  const timeSlotMap = {
+    "Before 6AM": "00:00-05:59",
+    "6AM - 12PM": "06:00-11:59",
+    "12PM - 6PM": "12:00-17:59",
+    "6PM - 12AM": "18:00-23:59",
   };
 
   return (
@@ -463,19 +672,28 @@ const FilterFlight = () => {
                 <input
                   type="checkbox"
                   className="w-5 h-5 accent-orange-600"
-                  defaultChecked
+                  value="Business"
+                  onChange={(e) => handleCheckboxChange(e)}
                 />
-                <span className="ml-2 text-sm">Business (20)</span>
+                <span className="ml-2 text-sm">Business</span>
               </label>
               <label className="flex items-center">
-                <input type="checkbox" className="w-5 h-5 accent-orange-600" />
-                <span className="ml-2 text-sm text-gray-500">Economy (60)</span>
+                <input
+                  type="checkbox"
+                  className="w-5 h-5 accent-orange-600"
+                  value="Economy"
+                  onChange={(e) => handleCheckboxChange(e)}
+                />
+                <span className="ml-2 text-sm text-gray-500">Economy</span>
               </label>
               <label className="flex items-center">
-                <input type="checkbox" className="w-5 h-5 accent-orange-600" />
-                <span className="ml-2 text-sm text-gray-500">
-                  First class (10)
-                </span>
+                <input
+                  type="checkbox"
+                  className="w-5 h-5 accent-orange-600"
+                  value="Firstclass"
+                  onChange={(e) => handleCheckboxChange(e)}
+                />
+                <span className="ml-2 text-sm text-gray-500">First class</span>
               </label>
             </div>
           </div>
@@ -485,31 +703,17 @@ const FilterFlight = () => {
           <div className="mb-6">
             <h3 className="text-sm font-medium text-gray-700 mb-2">Airlines</h3>
             <div className="space-y-2">
-              <label className="flex items-center">
-                {/* <input
-                  type="checkbox"
-                  className="w-4 h-4 accent-orange-500"
-                  defaultChecked
-                /> */}
-                <input
-                  type="checkbox"
-                  className="w-5 h-5 accent-orange-600"
-                  defaultChecked
-                />
-                <span className="ml-2 text-sm">Emirates</span>
-              </label>
-              <label className="flex items-center">
-                <input type="checkbox" className="w-5 h-5 accent-orange-600" />
-                <span className="ml-2 text-sm text-gray-500">Air India</span>
-              </label>
-              <label className="flex items-center">
-                <input type="checkbox" className="w-5 h-5 accent-orange-600" />
-                <span className="ml-2 text-sm text-gray-500">Air France</span>
-              </label>
-              <label className="flex items-center">
-                <input type="checkbox" className="w-5 h-5 accent-orange-600" />
-                <span className="ml-2 text-sm text-gray-500">Emirates</span>
-              </label>
+              {uniqueAirlines.map((airline, index) => (
+                <label key={index} className="flex items-center">
+                  <input
+                    type="checkbox"
+                    className="w-5 h-5 accent-orange-600"
+                    value={airline}
+                    onChange={(e) => handleCheckboxChangeAirlines(e)}
+                  />
+                  <span className="ml-2 text-sm text-gray-500">{airline}</span>
+                </label>
+              ))}
             </div>
           </div>
 
@@ -536,12 +740,15 @@ const FilterFlight = () => {
 
           <div className="h-px bg-gray-300 px-4 my-[18px]"></div>
 
+          {/*Commented out*/}
           {/* Leaving at */}
-          <div className="mb-6">
+          <div className="mb-6 hidden">
             <h3 className="text-sm font-medium text-gray-700 mb-2">
               Leaving at
             </h3>
-            <p className="text-xs text-gray-500 mb-2">Departure to Algeria</p>
+            <p className="text-xs text-gray-500 mb-2">
+              Departure to {searchData.from}
+            </p>
             <div className="grid grid-cols-2 gap-2">
               <div className="bg-gray-100 rounded p-2 flex flex-col items-center">
                 {/* <Sun size={16} className="text-gray-400" /> */}
@@ -579,9 +786,9 @@ const FilterFlight = () => {
           </div>
 
           {/* Arrival */}
-          <div className="mb-6">
+          <div className="mb-6 hidden">
             <h3 className="text-sm font-medium text-gray-700 mb-2">
-              Arrival to Angola
+              Arrival to {searchData.to}
             </h3>
             <div className="grid grid-cols-2 gap-2">
               <div className="bg-gray-100 rounded p-2 flex flex-col items-center">
@@ -615,6 +822,67 @@ const FilterFlight = () => {
             </div>
           </div>
 
+          {/* Leaving at */}
+          <div className="mb-6">
+            <h3 className="text-sm font-medium text-gray-700 mb-2">
+              Leaving at
+            </h3>
+            <p className="text-xs text-gray-500 mb-2">
+              Departure to {searchData.from}
+            </p>
+            <div className="grid grid-cols-2 gap-2">
+              {Object.keys(timeSlotMap).map((label, idx) => (
+                <div
+                  key={`dep-${idx}`}
+                  className={`bg-gray-100 rounded p-2 flex flex-col items-center cursor-pointer ${
+                    departureTimeSlot?.from === timeSlotMap[label].from
+                      ? "bg-blue-200"
+                      : ""
+                  }`}
+                  onClick={() => setDepartureTimeSlot(timeSlotMap[label])}
+                >
+                  <img
+                    src={
+                      [SunRiseIcon, SunSetIcon, MoonRiseIcon, MoonSetIcon][idx]
+                    }
+                    alt={label}
+                    className="h-5 w-5"
+                  />
+                  <span className="text-xs text-gray-400 mt-1">{label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Arrival */}
+          <div className="mb-6">
+            <h3 className="text-sm font-medium text-gray-700 mb-2">
+              Arrival to {searchData.to}
+            </h3>
+            <div className="grid grid-cols-2 gap-2">
+              {Object.keys(timeSlotMap).map((label, idx) => (
+                <div
+                  key={`arr-${idx}`}
+                  className={`bg-gray-100 rounded p-2 flex flex-col items-center cursor-pointer ${
+                    arrivalTimeSlot?.from === timeSlotMap[label].from
+                      ? "bg-green-200"
+                      : ""
+                  }`}
+                  onClick={() => setArrivalTimeSlot(timeSlotMap[label])}
+                >
+                  <img
+                    src={
+                      [SunRiseIcon, SunSetIcon, MoonRiseIcon, MoonSetIcon][idx]
+                    }
+                    alt={label}
+                    className="h-5 w-5"
+                  />
+                  <span className="text-xs text-gray-400 mt-1">{label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
           <div className="h-px bg-gray-300 px-4 my-[18px]"></div>
 
           {/* Stops */}
@@ -625,16 +893,27 @@ const FilterFlight = () => {
                 <input
                   type="checkbox"
                   className="w-5 h-5 accent-orange-600"
-                  defaultChecked
+                  value="Nonstop"
+                  onChange={(e) => handleCheckboxChangeStops(e)}
                 />
                 <span className="ml-2 text-sm">Non - Stop</span>
               </label>
               <label className="flex items-center">
-                <input type="checkbox" className="w-5 h-5 accent-orange-600" />
+                <input
+                  type="checkbox"
+                  className="w-5 h-5 accent-orange-600"
+                  value="1Stop"
+                  onChange={(e) => handleCheckboxChangeStops(e)}
+                />
                 <span className="ml-2 text-sm text-gray-500">1 Stop</span>
               </label>
               <label className="flex items-center">
-                <input type="checkbox" className="w-5 h-5 accent-orange-600" />
+                <input
+                  type="checkbox"
+                  className="w-5 h-5 accent-orange-600"
+                  value="2stop"
+                  onChange={(e) => handleCheckboxChangeStops(e)}
+                />
                 <span className="ml-2 text-sm text-gray-500">2+ Stop</span>
               </label>
             </div>
@@ -750,7 +1029,9 @@ const FlightDatePicker = () => {
   };
 
   const formatPrice = (price) => `$ ${price.toLocaleString()}`;
-
+  console.log(selectedDate);
+  console.log(flightPrices);
+  console.log(formatPrice);
   return (
     <div
       className="w-full flex items-center font-sans overflow-hidden shadow-[0_2px_6px_rgba(0,0,0,0.12)] bg-white rounded-[12px]"
@@ -838,14 +1119,11 @@ const FlightDatePicker = () => {
 //  Flight Results
 //
 // ////////////////////////////////////////////////
-const FlightResults = () => {
-  const [flights, setFlights] = useState([]);
+const FlightResults = ({ flights, origin, destination }) => {
+  console.log(flights);
+
   const [selectedFlightId, setSelectedFlightId] = useState(null);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    setFlights(flightsData);
-  }, []);
 
   const handleSelectFlight = (id) => {
     setSelectedFlightId((prevId) => (prevId === id ? null : id));
@@ -855,7 +1133,7 @@ const FlightResults = () => {
       <div className="w-full flex items-center justify-between">
         {/* Heading Left */}
         <h1 className="text-[25.44px] font-[600] leading-[100%] font-jakarta">
-          Flights from Algeria to Angola
+          Flights from {origin} to {destination}
         </h1>
 
         {/* Sort by Right */}
