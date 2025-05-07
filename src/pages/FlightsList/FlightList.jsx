@@ -546,6 +546,7 @@ const FilterFlight = ({ searchData, setFlightsData, flights }) => {
   const [departureTimeSlot, setDepartureTimeSlot] = useState(null);
   const [arrivalTimeSlot, setArrivalTimeSlot] = useState(null);
   // const [filterTriggered, setFilterTriggered] = useState(false);
+  const[slotType,setSlotType]=useState("")
   console.log(searchData);
   const from = searchData.from;
   const to = searchData.to;
@@ -630,6 +631,7 @@ const FilterFlight = ({ searchData, setFlightsData, flights }) => {
             airlineFilter: airlineFilters,
             departureSlot: departureTimeSlot,
             arrivalSlot: arrivalTimeSlot,
+            slotType:slotType
           }),
         });
 
@@ -857,7 +859,12 @@ const FilterFlight = ({ searchData, setFlightsData, flights }) => {
                       ? "bg-blue-200"
                       : ""
                   }`}
-                  onClick={() => setDepartureTimeSlot(timeSlotMap[label])}
+                   // onClick={() => setDepatureTimeSlot(timeSlotMap[label])}
+                  onClick={() => {
+                    setDepartureTimeSlot(timeSlotMap[label]);
+                    setSlotType("Depature");
+                  }}
+                  
                 >
                   <img
                     src={
@@ -886,7 +893,11 @@ const FilterFlight = ({ searchData, setFlightsData, flights }) => {
                       ? "bg-green-200"
                       : ""
                   }`}
-                  onClick={() => setArrivalTimeSlot(timeSlotMap[label])}
+                  // onClick={() => setArrivalTimeSlot(timeSlotMap[label])}
+                  onClick={() => {
+                    setArrivalTimeSlot(timeSlotMap[label]);
+                    setSlotType("Arrival");
+                  }}
                 >
                   <img
                     src={
