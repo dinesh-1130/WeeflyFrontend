@@ -169,9 +169,18 @@ const HeroSection = () => {
                             width={32}
                           />
                         </label>
-                        <div className="flex items-center mt-3.5">
+                        <div className="flex gap-2 items-center mt-3.5">
                           <MapPin className="h-4 w-4 text-gray-500" />
-                          <select
+                          <input
+                            type="text"
+                            name="leavingFrom"
+                            id="leavingFrom"
+                            className="block w-full placeholder:text-gray-400 text-black focus:outline-none appearance-none"
+                            value={from}
+                            onChange={(e) => setFrom(e.target.value)}
+                            placeholder="leavingFrom"
+                          />
+{/*                           <select
                             name="leavingFrom"
                             id="leavingFrom"
                             className="block w-full placeholder:text-gray-400 text-black focus:outline-none appearance-none"
@@ -185,7 +194,8 @@ const HeroSection = () => {
                               London, United Kingdom
                             </option>
                             <option value="mumbai">Mumbai,India</option>
-                          </select>
+                          </select> */}
+                          
                         </div>
                       </div>
                     </div>
@@ -233,7 +243,16 @@ const HeroSection = () => {
                         </label>
                         <div className="flex items-center mt-3.5">
                           <MapPin className="h-4 w-4 text-gray-500" />
-                          <select
+                          <input
+                            type="text"
+                            name="leavingFrom"
+                            id="leavingFrom"
+                            className="block w-full placeholder:text-gray-400 text-black font-normal focus:outline-none appearance-none"
+                            value={to}
+                            onChange={(e) => setTo(e.target.value)}
+                            placeholder="Going to"
+                          />
+{/*                           <select
                             name="leavingFrom"
                             id="leavingFrom"
                             className="block w-full placeholder:text-gray-400 text-black focus:outline-none appearance-none"
@@ -247,7 +266,7 @@ const HeroSection = () => {
                               London, United Kingdom
                             </option>
                             <option value="mumbai">Mumbai,India</option>
-                          </select>
+                          </select> */}
                         </div>
                       </div>
                     </div>
