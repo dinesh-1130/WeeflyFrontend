@@ -197,6 +197,7 @@ const SearchBox = ({
                     type="text"
                     name="leavingFrom"
                     id="leavingFrom"
+                     placeholder="leavingFrom"
                     className="block w-full placeholder:text-gray-400 text-black focus:outline-none appearance-none"
                     value={from}
                     onChange={(e) => setFrom(e.target.value)}
@@ -268,6 +269,7 @@ const SearchBox = ({
                     className="block w-full placeholder:text-gray-400 text-black focus:outline-none appearance-none"
                     value={to}
                     onChange={(e) => setTo(e.target.value)}
+                      placeholder="Going to"
                   />
 {/*                   <select
                     name="leavingFrom"
