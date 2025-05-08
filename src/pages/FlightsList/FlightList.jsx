@@ -238,19 +238,6 @@ const SearchBox = ({
                     value={from}
                     onChange={(e) => setFrom(e.target.value)}
                   />
-                  {/*                   <select
-                    name="leavingFrom"
-                    id="leavingFrom"
-                    className="block w-full placeholder:text-gray-400 text-black focus:outline-none appearance-none"
-                    value={from}
-                    onChange={(e) => setFrom(e.target.value)}
-                  >
-                    <option value="" disabled>
-                      Leaving From
-                    </option>
-                    <option value="london">London, United Kingdom</option>
-                    <option value="mumbai">Mumbai,India</option>
-                  </select> */}
                 </div>
               </div>
             </div>
@@ -266,20 +253,6 @@ const SearchBox = ({
                 }}
                 className="bg-[#EE5128] rounded-full p-2"
               >
-                {/* <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5 text-white"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"
-                        />
-                      </svg> */}
                 <ArrowLeftRightIcon className="h-5 w-5 text-white" />
               </button>
             </div>
@@ -307,19 +280,6 @@ const SearchBox = ({
                     onChange={(e) => setTo(e.target.value)}
                     placeholder="Going to"
                   />
-                  {/*                   <select
-                    name="leavingFrom"
-                    id="leavingFrom"
-                    className="block w-full placeholder:text-gray-400 text-black focus:outline-none appearance-none"
-                    value={to}
-                    onChange={(e) => setTo(e.target.value)}
-                  >
-                    <option value="" disabled>
-                      Going to
-                    </option>
-                    <option value="London">London, United Kingdom</option>
-                    <option value="Mumbai">Mumbai,India</option>
-                  </select> */}
                 </div>
               </div>
             </div>
@@ -397,102 +357,108 @@ const SearchBox = ({
               </div>
             </div>
           </div>
-          <div className="flex flex-1 items-center sm:items-stretch">
-{/* Travelers and Flight Search Section */}
-<div className="flex flex-col md:flex-row w-full">
-  {/* Travelers Section */}
-  <div className="flex flex-1 flex-col md:flex-row">
-    {/* First Row - Economy and Travelers on Mobile, Left Section on Desktop */}
-    <div className="flex flex-row w-full md:w-auto md:flex-1">
-      {/* Travel Class Selector - Adjusted left padding on mobile */}
-      <div className="flex items-center relative p-3 md:p-4 border-r border-gray-200 flex-1 md:border-b-0 md:border-r">
-        <div className="flex flex-col w-full">
-          <label className="block text-xs text-gray-500">
-            <img
-              src={TravelerIcon}
-              alt="TravelerIcon"
-              height={32}
-              width={32}
-            />
-          </label>
-          <div className="flex items-center mt-3.5 relative w-full">
-            <select
-              className="w-full placeholder:text-gray-400 text-black focus:outline-none appearance-none bg-transparent"
-              value={travelClass}
-              onChange={(e) => setTravelClass(e.target.value)}
+          
+          {/* Travelers and Class section - Modified for better mobile alignment */}
+          <div className="flex flex-col sm:flex-1 w-full">
+            <div className="flex flex-row w-full">
+              {/* Travel Class */}
+              <div className="flex items-center relative p-4 border-b md:border-b-0 md:border-r border-gray-200 flex-1">
+                <div className="flex flex-col">
+                  <label className="block text-xs text-gray-500">
+                    <img
+                      src={TravelerIcon}
+                      alt="TravelerIcon"
+                      height={32}
+                      width={32}
+                    />
+                  </label>
+                  <div className="flex items-center mt-3.5 relative">
+                    <select
+                      className="placeholder:text-gray-400 text-black focus:outline-none appearance-none bg-transparent"
+                      value={travelClass}
+                      onChange={(e) => setTravelClass(e.target.value)}
+                    >
+                      <option value="" className="text-gray-400">
+                        Select
+                      </option>
+                      <option value="Economy">Economy</option>
+                      <option value="Premium Economy">Premium Economy</option>
+                      <option value="Business">Business</option>
+                      <option value="First">First</option>
+                    </select>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-4 w-4 text-gray-400 absolute right-0 pointer-events-none"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Travelers count */}
+              <div className="flex items-center relative p-4 border-b md:border-b-0 md:border-r border-gray-200 flex-1">
+                <div className="flex flex-col">
+                  <label className="block text-xs text-gray-500">
+                    <img
+                      src={TravelerIcon}
+                      alt="TravelerIcon"
+                      height={32}
+                      width={32}
+                    />
+                  </label>
+                  <div className="flex items-center mt-3.5 gap-2 relative">
+                    <div
+                      className="p-2 flex justify-center items-center rounded-md bg-[#EE5128] text-white hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200 cursor-pointer"
+                      onClick={() =>
+                        setTravelers((prev) => Math.max(1, prev - 1))
+                      }
+                    >
+                      <Minus className="h-[16px]" />
+                    </div>
+                    <p className="p-2">{travelers}</p>
+                    <div
+                      className="p-2 flex justify-center items-center rounded-md bg-[#EE5128] text-white hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200 cursor-pointer"
+                      onClick={() => setTravelers(travelers + 1)}
+                    >
+                      <Plus className="h-[16px]" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Search Button - Repositioned for mobile */}
+            <div className="p-4 flex justify-center md:justify-end items-center w-full md:hidden">
+              <button
+                type="submit"
+                className="w-full text-[14px] font-jakarta bg-[#FFE2DA] hover:bg-orange-600 text-black hover:text-white font-medium py-2 px-8 rounded-md flex items-center justify-center gap-2"
+              >
+                <Search />
+                Search Flights
+              </button>
+            </div>
+          </div>
+          
+          {/* Search Button for desktop - hidden on mobile */}
+          <div className="p-4 hidden md:flex md:justify-center items-center">
+            <button
+              type="submit"
+              className="text-[14px] font-jakarta sm:min-w-[120px] max-w-[200px] bg-[#FFE2DA] hover:bg-orange-600 text-black hover:text-white font-medium py-2 ml-8 px-8 rounded-md md:rounded-r-md flex items-center gap-2"
             >
-              <option value="" className="text-gray-400">
-                Select
-              </option>
-              <option value="Economy">Economy</option>
-              <option value="Premium Economy">Premium Economy</option>
-              <option value="Business">Business</option>
-              <option value="First">First</option>
-            </select>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4 text-gray-400 absolute right-0 pointer-events-none"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
+              <Search />
+              Search Flights
+            </button>
           </div>
         </div>
-      </div>
-
-      {/* Number of Travelers */}
-      <div className="flex items-center relative p-3 md:p-4 flex-1 md:border-b-0 md:border-r border-gray-200">
-        <div className="flex flex-col w-full">
-          <label className="block text-xs text-gray-500">
-            <img
-              src={TravelerIcon}
-              alt="TravelerIcon"
-              height={32}
-              width={32}
-            />
-          </label>
-          <div className="flex items-center mt-3.5 gap-2 relative">
-            <div
-              className="p-2 flex justify-center items-center rounded-md bg-[#EE5128] text-white hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200 cursor-pointer"
-              onClick={() =>
-                setTravelers((prev) => Math.max(1, prev - 1))
-              }
-            >
-              <Minus className="h-4 w-4" />
-            </div>
-            <p className="p-2">{travelers}</p>
-            <div
-              className="p-2 flex justify-center items-center rounded-md bg-[#EE5128] text-white hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200 cursor-pointer"
-              onClick={() => setTravelers(travelers + 1)}
-            >
-              <Plus className="h-4 w-4" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  {/* Search Button - Added margin for desktop to move slightly right */}
-  <div className="p-4 border-t border-gray-200 md:border-t-0 md:pl-2 md:pr-4 flex justify-center items-center">
-    <button
-      type="submit"
-      className="w-full md:w-auto text-[14px] font-jakarta bg-[#FFE2DA] hover:bg-orange-600 text-black hover:text-white font-medium py-2 px-6 rounded-md md:rounded-r-md flex items-center justify-center gap-2"
-    >
-      <Search className="h-4 w-4" />
-      <span>Search Flights</span>
-    </button>
-  </div>
-</div>
-</div>
-</div>
       </form>
     </div>
   );
