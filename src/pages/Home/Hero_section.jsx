@@ -381,48 +381,94 @@ const HeroSection = () => {
                   </div>
                   <div className="flex flex-1 items-center sm:items-stretch">
                     {/* Travelers */}
-                    <div className="flex items-center relative p-4 border-b-0 md:border-b-0 md:border-r border-gray-200 flex-1">
-                      <div className="mr-3"></div>
-                      <div>
-                        <label className="block text-xs text-gray-500">
-                          {/* {travelers} Traveler{travelers > 1 ? "s" : ""} */}
-                          <img
-                            src={TravelerIcon}
-                            alt="TravelerIcon"
-                            height={32}
-                            width={32}
-                          />
-                        </label>
-                        <div className="flex items-center mt-3.5 relative">
-                          <select
-                            className="block w-full placeholder:text-gray-400 text-black focus:outline-none appearance-none bg-transparent"
-                            value={travelClass}
-                            onChange={(e) => setTravelClass(e.target.value)}
-                          >
-                            <option value="" className="text-gray-400">
-                              Select
-                            </option>
-                            <option value="Economy">Economy</option>
-                            <option value="Premium Economy">
-                              Premium Economy
-                            </option>
-                            <option value="Business">Business</option>
-                            <option value="First">First</option>
-                          </select>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-4 w-4 text-gray-400 absolute right-0 pointer-events-none"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth="2"
-                              d="M19 9l-7 7-7-7"
+                    <div className="flex">
+                      <div className="flex items-center relative p-4 border-b-0 md:border-b-0 md:border-r border-gray-200 flex-1">
+                        <div className="flex flex-col">
+                          <label className="block text-xs text-gray-500">
+                            {/* {travelers} Traveler{travelers > 1 ? "s" : ""} */}
+                            <img
+                              src={TravelerIcon}
+                              alt="TravelerIcon"
+                              height={32}
+                              width={32}
                             />
-                          </svg>
+                          </label>
+                          <div className="flex items-center mt-3.5 relative">
+                            <select
+                              className="placeholder:text-gray-400 text-black focus:outline-none appearance-none bg-transparent"
+                              value={travelClass}
+                              onChange={(e) => setTravelClass(e.target.value)}
+                            >
+                              <option value="" className="text-gray-400">
+                                Select
+                              </option>
+                              <option value="Economy">Economy</option>
+                              <option value="Premium Economy">
+                                Premium Economy
+                              </option>
+                              <option value="Business">Business</option>
+                              <option value="First">First</option>
+                            </select>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-4 w-4 text-gray-400 absolute right-0 pointer-events-none"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M19 9l-7 7-7-7"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center relative p-4 border-b-0 md:border-b-0 md:border-r border-gray-200 flex-1">
+                        <div className="flex flex-col">
+                          <label className="block text-xs text-gray-500">
+                            {/* {travelers} Traveler{travelers > 1 ? "s" : ""} */}
+                            <img
+                              src={TravelerIcon}
+                              alt="TravelerIcon"
+                              height={32}
+                              width={32}
+                            />
+                          </label>
+                          <div className="flex items-center mt-3.5 gap-2 relative">
+                            <input
+                              type="text"
+                              placeholder="Count"
+                              className="appearance-none w-[50px]"
+                            />
+                            <select
+                              className="placeholder:text-gray-400 text-black focus:outline-none appearance-none bg-transparent"
+                              // value={travelClass}
+                              // onChange={(e) => setTravelClass(e.target.value)}
+                            >
+                              <option value="" className="text-gray-400">
+                                Select
+                              </option>
+                              <option value="Adult">Adult</option>
+                              <option value="Children">Children</option>
+                            </select>
+                            {/* <svg
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          className="h-4 w-4 text-gray-400 absolute right-0 pointer-events-none"
+                                          fill="none"
+                                          viewBox="0 0 24 24"
+                                          stroke="currentColor"
+                                        >
+                                          <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d="M19 9l-7 7-7-7"
+                                          />
+                                        </svg> */}
+                          </div>
                         </div>
                       </div>
                     </div>
