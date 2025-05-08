@@ -136,7 +136,7 @@ function FlightBooking() {
   const navigate = useNavigate();
   const location = useLocation();
   return (
-    <div className="px-4 xl:px-40 py-[59px] relative bg-neutral-100">
+    <div className="px-4 lg:px-20 xl:px-40 py-[59px] relative bg-neutral-100">
       <div className="sticky md:relative z-10 top-20 md:top-0 w-full bg-neutral-100">
         <div className="flex justify-between items-center">
           <h3 className="hidden lg:block font-jakarta font-semibold text-[30px]">
@@ -168,10 +168,10 @@ function FlightBooking() {
           </button>
         </div>
         {/* Stages */}
-        <div className="flex py-[30px] lg:py-[58px]">
+        <div className="flex py-[30px] lg:py-[58px] space-x-3.5">
           <div className="flex flex-col items-center">
             <p
-              className={`text-[30px] font-sans font-bold size-[62px]  rounded-full flex justify-center items-center text-white ${
+              className={`text-2xl sm:text-[30px] size-[51px] sm:size-[62px] font-sans font-bold   rounded-full flex justify-center items-center text-white ${
                 location.pathname === "/booking/ReviewYourBooking"
                   ? "bg-[#EE5128]"
                   : "bg-neutral-400"
@@ -186,13 +186,13 @@ function FlightBooking() {
                   : "text-neutral-400"
               }`}
             >
-              Review your Booking
+              Review your <br /> Booking
             </p>
           </div>
-          <div className="w-full border border-dashed h-px mt-[36px]"></div>
+          <div className="w-full border border-dashed h-px mt-[28px] sm:mt-[36px]"></div>
           <div className="flex flex-col items-center">
             <p
-              className={`text-[30px] font-sans font-bold text-white size-[62px]  rounded-full flex justify-center items-center ${
+              className={`text-2xl sm:text-[30px] size-[51px] sm:size-[62px] font-sans font-bold text-white rounded-full flex justify-center items-center ${
                 location.pathname === "/booking/TravelersDetails"
                   ? "bg-[#EE5128]"
                   : "bg-neutral-400"
@@ -207,13 +207,13 @@ function FlightBooking() {
                   : "text-neutral-400"
               }`}
             >
-              Travelers Details
+              Travelers <br /> Details
             </p>
           </div>
-          <div className="w-full border border-dashed h-px mt-[36px]"></div>
+          <div className="w-full border border-dashed h-px mt-[28px] sm:mt-[36px]"></div>
           <div className="flex-col items-center flex">
             <p
-              className={`text-[30px] font-sans font-bold text-white size-[62px]  rounded-full flex justify-center items-center ${
+              className={`text-2xl sm:text-[30px] size-[51px] sm:size-[62px] font-sans font-bold text-white  rounded-full flex justify-center items-center ${
                 location.pathname === "/booking/SeatSelection"
                   ? "bg-[#EE5128]"
                   : "bg-neutral-400"
@@ -228,13 +228,13 @@ function FlightBooking() {
                   : "text-neutral-400"
               }`}
             >
-              Seat Selection
+              Extras
             </p>
           </div>
-          <div className="w-full border border-dashed h-px mt-[36px]"></div>
-          <div className="flex flex-col items-center px-4">
+          <div className="w-full border border-dashed h-px mt-[28px] sm:mt-[36px]"></div>
+          <div className="flex flex-col items-center px-0 sm:px-4">
             <p
-              className={`text-[30px] font-sans font-bold text-white size-[62px] rounded-full flex justify-center items-center ${
+              className={`text-2xl sm:text-[30px] size-[51px] sm:size-[62px] font-sans font-bold text-white rounded-full flex justify-center items-center ${
                 location.pathname === "/booking/payment"
                   ? "bg-[#EE5128]"
                   : "bg-neutral-400"

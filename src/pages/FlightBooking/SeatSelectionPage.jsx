@@ -32,13 +32,13 @@ export default function SeatSelection() {
           <div className="w-full lg:max-w-[680px] order-2 lg:order-1">
             {/* Seat Selection Panel */}
             <div className="w-full h-auto lg:h-[550px] rounded-md shadow-sm overflow-hidden bg-white">
-              <div className="flex items-center px-6 bg-[#FFE4DB] py-3 space-x-8 font-['Plus Jakarta Sans'] text-[16px]">
-                <span className="text-black font-semibold relative">
-                  Seats{" "}
-                  <div className="w-2 h-2 bg-[#EE5128] rounded-full absolute -bottom-1 left-1/2 transform -translate-x-1/2" />
+              <div className="flex items-center px-6 bg-[#EE5128] py-3 space-x-8 font-['Plus Jakarta Sans'] text-[16px]">
+                <span className="text-white font-semibold relative flex gap-2">
+                  <span>Seats</span>
+                  <div className="w-2 h-2 bg-white rounded-full absolute -bottom-2 left-1/2 transform -translate-x-1/2" />
                 </span>
-                <span className="text-gray-500">Snacks</span>
-                <span className="text-gray-500">Extra luggage's</span>
+                <span className="text-gray-200">Snacks</span>
+                <span className="text-gray-200">Extra luggage's</span>
               </div>
 
               <div className="flex flex-col md:flex-row items-start gap-6 p-6">
@@ -331,19 +331,36 @@ export default function SeatSelection() {
               <div className="p-4 space-y-3 text-[14px] text-black font-['Lato']">
                 <div className="flex justify-between">
                   <span>Adult x 1</span>
-                  <span className="font-semibold">$2500</span>
+                  <span className="font-semibold flex gap-1">
+                    <span>{flight.currency}</span>
+                    <span>{flight.price.toLocaleString()}</span>
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span>Total taxes +</span>
-                  <span className="font-semibold">$500</span>
+                  <span className="font-semibold flex gap-1">
+                    <span>{flight.currency}</span> <span>500.00</span>
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span>Other Charged</span>
-                  <span className="font-semibold">$200</span>
+                  <span className="font-semibold flex gap-1">
+                    {" "}
+                    <span>{flight.currency}</span> <span>200.00</span>
+                  </span>
                 </div>
                 <div className="flex justify-between border-t pt-3 text-[#EE5128] font-semibold">
                   <span>Total</span>
-                  <span>$3200</span>
+                  <span>
+                    {" "}
+                    <span>{flight.currency}</span>{" "}
+                    <span>
+                      {(parseFloat(flight.price) + 500 + 200).toLocaleString(
+                        "en-ZA",
+                        { minimumFractionDigits: 2 }
+                      )}
+                    </span>
+                  </span>
                 </div>
               </div>
             </div>
@@ -354,12 +371,12 @@ export default function SeatSelection() {
         <div className="mt-6 w-full lg:max-w-[656px] mx-auto text-center lg:ml-[-215px] flex flex-col md:flex-row justify-center items-center gap-4">
           <button
             onClick={() => navigate("/booking/payment", { state: { flight } })}
-            className="bg-[#EE5128] text-white px-6 py-2 lg:relative lg:left-5 rounded font-semibold font-['Plus Jakarta Sans'] w-full md:w-auto"
+            className="bg-[#EE5128] text-white px-6 py-2 lg:relative lg:left-5 rounded font-semibold font-['Plus Jakarta Sans'] w-full md:w-auto hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200"
           >
             Continue booking
           </button>
-          <button className="text-[#EE5128] font-semibold text-sm lg:relative lg:left-16 mt-2 md:mt-0">
-            Skip add–ons
+          <button className="text-[#EE5128] font-semibold text-sm lg:relative lg:left-16 mt-2 md:mt-0 hover:underline">
+            Skip extras
           </button>
         </div>
       </div>

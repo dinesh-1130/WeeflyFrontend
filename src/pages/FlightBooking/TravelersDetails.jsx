@@ -147,7 +147,7 @@ function TravelersDetails() {
             onClick={() =>
               navigate("/booking/SeatSelection", { state: { flight } })
             }
-            className="bg-[#EE5128] text-white px-6 py-2 relative rounded font-semibold font-jakarta"
+            className="bg-[#EE5128] text-white px-6 py-2 relative rounded font-semibold font-jakarta hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200"
           >
             Continue booking
           </button>

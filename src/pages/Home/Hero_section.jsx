@@ -185,8 +185,8 @@ const HeroSection = () => {
                   <div className="flex flex-row flex-1">
                     {/* From Location */}
                     <div className="flex items-center p-4 border-b md:border-b-0  border-gray-200 flex-1">
-                      <div className="mr-3"></div>
-                      <div>
+                      {/* <div className="mr-3"></div> */}
+                      <div className="flex flex-col">
                         <label className="block text-xs text-gray-500">
                           <img
                             src={TakeOffPlane}
@@ -201,7 +201,7 @@ const HeroSection = () => {
                             type="text"
                             name="leavingFrom"
                             id="leavingFrom"
-                            className="block w-full placeholder:text-gray-400 text-black focus:outline-none appearance-none"
+                            className="block max-w-[100px] placeholder:text-gray-400 text-black focus:outline-none appearance-none"
                             value={from}
                             onChange={(e) => setFrom(e.target.value)}
                             placeholder="leavingFrom"
@@ -256,7 +256,7 @@ const HeroSection = () => {
 
                     {/* To Location */}
                     <div className="flex items-center p-4 border-b md:border-b-0 md:border-r border-gray-200 flex-1">
-                      <div className="mr-3"></div>
+                      {/* <div className="mr-3"></div> */}
                       <div>
                         <label className="block text-xs text-black">
                           <img
@@ -272,7 +272,7 @@ const HeroSection = () => {
                             type="text"
                             name="leavingFrom"
                             id="leavingFrom"
-                            className="block w-full placeholder:text-gray-400 text-black font-normal focus:outline-none appearance-none"
+                            className="block max-w-[100px] placeholder:text-gray-400 text-black font-normal focus:outline-none appearance-none"
                             value={to}
                             onChange={(e) => setTo(e.target.value)}
                             placeholder="Going to"
@@ -300,7 +300,7 @@ const HeroSection = () => {
                   <div className="flex flex-1">
                     {/* Departure Date */}
                     <div className="flex items-center p-4 border-b md:border-b-0 md:border-r border-gray-200 flex-1">
-                      <div className="mr-3"></div>
+                      {/* <div className="mr-3"></div> */}
                       <div className="relative">
                         <label className="block text-xs text-gray-500">
                           <img
@@ -315,14 +315,14 @@ const HeroSection = () => {
                             selected={flightDepatureDate}
                             onChange={(date) => setflightDepatureDate(date)}
                             placeholderText="Date from"
-                            className="block w-full placeholder:text-gray-400 text-black z-20 focus:outline-none"
+                            className="block max-w-[100px] placeholder:text-gray-400 text-black z-20 focus:outline-none"
                             dateFormat="MMM d, yyyy"
                             popperClassName="z-[50px]"
                             popperProps={{
                               positionFixed: true,
                             }}
                           />
-                          <svg
+                          {/* <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-4 w-4 text-gray-400 absolute left-[65%] sm:left-[53%]  pointer-events-none"
                             fill="none"
@@ -335,7 +335,7 @@ const HeroSection = () => {
                               strokeWidth="2"
                               d="M19 9l-7 7-7-7"
                             />
-                          </svg>
+                          </svg> */}
                         </div>
                       </div>
                     </div>
@@ -357,11 +357,11 @@ const HeroSection = () => {
                             selected={flightReturnDate}
                             onChange={(date) => setflightReturnDate(date)}
                             placeholderText="Return Date"
-                            className="block w-full placeholder:text-gray-400 text-black focus:outline-none"
+                            className="block max-w-[100px] placeholder:text-gray-400 text-black focus:outline-none"
                             dateFormat="MMM d, yyyy"
                             minDate={flightDepatureDate}
                           />
-                          <svg
+                          {/* <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-4 w-4 text-gray-400 absolute left-[65%] sm:left-[55%] pointer-events-none"
                             fill="none"
@@ -374,7 +374,7 @@ const HeroSection = () => {
                               strokeWidth="2"
                               d="M19 9l-7 7-7-7"
                             />
-                          </svg>
+                          </svg> */}
                         </div>
                       </div>
                     </div>
@@ -477,7 +477,7 @@ const HeroSection = () => {
                     <div className="p-4 my-auto md:my-0 md:p-0">
                       <button
                         type="submit"
-                        className="w-full text-2xl font-jakarta sm:min-w-[200px] max-w-[200px] md:h-full bg-[#EE5128] hover:bg-orange-600 text-white font-semibold py-2 px-8 md:px-12 rounded-md md:rounded-none md:rounded-r-md"
+                        className="w-full text-2xl font-jakarta sm:min-w-[200px] max-w-[200px] md:h-full bg-[#EE5128] text-white font-semibold py-2 px-8 md:px-12 rounded-md md:rounded-none md:rounded-r-md hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200"
                       >
                         Search
                       </button>

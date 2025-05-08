@@ -28,7 +28,7 @@ export default function PaymentPage() {
 
   return (
     <div className=" font-sans flex justify-center">
-      <div className="w-full max-w-[1140px] px-4">
+      <div className="w-full px-4">
         {/* <h1 className="text-[24px] font-semibold mb-12 relative left-[29px] font-['Plus Jakarta Sans'] ml-[14px]">
           Complete your Booking
         </h1>
@@ -49,9 +49,10 @@ export default function PaymentPage() {
 
         <div className="flex flex-col lg:flex-row justify-between gap-8">
           {/* Left */}
-          <div className="w-full lg:w-[740px] space-y-6">
+          {/* <div className="w-full lg:w-[740px] space-y-6"> */}
+          <div className="w-full lg:max-w-[740px] space-y-6">
             <div className="rounded-md bg-white">
-              <div className="flex flex-col lg:flex-row space-y-6 py-6 justify-between items-center px-4 pt-4">
+              <div className="flex flex-col md:flex-row space-y-6 py-6 justify-between items-center px-4 pt-4">
                 <div className="flex flex-col min-w-[170px] relative">
                   <img
                     src={flight.logo}
@@ -105,8 +106,8 @@ export default function PaymentPage() {
                   </div>
                 </div>
                 <div className="text-right flex flex-col items-center lg:items-end space-y-[2px] w-[152px]">
-                  <p className="text-[#EE5128] text-[26px] font-black leading-none">
-                    {flight.currency}
+                  <p className="text-[#EE5128] text-[26px] font-black leading-none font-sans">
+                    <span className="text-[20px] pr-2">{flight.currency}</span>
                     {flight.price.toLocaleString()}
                     <span className="text-[12px] text-black font-normal">
                       /pax
@@ -126,7 +127,10 @@ export default function PaymentPage() {
                   <span className="hidden lg:block">Refund</span>
                   <span className="hidden lg:block">Reschedule</span>
                 </div>
-                <button className="bg-[#EE5128] text-white px-4 py-1.5 rounded font-semibold">
+                <button
+                  className="bg-[#EE5128] text-white px-4 py-1.5 rounded font-semibold
+             hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200"
+                >
                   Book now
                 </button>
               </div>
@@ -186,7 +190,7 @@ export default function PaymentPage() {
           </div>
 
           {/* Right Column */}
-          <div className="w-full relative lg:w-[360px] space-y-6">
+          <div className="w-full relative lg:max-w-[360px] space-y-6">
             <div className="w-[360px] h-[280px] bg-white rounded-[12px]  shadow-sm overflow-hidden">
               <div className="bg-[#FFE4DB] p-3 rounded-t-[12px]">
                 <h2 className="font-semibold text-[18px]">Booking Details</h2>
@@ -252,7 +256,7 @@ export default function PaymentPage() {
               </div>
             </div>
 
-            <div className="bg-white rounded-md  shadow-sm overflow-hidden">
+            {/* <div className="bg-white rounded-md  shadow-sm overflow-hidden">
               <div className="bg-[#FFE4DB] p-4 font-semibold">
                 Price summary
               </div>
@@ -272,6 +276,47 @@ export default function PaymentPage() {
                 <div className="flex justify-between border-t pt-3 text-[#EE5128] font-semibold">
                   <span>Total</span>
                   <span>$3200</span>
+                </div>
+              </div>
+            </div> */}
+
+            <div className="bg-white rounded-md shadow-sm">
+              <div className="bg-[#FFE4DB] p-4 font-semibold font-['Plus Jakarta Sans']">
+                Price Summary
+              </div>
+              <div className="p-4 space-y-3 text-[14px] text-black font-['Lato']">
+                <div className="flex justify-between">
+                  <span>Adult x 1</span>
+                  <span className="font-semibold flex gap-1">
+                    <span>{flight.currency}</span>
+                    <span>{flight.price.toLocaleString()}</span>
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Total taxes +</span>
+                  <span className="font-semibold flex gap-1">
+                    <span>{flight.currency}</span> <span>500.00</span>
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Other Charged</span>
+                  <span className="font-semibold flex gap-1">
+                    {" "}
+                    <span>{flight.currency}</span> <span>200.00</span>
+                  </span>
+                </div>
+                <div className="flex justify-between border-t pt-3 text-[#EE5128] font-semibold">
+                  <span>Total</span>
+                  <span>
+                    {" "}
+                    <span>{flight.currency}</span>{" "}
+                    <span>
+                      {(parseFloat(flight.price) + 500 + 200).toLocaleString(
+                        "en-ZA",
+                        { minimumFractionDigits: 2 }
+                      )}
+                    </span>
+                  </span>
                 </div>
               </div>
             </div>

@@ -68,7 +68,7 @@ const Navbar = () => {
                 </form>
                 <div className="flex items-center gap-4">
                   <button
-                    className="bg-orange-600 px-3.5 py-2 flex items-center rounded-md gap-2 text-white"
+                    className="bg-orange-600 px-3.5 py-2 flex items-center rounded-md gap-2 text-white hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200"
                     onClick={() => navigate("/login")}
                   >
                     <UserCircle />
@@ -85,7 +85,12 @@ const Navbar = () => {
               </div>
             </div>
             <div className="flex gap-[12px] lg:hidden cursor-pointer">
-              <UserCircle />
+              <div
+                className="cursor-pointer"
+                onClick={() => navigate("/login")}
+              >
+                <UserCircle />
+              </div>
               <button
                 className=""
                 onClick={() => setIsMenuOpen((prev) => !prev)}
@@ -138,7 +143,10 @@ const Navbar = () => {
                   </div>
                 </form>
                 <div className="flex items-center gap-4">
-                  <button className="bg-orange-600 px-3.5 py-2 flex items-center rounded-md gap-2 text-white">
+                  <button
+                    className="bg-orange-600 px-3.5 py-2 flex items-center rounded-md gap-2 text-white hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200"
+                    onClick={() => navigate("/login")}
+                  >
                     <UserCircle />
                     <span>Login/Register</span>
                   </button>

@@ -65,12 +65,12 @@ function LoginPage() {
                   onClick={() => setShowPassword((prev) => !prev)}
                 >
                   {showPassword ? (
-                    <div className="relative">
-                      <Eye />
-                      <div className="absolute h-[2px] bg-black top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[30px] rotate-45"></div>
-                    </div>
+                    <Eye className="text-gray-400" />
                   ) : (
-                    <Eye />
+                    <div className="relative text-gray-400">
+                      <Eye className="h-[16] w-[16]" />
+                      <div className="absolute h-px bg-gray-400 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[30px] rotate-45"></div>
+                    </div>
                   )}
                 </div>
                 <div className="px-[20px] py-[14px] rounded-[8px] bg-[#EE5128] grid place-items-center">

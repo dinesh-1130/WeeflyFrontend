@@ -44,7 +44,7 @@ export default function ReviewYourBooking() {
       </div>
 
       {/* Services Section */}
-      <div className="bg-white rounded-[17px] px-[20px] sm:px-[44px] py-[30px] mt-[30px]">
+      {/* <div className="bg-white rounded-[17px] px-[20px] sm:px-[44px] py-[30px] mt-[30px]">
         <div className="flex flex-col xl:flex-row justify-between xl:items-center items-start gap-[30px]">
           <p className="text-sm sm:text-[17px] bg-[#FFE2DA] rounded-[13px] px-6 py-3">
             Weefly pro Enjoy Zero Convenience Fee and More @ $2000 rupees
@@ -66,7 +66,7 @@ export default function ReviewYourBooking() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* Continue Button */}
       <div className="text-center xl:text-right mt-[40px]">
@@ -76,7 +76,7 @@ export default function ReviewYourBooking() {
               state: { flight },
             })
           }
-          className="bg-[#EE5128] text-white text-[15px] px-[37px] py-[14px] rounded-[5px] font-semibold text-nowrap"
+          className="bg-[#EE5128] text-white text-[15px] px-[37px] py-[14px] rounded-[5px] font-semibold text-nowrap hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200"
         >
           Continue Booking
         </button>
