@@ -23,7 +23,7 @@ function TravelersDetails() {
           {/* Travelers Details */}
           <div className="max-w-[656px] w-full min-h-[339px] bg-white rounded-md">
             <div className="bg-[#FFE4DB] p-3 rounded-t-md">
-              <h2 className="font-semibold font-jakarta">Travelers Details</h2>
+              <h2 className="font-semibold font-jakarta">Travellers Details</h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-4 px-6 py-4">
               {[

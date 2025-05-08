@@ -105,7 +105,7 @@ export default function PaymentPage() {
                     </p>
                   </div>
                 </div>
-                <div className="text-right flex flex-col items-center lg:items-end space-y-[2px] w-[152px]">
+                <div className="text-right flex flex-col items-center lg:items-end space-y-[2px] mt-12 w-[152px]">
                   <p className="text-[#EE5128] text-[26px] font-black leading-none font-sans">
                     <span className="text-[20px] pr-2">{flight.currency}</span>
                     {flight.price.toLocaleString()}

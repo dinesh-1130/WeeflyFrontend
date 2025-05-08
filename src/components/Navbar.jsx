@@ -38,9 +38,9 @@ const Navbar = () => {
           >
             <div className="">
               {isScrolled ? (
-                <img src={WeeFlyLogo2} alt="WeeFly" className="h-10 lg:h-16" />
+                <img src={WeeFlyLogo2} alt="WeeFly" className="h-10 lg:h-16  cursor-pointer" onClick={()=>navigate('/')}  />
               ) : (
-                <img src={WeeFlyLogo} alt="WeeFly" className="h-10 lg:h-16" />
+                <img src={WeeFlyLogo} alt="WeeFly" className="h-10 lg:h-16 cursor-pointer" onClick={()=>navigate('/')} />
               )}
             </div>
             <div className="items-center gap-10 hidden lg:flex">
@@ -117,7 +117,7 @@ const Navbar = () => {
             } transition-all duration-300`}
           >
             <div className="">
-              <img src={WeeFlyLogo2} alt="WeeFly" className="h-10 lg:h-16" />
+              <img src={WeeFlyLogo2} alt="WeeFly" className="h-10 lg:h-16 cursor-pointer" onClick={()=>navigate('/')} />
             </div>
             <div className="items-center gap-10 hidden lg:flex">
               <nav className="flex text-base space-x-10">

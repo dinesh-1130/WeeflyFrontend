@@ -1,4 +1,4 @@
-import { ArrowLeftRightIcon, MapPin, User } from "lucide-react";
+import { ArrowLeftRightIcon, MapPin, Minus, Plus, User } from "lucide-react";
 import { useState, useEffect } from "react";
 import PaperDesktop from "../../assets/images/paper.svg";
 import PaperMobile from "../../assets/images/paper-mobile.png";
@@ -19,7 +19,7 @@ const HeroSection = () => {
   // const [returnDate, setReturnDate] = useState(null);
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
-  // const [travelers, setTravelers] = useState(1);
+  const [travelers, setTravelers] = useState(1);
   const [travelClass, setTravelClass] = useState("Economy");
   const [flightDepatureDate, setflightDepatureDate] = useState(null);
   const [flightReturnDate, setflightReturnDate] = useState(null);
@@ -84,6 +84,7 @@ const HeroSection = () => {
               flightDepatureDate: formattedDepartureDate,
               flightReturnDate: formattedReturnDate,
               travelClass,
+              travelers,
             },
           },
         });
@@ -108,6 +109,7 @@ const HeroSection = () => {
       flightDepatureDate: formattedDepartureDate,
       flightReturnDate: formattedReturnDate,
       travelClass,
+      travelers,
     });
 
     setSearchCount((prev) => prev + 1);
@@ -437,37 +439,22 @@ const HeroSection = () => {
                               width={32}
                             />
                           </label>
-                          <div className="flex items-center mt-3.5 gap-2 relative">
-                            <input
-                              type="text"
-                              placeholder="Count"
-                              className="appearance-none w-[50px]"
-                            />
-                            <select
-                              className="placeholder:text-gray-400 text-black focus:outline-none appearance-none bg-transparent"
-                              // value={travelClass}
-                              // onChange={(e) => setTravelClass(e.target.value)}
+                          <div className="flex items-center mt-3.5 gap-2 relative font-jakarta">
+                            <div
+                              className="p-2 flex justify-center items-center rounded-md bg-[#EE5128] text-white hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200 cursor-pointer"
+                              onClick={() =>
+                                setTravelers((prev) => Math.max(1, prev - 1))
+                              }
                             >
-                              <option value="" className="text-gray-400">
-                                Select
-                              </option>
-                              <option value="Adult">Adult</option>
-                              <option value="Children">Children</option>
-                            </select>
-                            {/* <svg
-                                          xmlns="http://www.w3.org/2000/svg"
-                                          className="h-4 w-4 text-gray-400 absolute right-0 pointer-events-none"
-                                          fill="none"
-                                          viewBox="0 0 24 24"
-                                          stroke="currentColor"
-                                        >
-                                          <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth="2"
-                                            d="M19 9l-7 7-7-7"
-                                          />
-                                        </svg> */}
+                              <Minus className="h-[16px]" />
+                            </div>
+                            <p className="p-2">{travelers}</p>
+                            <div
+                              className="p-2 flex justify-center items-center rounded-md bg-[#EE5128] text-white hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200 cursor-pointer"
+                              onClick={() => setTravelers(travelers + 1)}
+                            >
+                              <Plus className="h-[16px]" />
+                            </div>
                           </div>
                         </div>
                       </div>

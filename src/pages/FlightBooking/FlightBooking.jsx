@@ -214,7 +214,7 @@ function FlightBooking() {
                   : "text-neutral-400"
               }`}
             >
-              Travelers <br /> Details
+              Travellers <br /> Details
             </p>
           </div>
           <div className="w-full border border-dashed h-px mt-[28px] sm:mt-[36px]"></div>
