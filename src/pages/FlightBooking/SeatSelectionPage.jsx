@@ -37,8 +37,8 @@ export default function SeatSelection() {
                   <span>Seats</span>
                   <div className="w-2 h-2 bg-white rounded-full absolute -bottom-2 left-1/2 transform -translate-x-1/2" />
                 </span>
-                <span className="text-gray-200">Snacks</span>
-                <span className="text-gray-200">Extra luggage's</span>
+                <span className="text-white">Meals</span>
+                <span className="text-white">Extra luggage's</span>
               </div>
 
               <div className="flex flex-col md:flex-row items-start gap-6 p-6">

@@ -47,7 +47,7 @@ export default function PaymentPage() {
           ))}
         </div> */}
 
-        <div className="flex flex-col lg:flex-row justify-between gap-8">
+        <div className="flex flex-col lg:flex-row justify-between gap-4 xl:gap-8">
           {/* Left */}
           {/* <div className="w-full lg:w-[740px] space-y-6"> */}
           <div className="w-full lg:max-w-[740px] space-y-6">

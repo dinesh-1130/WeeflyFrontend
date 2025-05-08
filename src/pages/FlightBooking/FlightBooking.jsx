@@ -142,7 +142,7 @@ function FlightBooking() {
           <h3 className="hidden lg:block font-jakarta font-semibold text-[30px]">
             Complete Your Booking
           </h3>
-          <button
+          {/* <button
             className="hidden lg:block font-jakarta text-[18px] px-[22px] py-[10px] rounded-[5px] text-[#EE5128] hover:underline"
             onClick={() => {
               location.pathname === "/booking/ReviewYourBooking"
@@ -165,6 +165,13 @@ function FlightBooking() {
               : location.pathname === "/booking/payment"
               ? "Back"
               : ""}
+          </button> */}
+
+          <button
+            className="hidden lg:block font-jakarta text-[18px] px-[22px] py-[10px] rounded-[5px] text-[#EE5128] hover:underline"
+            onClick={() => navigate(-1)}
+          >
+            Back
           </button>
         </div>
         {/* Stages */}
