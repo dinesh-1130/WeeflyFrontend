@@ -402,10 +402,10 @@ const SearchBox = ({
 <div className="flex flex-col md:flex-row w-full">
   {/* Travelers Section */}
   <div className="flex flex-1 flex-col md:flex-row">
-        {/* First Row - Economy and Travelers on Mobile, Left Section on Desktop */}
+    {/* First Row - Economy and Travelers on Mobile, Left Section on Desktop */}
     <div className="flex flex-row w-full md:w-auto md:flex-1">
-      {/* Travel Class Selector - Further adjusted for mobile alignment */}
-      <div className="flex items-center relative p-0 py-3 md:p-4 border-r border-gray-200 flex-1 md:border-b-0 md:border-r">
+      {/* Travel Class Selector - Adjusted left padding on mobile */}
+      <div className="flex items-center relative p-3 md:p-4 border-r border-gray-200 flex-1 md:border-b-0 md:border-r">
         <div className="flex flex-col w-full">
           <label className="block text-xs text-gray-500">
             <img
@@ -413,12 +413,11 @@ const SearchBox = ({
               alt="TravelerIcon"
               height={32}
               width={32}
-              className="ml-1"
             />
           </label>
           <div className="flex items-center mt-3.5 relative w-full">
             <select
-              className="w-full placeholder:text-gray-400 text-black focus:outline-none appearance-none bg-transparent ml-1"
+              className="w-full placeholder:text-gray-400 text-black focus:outline-none appearance-none bg-transparent"
               value={travelClass}
               onChange={(e) => setTravelClass(e.target.value)}
             >
@@ -432,7 +431,7 @@ const SearchBox = ({
             </select>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4 text-gray-400 absolute right-2 md:right-0 pointer-events-none"
+              className="h-4 w-4 text-gray-400 absolute right-0 pointer-events-none"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -449,9 +448,9 @@ const SearchBox = ({
       </div>
 
       {/* Number of Travelers */}
-      <div className="flex items-center relative px-2 py-3 md:p-4 flex-1 md:border-b-0 md:border-r border-gray-200">
+      <div className="flex items-center relative p-3 md:p-4 flex-1 md:border-b-0 md:border-r border-gray-200">
         <div className="flex flex-col w-full">
-          <label className="block text-xs text-gray-500 pl-2 md:pl-0">
+          <label className="block text-xs text-gray-500">
             <img
               src={TravelerIcon}
               alt="TravelerIcon"
@@ -459,7 +458,7 @@ const SearchBox = ({
               width={32}
             />
           </label>
-          <div className="flex items-center mt-3.5 gap-2 relative pl-2 md:pl-0">
+          <div className="flex items-center mt-3.5 gap-2 relative">
             <div
               className="p-2 flex justify-center items-center rounded-md bg-[#EE5128] text-white hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200 cursor-pointer"
               onClick={() =>
@@ -482,7 +481,7 @@ const SearchBox = ({
   </div>
 
   {/* Search Button - Added margin for desktop to move slightly right */}
-  <div className="px-4 py-3 border-t border-gray-200 md:border-t-0 md:pl-2 md:pr-4 flex justify-center items-center">
+  <div className="p-4 border-t border-gray-200 md:border-t-0 md:pl-2 md:pr-4 flex justify-center items-center">
     <button
       type="submit"
       className="w-full md:w-auto text-[14px] font-jakarta bg-[#FFE2DA] hover:bg-orange-600 text-black hover:text-white font-medium py-2 px-6 rounded-md md:rounded-r-md flex items-center justify-center gap-2"
