@@ -23,11 +23,6 @@ export default function ReviewYourBooking() {
   const location = useLocation();
   const [flight, setFlight] = useState(null);
 
-  useEffect(() => {
-    if (location.state && location.state.flight) {
-      setFlight(location.state.flight);
-    }
-  }, [location]);
 
 
   return (
