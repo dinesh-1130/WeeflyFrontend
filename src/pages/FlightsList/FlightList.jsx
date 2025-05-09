@@ -294,7 +294,7 @@ const SearchBox = ({
                   <img src={DateFrom} alt="DateFrom" height={32} width={32} />
                 </label>
                 <div className="flex items-center mt-3.5">
-                  <DatePicker
+                  <DatePicker 
                     selected={flightDepatureDate}
                     onChange={(date) => setflightDepatureDate(date)}
                     placeholderText="Date from"
@@ -307,7 +307,7 @@ const SearchBox = ({
                   />
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4 text-gray-400 absolute left-[65%] sm:left-[53%]  pointer-events-none"
+                    className="h-4 w-4 text-gray-400 absolute left-[65%] sm:left-[53%]  pointer-events-none ml-10"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -341,7 +341,7 @@ const SearchBox = ({
                   />
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4 text-gray-400 absolute left-[65%] sm:left-[55%] pointer-events-none"
+                    className="h-4 w-4 text-gray-400 absolute left-[65%] sm:left-[55%] pointer-events-none ml-8"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -963,7 +963,7 @@ const FilterFlight = ({ searchData, setFlightsData, flights }) => {
                   key={`arr-${idx}`}
                   className={`bg-gray-100 rounded p-2 flex flex-col items-center cursor-pointer ${
                     arrivalTimeSlot?.from === timeSlotMap[label].from
-                      ? "bg-green-200"
+                      ? "bg-grey-100"
                       : ""
                   }`}
                   // onClick={() => setArrivalTimeSlot(timeSlotMap[label])}
