@@ -700,7 +700,7 @@ const HeroSection = () => {
                     </div>
 
                     {/* Swap Icon */}
-                    <div className="flex items-center justify-center p-2 my-auto">
+                    <div className="flex items-center justify-center p-2 my-auto mr-8">
                       <button
                         type="button"
                         onClick={() => {
@@ -767,7 +767,7 @@ const HeroSection = () => {
                           />
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="h-4 w-4 text-gray-400 absolute -right-3 pointer-events-none"
+                            className="h-4 w-4 text-gray-400 absolute -right-3 pointer-events-nones "
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -826,26 +826,27 @@ const HeroSection = () => {
                     <div className="flex flex-1 w-full">
                       <div className="flex items-center relative p-4 border-b-0 border-r border-gray-200 flex-1 w-full">
                         <div className="flex flex-col w-full">
-                          <label className="relative flex text-gray-500 w-full justify-between gap-4">
+                          <label className="relative flex text-gray-500 w-full justify-between gap-4 ">
                             <img
                               src={TravelerIcon}
                               alt="TravelerIcon"
                               height={32}
                               width={32}
+                              className="top-5 relative"
                             />
                             <div className="relative flex justify-between">
                               <select
-                                className="placeholder:text-gray-400 appearance-none w-[100px] text-black focus:outline-none bg-transparent"
+                                className="placeholder:text-gray-100 appearance-none w-[100px] text-grey-400 focus:outline-none bg-transparent"
                                 value={travelClass}
                                 onChange={(e) => setTravelClass(e.target.value)}
                               >
                                 <option value="" className="text-gray-400">
                                   Select
                                 </option>
-                                <option value="Economy">Economy</option>
-                                <option value="Premium Economy">Premium</option>
-                                <option value="Business">Business</option>
-                                <option value="First">First</option>
+                                <option value="Economy"className="text-black">Economy</option>
+                                <option value="Premium Economy"className="text-black">Premium</option>
+                                <option value="Business"className="text-black">Business</option>
+                                <option value="First"className="text-black">First</option>
                               </select>
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -867,15 +868,15 @@ const HeroSection = () => {
                           <div className="flex flex-col items-end gap-2">
                             <div className="flex items-center relative">
                               <select
-                                className="placeholder:text-gray-400 w-[100px] appearance-none text-black focus:outline-none  bg-transparent"
+                                 className="placeholder:text-grey-100 appearance-none w-[100px] text-gray-500 focus:outline-none bg-transparent"
                                 value={travelType}
                                 onChange={(e) => setTravelType(e.target.value)}
                               >
                                 <option value="" className="text-gray-400">
                                   Select
                                 </option>
-                                <option value="Adult">Adult</option>
-                                <option value="Child">Child</option>
+                                <option value="Adult" className="text-black">Adult</option>
+                                <option value="Child" className="text-black">Child</option>
                               </select>
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"

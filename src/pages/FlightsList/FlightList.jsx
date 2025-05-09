@@ -245,7 +245,7 @@ const SearchBox = ({
             </div>
 
             {/* Swap Icon */}
-            <div className="md:flex items-center justify-center p-2 my-auto">
+            <div className="md:flex items-center justify-center p-2 my-auto mr-8">
               <button
                 type="button"
                 onClick={() => {
@@ -372,20 +372,21 @@ const SearchBox = ({
                       alt="TravelerIcon"
                       height={32}
                       width={32}
+                      className="top-2 relative"
                     />
                     <div className="relative flex justify-between">
                       <select
-                        className="placeholder:text-gray-400 appearance-none w-[100px] text-black focus:outline-none bg-transparent"
+                        className="placeholder:text-gray-400 appearance-none w-[100px] text-gray-500 focus:outline-none bg-transparent"
                         value={travelClass}
                         onChange={(e) => setTravelClass(e.target.value)}
                       >
                         <option value="" className="text-gray-400">
                           Select
                         </option>
-                        <option value="Economy">Economy</option>
-                        <option value="Premium Economy">Premium</option>
-                        <option value="Business">Business</option>
-                        <option value="First">First</option>
+                        <option value="Economy" className="text-black">Economy</option>
+                        <option value="Premium Economy" className="text-black">Premium</option>
+                        <option value="Business" className="text-black">Business</option>
+                        <option value="First" className="text-black">First</option>
                       </select>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -407,15 +408,15 @@ const SearchBox = ({
                   <div className="flex flex-col items-end gap-2 translate-2 sm:translate-0">
                     <div className="flex items-center relative">
                       <select
-                        className="placeholder:text-gray-400 w-[100px] appearance-none text-black focus:outline-none  bg-transparent"
+                        className="placeholder:text-gray-400 w-[100px] appearance-none text-gray-500 focus:outline-none  bg-transparent"
                         value={travelType}
                         onChange={(e) => setTravelType(e.target.value)}
                       >
                         <option value="" className="text-gray-400">
                           Select
                         </option>
-                        <option value="Adult">Adult</option>
-                        <option value="Child">Child</option>
+                        <option value="Adult"className="text-black">Adult</option>
+                        <option value="Child" className="text-black">Child</option>
                       </select>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
