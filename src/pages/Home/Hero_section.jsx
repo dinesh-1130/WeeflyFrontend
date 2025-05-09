@@ -674,7 +674,7 @@ const HeroSection = () => {
                 <div className="hidden md:flex md:flex-row">
                   <div className="flex flex-row flex-1">
                     {/* From Location */}
-                    <div className="flex items-center p-4 border-b-0 border-r border-gray-200 flex-1">
+                    <div className="flex items-center p-4 border-b-0 border-gray-200 flex-1">
                       <div className="flex flex-col">
                         <label className="block text-xs text-gray-500">
                           <img
@@ -753,7 +753,7 @@ const HeroSection = () => {
                             width={32}
                           />
                         </label>
-                        <div className="flex items-center mt-3.5">
+                        <div className="flex items-center mt-3.5 relative">
                           <DatePicker
                             selected={flightDepatureDate}
                             onChange={(date) => setflightDepatureDate(date)}
@@ -765,13 +765,27 @@ const HeroSection = () => {
                               positionFixed: true,
                             }}
                           />
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-4 w-4 text-gray-400 absolute -right-3 pointer-events-none"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
                         </div>
                       </div>
                     </div>
 
                     {/* Return Date */}
                     <div className="flex items-center p-4 border-b-0 border-r border-gray-200 flex-1">
-                      <div className="relative w-full">
+                      <div className="relative">
                         <label className="block text-xs text-gray-500">
                           <img
                             src={DateTo}
@@ -780,7 +794,7 @@ const HeroSection = () => {
                             width={32}
                           />
                         </label>
-                        <div className="flex items-center mt-3.5">
+                        <div className="flex items-center mt-3.5 relative">
                           <DatePicker
                             selected={flightReturnDate}
                             onChange={(date) => setflightReturnDate(date)}
@@ -789,6 +803,20 @@ const HeroSection = () => {
                             dateFormat="MMM d, yyyy"
                             minDate={flightDepatureDate}
                           />
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-4 w-4 text-gray-400 absolute -right-3 pointer-events-none"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
                         </div>
                       </div>
                     </div>
@@ -821,7 +849,7 @@ const HeroSection = () => {
                               </select>
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="h-4 w-4 text-gray-400 absolute top-[30%] right-0 pointer-events-none"
+                                className="h-4 w-4 text-gray-400 absolute top-[30%] right-[10%] pointer-events-none"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -851,7 +879,7 @@ const HeroSection = () => {
                               </select>
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="h-4 w-4 text-gray-400 absolute right-0 pointer-events-none"
+                                className="h-4 w-4 text-gray-400 absolute left-1/2 pointer-events-none"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"

@@ -294,7 +294,7 @@ import { useState, useEffect } from "react";
 
 import DesktopLeftBg from "../../assets/images/new-3.png";
 import MobileLeftBg from "../../assets/images/AfricanExperienceFullBg.png";
-import NewBg from "../../assets/images/bg-new.png"
+import NewBg from "../../assets/images/new-pic.png"
 import Flights from "../../assets/images/africanExperiences/flights.svg";
 import Cabs from "../../assets/images/africanExperiences/cabs.svg";
 import Packages from "../../assets/images/africanExperiences/Packages.svg";
@@ -396,7 +396,9 @@ const AfricanExperience = () => {
     <>
       <div className="relative w-full hidden lg:block bg-gradient-to-r from-[#fad9cf] to-[#f28c72]">
         <div className="overflow-hidden h-full w-full  relative text-black font-sans flex flex-col lg:flex-row items-center px-8 lg:px-20 py-20">
-          <img src={NewBg} alt="bg" className="absolute object-fill left-0  h-full  w-full " />
+          {/* <img src={NewBg} alt="bg" className="absolute object-fill  left-0  h-full  w-full " /> */}
+          <img src={NewBg} alt="bg" className="absolute inset-0 w-full h-full object-fill z-0" />
+
 
           <div className="w-full lg:w-1/2 font-jakarta relative">
             <img
