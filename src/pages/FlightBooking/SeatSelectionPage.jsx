@@ -28,22 +28,22 @@ export default function SeatSelection() {
   ];
   const ExtraLuggages = [
     {
-      name: "Luggage",
+      name: "Luggage 5KG",
       src: "https://t4.ftcdn.net/jpg/04/66/06/43/360_F_466064335_04MRapnpqJgXlXEKZaYPMhrUVxDt1OYV.jpg",
       price: 12,
     },
     {
-      name: " Luggage",
+      name: " Luggage 15KG",
       src: "https://t4.ftcdn.net/jpg/12/18/68/43/360_F_1218684354_iksVUo0R81UUcvZ55iNeCExPrvtgZcMk.jpg",
       price: 20,
     },
     {
-      name: "Luggage",
+      name: "Luggage 25KG",
       src: "https://t4.ftcdn.net/jpg/01/16/94/15/360_F_116941514_j9jLAQMxaZczLoh5uV0LaoNaPaPAlkgL.jpg",
       price: 25,
     },
     {
-      name: "Luggage",
+      name: "Luggage 35KG",
       src: "https://www.shutterstock.com/image-photo/two-stylish-plastic-luggage-suitcases-600nw-2176706263.jpg",
       price: 35,
     },
@@ -275,13 +275,22 @@ export default function SeatSelection() {
                             />
                             <div className="">
                               <div className="flex flex-col justify-between items-center mb-2">
-                                <span className="font-base text-base">
+                                {/* <span className="font-base text-base ">
                                   {Luggage.name}
-                                </span>
-                                <span className="font-bold">
-                                  ${Luggage.price}
-                                </span>
-                              </div>
+                                </span> */}
+
+<span className="font-base text-base whitespace-nowrap overflow-hidden text-ellipsis">
+  {Luggage.name}
+</span>
+</div>
+<div className="flex justify-center">
+  <span className="font-bold text-center">
+    ${Luggage.price}
+  </span>
+</div>
+
+                             
+
                               <div className="flex items-center justify-center space-x-4">
                                 <button
                                   className="w-8 h-8 text-xl font-semibold p-2 flex justify-center items-center rounded-md bg-[#EE5128] text-white hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200 cursor-pointer"
