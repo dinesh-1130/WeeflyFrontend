@@ -1167,7 +1167,7 @@ const HeroSection = () => {
                         </label>
                         <div className="flex items-center mt-3.5 gap-2 relative font-jakarta">
                           <div
-                            className="p-2 flex justify-center items-center rounded-md bg-[#EE5128] text-white hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200 cursor-pointer"
+                            className="p-2 flex justify-center items-center rounded-md   transition-colors duration-200 cursor-pointer"
                             onClick={() =>
                               setTravelers((prev) => Math.max(1, prev - 1))
                             }
@@ -1176,7 +1176,7 @@ const HeroSection = () => {
                           </div>
                           <p className="p-2">{travelers}</p>
                           <div
-                            className="p-2 flex justify-center items-center rounded-md bg-[#EE5128] text-white hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200 cursor-pointer"
+                            className="p-2 flex justify-center items-center rounded-md  transition-colors duration-200 cursor-pointer"
                             onClick={() => setTravelers(travelers + 1)}
                           >
                             <Plus className="h-[16px]" />
