@@ -896,12 +896,12 @@ const HeroSection = () => {
                           <MapPin className="h-4 w-4 text-gray-500" />
                           <input
                             type="text"
-                            name="leavingFrom"
+                            name="LeavingFrom"
                             id="leavingFromMobile"
                             className="block max-w-[100px] placeholder:text-gray-400 text-black focus:outline-none appearance-none"
                             value={from}
                             onChange={(e) => setFrom(e.target.value)}
-                            placeholder="leavingFrom"
+                            placeholder="Leaving From"
                           />
                         </div>
                       </div>
@@ -933,7 +933,7 @@ const HeroSection = () => {
                           />
                         </label>
                         <div className="flex items-center mt-3.5">
-                          <MapPin className="h-4 w-4 text-gray-500" />
+                          <MapPin className="h-4 w-4 text-gray-500 mr-1" />
                           <input
                             type="text"
                             name="goingTo"
