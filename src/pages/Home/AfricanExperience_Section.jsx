@@ -294,7 +294,7 @@ import { useState, useEffect } from "react";
 
 import DesktopLeftBg from "../../assets/images/new-3.png";
 import MobileLeftBg from "../../assets/images/AfricanExperienceFullBg.png";
-
+import NewBg from "../../assets/images/bg-new.png"
 import Flights from "../../assets/images/africanExperiences/flights.svg";
 import Cabs from "../../assets/images/africanExperiences/cabs.svg";
 import Packages from "../../assets/images/africanExperiences/Packages.svg";
@@ -395,8 +395,8 @@ const AfricanExperience = () => {
   return (
     <>
       <div className="relative w-full hidden lg:block bg-gradient-to-r from-[#fad9cf] to-[#f28c72]">
-        <div className="overflow-hidden h-full w-full relative text-black font-sans flex flex-col lg:flex-row items-center px-8 lg:px-20 py-20">
-          <img src="/AEDB.svg" alt="bg" className="absolute left-0 w-full" />
+        <div className="overflow-hidden h-full w-full  relative text-black font-sans flex flex-col lg:flex-row items-center px-8 lg:px-20 py-20">
+          <img src={NewBg} alt="bg" className="absolute object-fill left-0  h-full  w-full " />
 
           <div className="w-full lg:w-1/2 font-jakarta relative">
             <img
@@ -410,7 +410,7 @@ const AfricanExperience = () => {
             </h1>
           </div>
 
-          <div className="w-full lg:w-1/2 flex justify-center items-center py-12 lg:py-0 ml-[240px]">
+          <div className="w-full lg:w-1/2 flex justify-center items-center py-12 lg:py-0 ml-[220px] mt-1">
             <div className="relative w-full max-w-xl aspect-square">
               {/* Center text */}
               <div className="absolute inset-0 right-[7%] flex items-center justify-center z-10">

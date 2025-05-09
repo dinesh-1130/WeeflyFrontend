@@ -121,6 +121,7 @@ const SearchBox = ({
   const [to, setTo] = useState("");
   // const [travelers, setTravelers] = useState(1);
   const [travelClass, setTravelClass] = useState("Economy");
+  const [travelType, setTravelType] = useState("Adult");
   const [travelers, setTravelers] = useState(1);
 
   const [searchCount, setSearchCount] = useState(0);
@@ -132,6 +133,7 @@ const SearchBox = ({
       setflightDepatureDate(SearchProps.flightDepatureDate || null);
       setflightReturnDate(SearchProps.flightReturnDate || null);
       setTravelers(SearchProps.travelers || 1);
+      setTravelType(SearchProps.travelType || "");
     }
   }, [SearchProps]);
 
@@ -294,7 +296,7 @@ const SearchBox = ({
                   <img src={DateFrom} alt="DateFrom" height={32} width={32} />
                 </label>
                 <div className="flex items-center mt-3.5">
-                  <DatePicker 
+                  <DatePicker
                     selected={flightDepatureDate}
                     onChange={(date) => setflightDepatureDate(date)}
                     placeholderText="Date from"
@@ -357,55 +359,104 @@ const SearchBox = ({
               </div>
             </div>
           </div>
-          
+
           {/* Travelers and Class section - Modified for better mobile alignment */}
-          <div className="flex flex-col sm:flex-1 w-full">
-            <div className="flex flex-row w-full">
+          <div className="flex sm:flex-col">
+            <div className="flex w-full">
               {/* Travel Class */}
-              <div className="flex items-center relative p-4 border-b md:border-b-0 md:border-r border-gray-200 flex-1">
-                <div className="flex flex-col">
-                  <label className="block text-xs text-gray-500">
+              <div className="flex items-center relative p-4 border-b md:border-b-0 md:border-r border-gray-200">
+                <div className="flex w-full flex-col">
+                  <label className="relative flex text-gray-500 justify-between gap-4">
                     <img
                       src={TravelerIcon}
                       alt="TravelerIcon"
                       height={32}
                       width={32}
                     />
+                    <div className="relative flex justify-between">
+                      <select
+                        className="placeholder:text-gray-400 appearance-none w-[100px] text-black focus:outline-none bg-transparent"
+                        value={travelClass}
+                        onChange={(e) => setTravelClass(e.target.value)}
+                      >
+                        <option value="" className="text-gray-400">
+                          Select
+                        </option>
+                        <option value="Economy">Economy</option>
+                        <option value="Premium Economy">Premium</option>
+                        <option value="Business">Business</option>
+                        <option value="First">First</option>
+                      </select>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4 text-gray-400 absolute top-[30%] right-0 pointer-events-none"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </div>
                   </label>
-                  <div className="flex items-center mt-3.5 relative">
-                    <select
-                      className="placeholder:text-gray-400 text-black focus:outline-none appearance-none bg-transparent"
-                      value={travelClass}
-                      onChange={(e) => setTravelClass(e.target.value)}
-                    >
-                      <option value="" className="text-gray-400">
-                        Select
-                      </option>
-                      <option value="Economy">Economy</option>
-                      <option value="Premium Economy">Premium Economy</option>
-                      <option value="Business">Business</option>
-                      <option value="First">First</option>
-                    </select>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-4 w-4 text-gray-400 absolute right-0 pointer-events-none"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
+
+                  <div className="flex flex-col items-end gap-2 translate-2 sm:translate-0">
+                    <div className="flex items-center relative">
+                      <select
+                        className="placeholder:text-gray-400 w-[100px] appearance-none text-black focus:outline-none  bg-transparent"
+                        value={travelType}
+                        onChange={(e) => setTravelType(e.target.value)}
+                      >
+                        <option value="" className="text-gray-400">
+                          Select
+                        </option>
+                        <option value="Adult">Adult</option>
+                        <option value="Child">Child</option>
+                      </select>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4 text-gray-400 absolute right-0 pointer-events-none"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </div>
+                    <div className="flex items-center gap-2 w-[100px] relative font-jakarta">
+                      <div
+                        className="flex justify-center items-center rounded-md text-black transition-colors duration-200 cursor-pointer"
+                        onClick={() =>
+                          setTravelers((prev) => Math.max(1, prev - 1))
+                        }
+                      >
+                        <Minus className="h-[16px]" />
+                      </div>
+                      <p className="size-4 flex justify-center items-center">
+                        {travelers}
+                      </p>
+                      <div
+                        className="flex justify-center items-center rounded-md text-black transition-colors duration-200 cursor-pointer"
+                        onClick={() => setTravelers(travelers + 1)}
+                      >
+                        <Plus className="h-[16px]" />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-              
+
               {/* Travelers count */}
-              <div className="flex items-center relative p-4 border-b md:border-b-0 md:border-r border-gray-200 flex-1">
+              {/* <div className="flex items-center relative p-4 border-b md:border-b-0 md:border-r border-gray-200 flex-1">
                 <div className="flex flex-col">
                   <label className="block text-xs text-gray-500">
                     <img
@@ -433,7 +484,7 @@ const SearchBox = ({
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
 
             {/* Search Button - Repositioned for mobile */}
@@ -447,7 +498,7 @@ const SearchBox = ({
               </button>
             </div>
           </div>
-          
+
           {/* Search Button for desktop - hidden on mobile */}
           <div className="p-4 hidden md:flex md:justify-center items-center">
             <button

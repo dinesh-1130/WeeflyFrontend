@@ -511,6 +511,7 @@ const HeroSection = () => {
   const [to, setTo] = useState("");
   const [travelers, setTravelers] = useState(1);
   const [travelClass, setTravelClass] = useState("Economy");
+  const [travelType, setTravelType] = useState("Adult");
   const [flightDepatureDate, setflightDepatureDate] = useState(null);
   const [flightReturnDate, setflightReturnDate] = useState(null);
   const [searchCount, setSearchCount] = useState(0);
@@ -575,6 +576,7 @@ const HeroSection = () => {
               flightReturnDate: formattedReturnDate,
               travelClass,
               travelers,
+              travelType,
             },
           },
         });
@@ -602,6 +604,7 @@ const HeroSection = () => {
       flightReturnDate: formattedReturnDate,
       travelClass,
       travelers,
+      travelType,
     });
 
     setSearchCount((prev) => prev + 1);
@@ -610,7 +613,7 @@ const HeroSection = () => {
   if (loading) {
     return <LoadingScreen />;
   }
-  
+
   return (
     <>
       <div
@@ -649,7 +652,8 @@ const HeroSection = () => {
                 className="relative h-20 -mb-10"
               />
               <p className="absolute top-5 left-13 leading-5 z-[1px] text-black font-semibold text-sm sm:text-base font-sans text-center">
-                Hassle Free Local Payment Options <br className="block lg:hidden" /> with Lowest Prices!
+                Hassle Free Local Payment Options{" "}
+                <br className="block lg:hidden" /> with Lowest Prices!
               </p>
             </div>
 
@@ -791,75 +795,93 @@ const HeroSection = () => {
                   </div>
                   <div className="flex flex-1">
                     {/* Travelers */}
-                    <div className="flex">
-                      <div className="flex items-center relative p-4 border-b-0 border-r border-gray-200 flex-1">
-                        <div className="flex flex-col">
-                          <label className="block text-xs text-gray-500">
+                    <div className="flex flex-1 w-full">
+                      <div className="flex items-center relative p-4 border-b-0 border-r border-gray-200 flex-1 w-full">
+                        <div className="flex flex-col w-full">
+                          <label className="relative flex text-gray-500 w-full justify-between gap-4">
                             <img
                               src={TravelerIcon}
                               alt="TravelerIcon"
                               height={32}
                               width={32}
                             />
-                          </label>
-                          <div className="flex items-center mt-3.5 relative">
-                            <select
-                              className="placeholder:text-gray-400 text-black focus:outline-none appearance-none bg-transparent"
-                              value={travelClass}
-                              onChange={(e) => setTravelClass(e.target.value)}
-                            >
-                              <option value="" className="text-gray-400">
-                                Select
-                              </option>
-                              <option value="Economy">Economy</option>
-                              <option value="Premium Economy">
-                                Premium Economy
-                              </option>
-                              <option value="Business">Business</option>
-                              <option value="First">First</option>
-                            </select>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-4 w-4 text-gray-400 absolute right-0 pointer-events-none"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M19 9l-7 7-7-7"
-                              />
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="flex items-center relative p-4 border-b-0 border-r border-gray-200 flex-1">
-                        <div className="flex flex-col">
-                          <label className="block text-xs text-gray-500">
-                            <img
-                              src={TravelerIcon}
-                              alt="TravelerIcon"
-                              height={32}
-                              width={32}
-                            />
-                          </label>
-                          <div className="flex items-center mt-3.5 gap-2 relative font-jakarta">
-                            <div
-                              className="p-2 flex justify-center items-center rounded-md bg-[#EE5128] text-white hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200 cursor-pointer"
-                              onClick={() =>
-                                setTravelers((prev) => Math.max(1, prev - 1))
-                              }
-                            >
-                              <Minus className="h-[16px]" />
+                            <div className="relative flex justify-between">
+                              <select
+                                className="placeholder:text-gray-400 appearance-none w-[100px] text-black focus:outline-none bg-transparent"
+                                value={travelClass}
+                                onChange={(e) => setTravelClass(e.target.value)}
+                              >
+                                <option value="" className="text-gray-400">
+                                  Select
+                                </option>
+                                <option value="Economy">Economy</option>
+                                <option value="Premium Economy">Premium</option>
+                                <option value="Business">Business</option>
+                                <option value="First">First</option>
+                              </select>
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-4 w-4 text-gray-400 absolute top-[30%] right-0 pointer-events-none"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth="2"
+                                  d="M19 9l-7 7-7-7"
+                                />
+                              </svg>
                             </div>
-                            <p className="p-2">{travelers}</p>
-                            <div
-                              className="p-2 flex justify-center items-center rounded-md bg-[#EE5128] text-white hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200 cursor-pointer"
-                              onClick={() => setTravelers(travelers + 1)}
-                            >
-                              <Plus className="h-[16px]" />
+                          </label>
+
+                          <div className="flex flex-col items-end gap-2">
+                            <div className="flex items-center relative">
+                              <select
+                                className="placeholder:text-gray-400 w-[100px] appearance-none text-black focus:outline-none  bg-transparent"
+                                value={travelType}
+                                onChange={(e) => setTravelType(e.target.value)}
+                              >
+                                <option value="" className="text-gray-400">
+                                  Select
+                                </option>
+                                <option value="Adult">Adult</option>
+                                <option value="Child">Child</option>
+                              </select>
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-4 w-4 text-gray-400 absolute right-0 pointer-events-none"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth="2"
+                                  d="M19 9l-7 7-7-7"
+                                />
+                              </svg>
+                            </div>
+                            <div className="flex items-center gap-2 w-[100px] relative font-jakarta">
+                              <div
+                                className="flex justify-center items-center rounded-md text-black transition-colors duration-200 cursor-pointer"
+                                onClick={() =>
+                                  setTravelers((prev) => Math.max(1, prev - 1))
+                                }
+                              >
+                                <Minus className="h-[16px]" />
+                              </div>
+                              <p className="size-4 flex justify-center items-center">
+                                {travelers}
+                              </p>
+                              <div
+                                className="flex justify-center items-center rounded-md text-black transition-colors duration-200 cursor-pointer"
+                                onClick={() => setTravelers(travelers + 1)}
+                              >
+                                <Plus className="h-[16px]" />
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -906,7 +928,7 @@ const HeroSection = () => {
                         </div>
                       </div>
                     </div>
-                    
+
                     {/* Swap Icon */}
                     <div className="flex items-center justify-center p-2 my-auto">
                       <button
@@ -921,7 +943,7 @@ const HeroSection = () => {
                         <ArrowLeftRightIcon className="h-5 w-5 text-white" />
                       </button>
                     </div>
-                    
+
                     <div className="flex items-center p-4 border-b border-gray-200 flex-1">
                       <div>
                         <label className="block text-xs text-black">
@@ -947,7 +969,7 @@ const HeroSection = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* Dates */}
                   <div className="flex flex-row w-full">
                     <div className="flex items-center p-4 border-b border-r border-gray-200 flex-1">
@@ -975,7 +997,7 @@ const HeroSection = () => {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className="flex items-center p-4 border-b border-gray-200 flex-1">
                       <div className="relative w-full">
                         <label className="block text-xs text-gray-500">
@@ -999,10 +1021,10 @@ const HeroSection = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* Travel Options */}
                   <div className="flex flex-row w-full">
-                    <div className="flex items-center p-4 border-b border-r border-gray-200 flex-1">
+                    {/* <div className="flex items-center p-4 border-b border-r border-gray-200 flex-1">
                       <div className="flex flex-col">
                         <label className="block text-xs text-gray-500">
                           <img
@@ -1044,9 +1066,9 @@ const HeroSection = () => {
                           </svg>
                         </div>
                       </div>
-                    </div>
-                    
-                    <div className="flex items-center p-4 border-b border-gray-200 flex-1">
+                    </div> */}
+
+                    {/* <div className="flex items-center p-4 border-b border-gray-200 flex-1">
                       <div className="flex flex-col">
                         <label className="block text-xs text-gray-500">
                           <img
@@ -1074,9 +1096,99 @@ const HeroSection = () => {
                           </div>
                         </div>
                       </div>
+                    </div> */}
+                    <div className="max-w-sm mx-auto p-4">
+                      <div className="flex flex-col w-full">
+                        <label className="relative flex text-gray-500 w-full justify-between gap-4">
+                          <img
+                            src={TravelerIcon}
+                            alt="TravelerIcon"
+                            height={32}
+                            width={32}
+                          />
+                          <div className="relative flex justify-between">
+                            <select
+                              className="placeholder:text-gray-400 appearance-none w-[100px] text-black focus:outline-none bg-transparent"
+                              value={travelClass}
+                              onChange={(e) => setTravelClass(e.target.value)}
+                            >
+                              <option value="" className="text-gray-400">
+                                Select
+                              </option>
+                              <option value="Economy">Economy</option>
+                              <option value="Premium Economy">Premium</option>
+                              <option value="Business">Business</option>
+                              <option value="First">First</option>
+                            </select>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-4 w-4 text-gray-400 absolute top-[30%] right-0 pointer-events-none"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M19 9l-7 7-7-7"
+                              />
+                            </svg>
+                          </div>
+                        </label>
+
+                        <div className="flex flex-col items-end gap-2">
+                          <div className="flex items-center relative">
+                            <select
+                              className="placeholder:text-gray-400 w-[100px] appearance-none text-black focus:outline-none  bg-transparent"
+                              value={travelType}
+                              onChange={(e) => setTravelType(e.target.value)}
+                            >
+                              <option value="" className="text-gray-400">
+                                Select
+                              </option>
+                              <option value="Adult">Adult</option>
+                              <option value="Child">Child</option>
+                            </select>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-4 w-4 text-gray-400 absolute right-0 pointer-events-none"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M19 9l-7 7-7-7"
+                              />
+                            </svg>
+                          </div>
+                          <div className="flex items-center gap-2 w-[100px] relative font-jakarta">
+                            <div
+                              className="flex justify-center items-center rounded-md text-black transition-colors duration-200 cursor-pointer"
+                              onClick={() =>
+                                setTravelers((prev) => Math.max(1, prev - 1))
+                              }
+                            >
+                              <Minus className="h-[16px]" />
+                            </div>
+                            <p className="size-4 flex justify-center items-center">
+                              {travelers}
+                            </p>
+                            <div
+                              className="flex justify-center items-center rounded-md text-black transition-colors duration-200 cursor-pointer"
+                              onClick={() => setTravelers(travelers + 1)}
+                            >
+                              <Plus className="h-[16px]" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  
+
                   {/* Search Button - Mobile */}
                   <div className="w-full">
                     <button
