@@ -932,8 +932,8 @@ const HeroSection = () => {
                 {/* Mobile Layout */}
                 <div className="flex flex-col md:hidden w-full">
                   {/* Locations (From & To) */}
-                  <div className="flex flex-row w-full">
-                    <div className="flex items-center p-4 border-b border-r border-gray-200 flex-1">
+                  <div className="flex flex-row w-full border-b  border-gray-200">
+                    <div className="flex items-center p-4 border-b  border-gray-200 flex-1">
                       <div className="flex flex-col">
                         <label className="block text-xs text-gray-500">
                           <img
@@ -947,7 +947,7 @@ const HeroSection = () => {
                           <MapPin className="h-4 w-4 text-gray-500" />
                           <input
                             type="text"
-                            name="LeavingFrom"
+                            name="leavingFrom"
                             id="leavingFromMobile"
                             className="block max-w-[100px] placeholder:text-gray-400 text-black focus:outline-none appearance-none"
                             value={from}
@@ -957,9 +957,9 @@ const HeroSection = () => {
                         </div>
                       </div>
                     </div>
-
+                    
                     {/* Swap Icon */}
-                    <div className="flex items-center justify-center p-2 my-auto">
+                    <div className="flex items-center justify-center p-2 my-auto mr-4">
                       <button
                         type="button"
                         onClick={() => {
@@ -972,7 +972,7 @@ const HeroSection = () => {
                         <ArrowLeftRightIcon className="h-5 w-5 text-white" />
                       </button>
                     </div>
-
+                    
                     <div className="flex items-center p-4 border-b border-gray-200 flex-1">
                       <div>
                         <label className="block text-xs text-black">
@@ -983,8 +983,8 @@ const HeroSection = () => {
                             width={32}
                           />
                         </label>
-                        <div className="flex items-center mt-3.5">
-                          <MapPin className="h-4 w-4 text-gray-500 mr-1" />
+                        <div className="flex items-center mt-3.5 gap-2">
+                          <MapPin className="h-4 w-4 text-gray-500 " />
                           <input
                             type="text"
                             name="goingTo"
@@ -998,11 +998,11 @@ const HeroSection = () => {
                       </div>
                     </div>
                   </div>
-
+                  
                   {/* Dates */}
                   <div className="flex flex-row w-full">
-                    <div className="flex items-center p-4 border-b border-r border-gray-200 flex-1">
-                      <div className="relative">
+                    <div className="flex items-center p-4 border-b border-r border-gray-200 flex-1 ">
+                     <div className="relative w-full flex-col ml-5 mr-4 ">
                         <label className="block text-xs text-gray-500">
                           <img
                             src={DateFrom}
@@ -1011,7 +1011,7 @@ const HeroSection = () => {
                             width={32}
                           />
                         </label>
-                        <div className="flex items-center mt-3.5">
+                        <div className="flex items-center mt-3.5 relative">
                           <DatePicker
                             selected={flightDepatureDate}
                             onChange={(date) => setflightDepatureDate(date)}
@@ -1023,12 +1023,26 @@ const HeroSection = () => {
                               positionFixed: true,
                             }}
                           />
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-4 w-4 text-gray-400 absolute -right-3 pointer-events-nones "
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
                         </div>
-                      </div>
+                        </div>
                     </div>
-
+                    
                     <div className="flex items-center p-4 border-b border-gray-200 flex-1">
-                      <div className="relative w-full">
+                       <div className="relative">
                         <label className="block text-xs text-gray-500">
                           <img
                             src={DateTo}
@@ -1037,7 +1051,7 @@ const HeroSection = () => {
                             width={32}
                           />
                         </label>
-                        <div className="flex items-center mt-3.5">
+                        <div className="flex items-center mt-3.5 relative">
                           <DatePicker
                             selected={flightReturnDate}
                             onChange={(date) => setflightReturnDate(date)}
@@ -1046,15 +1060,29 @@ const HeroSection = () => {
                             dateFormat="MMM d, yyyy"
                             minDate={flightDepatureDate}
                           />
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-4 w-4 text-gray-400 absolute -right-3 pointer-events-none"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
                         </div>
-                      </div>
+                        </div>
                     </div>
                   </div>
-
+                  
                   {/* Travel Options */}
                   <div className="flex flex-row w-full">
-                    {/* <div className="flex items-center p-4 border-b border-r border-gray-200 flex-1">
-                      <div className="flex flex-col">
+                    <div className="flex items-center p-4 border-b border-r border-gray-200 flex-1">
+                      <div className="flex  relative w-full flex-col ml-4 ">
                         <label className="block text-xs text-gray-500">
                           <img
                             src={TravelerIcon}
@@ -1095,17 +1123,47 @@ const HeroSection = () => {
                           </svg>
                         </div>
                       </div>
-                    </div> */}
-
-                    {/* <div className="flex items-center p-4 border-b border-gray-200 flex-1">
-                      <div className="flex flex-col">
-                        <label className="block text-xs text-gray-500">
-                          <img
+                    </div>
+                    
+                    <div className="flex items-center p-4 border-b border-gray-200 flex-1">
+                      <div className="flex  relative w-full flex-col ">
+                        <label className="block  text-gray-500">
+                          <div className="flex items-center justify-between gap-8">
+                              <img
                             src={TravelerIcon}
                             alt="TravelerIcon"
                             height={32}
                             width={32}
                           />
+                            <div className="flex items-center relative">
+                              <select
+                                 className="placeholder:text-grey-100 appearance-none w-[100px] text-gray-500 focus:outline-none bg-transparent"
+                                value={travelType}
+                                onChange={(e) => setTravelType(e.target.value)}
+                              >
+                                <option value="" className="text-gray-400">
+                                  Select
+                                </option>
+                                <option value="Adult" className="text-black">Adult</option>
+                                <option value="Child" className="text-black">Child</option>
+                              </select>
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-4 w-4 text-gray-400 absolute left-1/2 pointer-events-none"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth="2"
+                                  d="M19 9l-7 7-7-7"
+                                />
+                              </svg>
+                            </div>
+                          </div>
+                        
                         </label>
                         <div className="flex items-center mt-3.5 gap-2 relative font-jakarta">
                           <div
@@ -1125,99 +1183,9 @@ const HeroSection = () => {
                           </div>
                         </div>
                       </div>
-                    </div> */}
-                    <div className="max-w-sm mx-auto p-4">
-                      <div className="flex flex-col w-full">
-                        <label className="relative flex text-gray-500 w-full justify-between gap-4">
-                          <img
-                            src={TravelerIcon}
-                            alt="TravelerIcon"
-                            height={32}
-                            width={32}
-                          />
-                          <div className="relative flex justify-between">
-                            <select
-                              className="placeholder:text-gray-400 appearance-none w-[100px] text-black focus:outline-none bg-transparent"
-                              value={travelClass}
-                              onChange={(e) => setTravelClass(e.target.value)}
-                            >
-                              <option value="" className="text-gray-400">
-                                Select
-                              </option>
-                              <option value="Economy">Economy</option>
-                              <option value="Premium Economy">Premium</option>
-                              <option value="Business">Business</option>
-                              <option value="First">First</option>
-                            </select>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-4 w-4 text-gray-400 absolute top-[30%] right-0 pointer-events-none"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M19 9l-7 7-7-7"
-                              />
-                            </svg>
-                          </div>
-                        </label>
-
-                        <div className="flex flex-col items-end gap-2">
-                          <div className="flex items-center relative">
-                            <select
-                              className="placeholder:text-gray-400 w-[100px] appearance-none text-black focus:outline-none  bg-transparent"
-                              value={travelType}
-                              onChange={(e) => setTravelType(e.target.value)}
-                            >
-                              <option value="" className="text-gray-400">
-                                Select
-                              </option>
-                              <option value="Adult">Adult</option>
-                              <option value="Child">Child</option>
-                            </select>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-4 w-4 text-gray-400 absolute right-0 pointer-events-none"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M19 9l-7 7-7-7"
-                              />
-                            </svg>
-                          </div>
-                          <div className="flex items-center gap-2 w-[100px] relative font-jakarta">
-                            <div
-                              className="flex justify-center items-center rounded-md text-black transition-colors duration-200 cursor-pointer"
-                              onClick={() =>
-                                setTravelers((prev) => Math.max(1, prev - 1))
-                              }
-                            >
-                              <Minus className="h-[16px]" />
-                            </div>
-                            <p className="size-4 flex justify-center items-center">
-                              {travelers}
-                            </p>
-                            <div
-                              className="flex justify-center items-center rounded-md text-black transition-colors duration-200 cursor-pointer"
-                              onClick={() => setTravelers(travelers + 1)}
-                            >
-                              <Plus className="h-[16px]" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                   </div>
-
+                  
                   {/* Search Button - Mobile */}
                   <div className="w-full">
                     <button
