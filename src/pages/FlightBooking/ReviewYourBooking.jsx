@@ -29,6 +29,7 @@ export default function ReviewYourBooking() {
     }
   }, [location]);
 
+
   return (
     <div className="w-full flex flex-col items-start px-4 sm:px-6 xl:px-0 font-sans">
       {/* Desktop Layout */}

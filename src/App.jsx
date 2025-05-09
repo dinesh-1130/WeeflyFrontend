@@ -22,34 +22,38 @@ import TravelersDetails from "./pages/FlightBooking/TravelersDetails";
 import SeatSelectionPage from "./pages/FlightBooking/SeatSelectionPage";
 import PaymentPage from "./pages/FlightBooking/PaymentPage";
 import ProfilePage from "./pages/Profile/ProfilePage";
+import ScrollToTop from "./components/ScrollToTop";
 
 const App = () => {
   useEffect(() => {
     Aos.init();
   }, []);
   return (
-    <Routes>
-      <Route path="/" element={<RootLayout />}>
-        {/* Website Route */}
-        <Route path="" element={<WebsiteLayout />}>
-          <Route index element={<Home />} />
-          <Route path="/List" element={<FlightList />} />
-          <Route path="/Booking" element={<FlightBooking />}>
-            <Route path="ReviewYourBooking" element={<ReviewYourBooking />} />
-            <Route path="TravelersDetails" element={<TravelersDetails />} />
-            <Route path="SeatSelection" element={<SeatSelectionPage />} />
-            <Route path="Payment" element={<PaymentPage />} />
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<RootLayout />}>
+          {/* Website Route */}
+          <Route path="" element={<WebsiteLayout />}>
+            <Route index element={<Home />} />
+            <Route path="/List" element={<FlightList />} />
+            <Route path="/Booking" element={<FlightBooking />}>
+              <Route path="ReviewYourBooking" element={<ReviewYourBooking />} />
+              <Route path="TravelersDetails" element={<TravelersDetails />} />
+              <Route path="SeatSelection" element={<SeatSelectionPage />} />
+              <Route path="Payment" element={<PaymentPage />} />
+            </Route>
+            <Route path="profile" element={<ProfilePage />} />
           </Route>
-          <Route path="profile" element={<ProfilePage />} />
+          {/* Authentication Route */}
+          <Route path="SignUp" element={<SignupPage />} />
+          <Route path="Login" element={<LoginPage />} />
+          <Route path="Login-with-mobile" element={<LoginWithMobile />} />
+          <Route path="OTP-Verification" element={<OTP_VerificationPage />} />
+          <Route path="ForgotPassword" element={<ForgotPassword />} />
         </Route>
-        {/* Authentication Route */}
-        <Route path="SignUp" element={<SignupPage />} />
-        <Route path="Login" element={<LoginPage />} />
-        <Route path="Login-with-mobile" element={<LoginWithMobile />} />
-        <Route path="OTP-Verification" element={<OTP_VerificationPage />} />
-        <Route path="ForgotPassword" element={<ForgotPassword />} />
-      </Route>
-    </Routes>
+      </Routes>
+    </>
   );
 };
 

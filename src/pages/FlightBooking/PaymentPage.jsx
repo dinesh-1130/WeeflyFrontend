@@ -26,6 +26,8 @@ export default function PaymentPage() {
   if (!flight)
     return <p className="text-center mt-20 font-['Lato']">Loading...</p>;
 
+
+  
   return (
     <div className=" font-sans flex justify-center">
       <div className="w-full px-4">

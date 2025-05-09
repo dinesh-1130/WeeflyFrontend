@@ -689,7 +689,7 @@ const HeroSection = () => {
                             className="block max-w-[100px] placeholder:text-gray-400 text-black focus:outline-none appearance-none"
                             value={from}
                             onChange={(e) => setFrom(e.target.value)}
-                            placeholder="leavingFrom"
+                            placeholder="leaving From"
                           />
                         </div>
                       </div>

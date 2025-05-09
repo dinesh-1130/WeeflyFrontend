@@ -14,6 +14,7 @@ export default function SeatSelection() {
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [activeTab, setActiveTab] = useState("Seats");
   const [mealCounts, setMealCounts] = useState({});
+  const [luggageCounts, setLuggageCounts] = useState({});
 
   const mealsList = [
     {
@@ -24,6 +25,28 @@ export default function SeatSelection() {
     { name: "Non-Veg Meal", src: NonVegMeal, price: 15 },
     { name: "Kids Meal", src: KidsMeal, price: 10 },
     { name: "Special Meal", src: SpecialMeal, price: 20 },
+  ];
+  const ExtraLuggages = [
+    {
+      name: "Luggage",
+      src: "https://t4.ftcdn.net/jpg/04/66/06/43/360_F_466064335_04MRapnpqJgXlXEKZaYPMhrUVxDt1OYV.jpg",
+      price: 12,
+    },
+    {
+      name: " Luggage",
+      src: "https://t4.ftcdn.net/jpg/12/18/68/43/360_F_1218684354_iksVUo0R81UUcvZ55iNeCExPrvtgZcMk.jpg",
+      price: 20,
+    },
+    {
+      name: "Luggage",
+      src: "https://t4.ftcdn.net/jpg/01/16/94/15/360_F_116941514_j9jLAQMxaZczLoh5uV0LaoNaPaPAlkgL.jpg",
+      price: 25,
+    },
+    {
+      name: "Luggage",
+      src: "https://www.shutterstock.com/image-photo/two-stylish-plastic-luggage-suitcases-600nw-2176706263.jpg",
+      price: 35,
+    },
   ];
 
   useEffect(() => {
@@ -46,6 +69,15 @@ export default function SeatSelection() {
       return {
         ...prev,
         [mealName]: newCount < 0 ? 0 : newCount,
+      };
+    });
+  };
+  const handleLuggageCountChange = (luggageName, delta) => {
+    setLuggageCounts((prev) => {
+      const newCount = (prev[luggageName] || 0) + delta;
+      return {
+        ...prev,
+        [luggageName]: newCount < 0 ? 0 : newCount,
       };
     });
   };
@@ -214,6 +246,58 @@ export default function SeatSelection() {
                                   className="w-8 h-8 text-xl font-semibold p-2 flex justify-center items-center rounded-md bg-[#EE5128] text-white hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200 cursor-pointer"
                                   onClick={() =>
                                     handleMealCountChange(meal.name, 1)
+                                  }
+                                >
+                                  <Plus />
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  {activeTab === "Extra luggages" && (
+                    <div className="w-full">
+                      <p className="font-semibold text-[16px] mb-4">
+                        Extra luggages
+                      </p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full overflow-auto h-[400px] no-scrollbar">
+                        {ExtraLuggages.map((Luggage, index) => (
+                          <div
+                            key={index}
+                            className="rounded-md w-full flex flex-col justify-between p-4 bg-white shadow-sm"
+                          >
+                            <img
+                              src={Luggage.src}
+                              alt={Luggage.name}
+                              className="w-full h-[120px] object-contain mb-3 rounded"
+                            />
+                            <div className="">
+                              <div className="flex flex-col justify-between items-center mb-2">
+                                <span className="font-base text-base">
+                                  {Luggage.name}
+                                </span>
+                                <span className="font-bold">
+                                  ${Luggage.price}
+                                </span>
+                              </div>
+                              <div className="flex items-center justify-center space-x-4">
+                                <button
+                                  className="w-8 h-8 text-xl font-semibold p-2 flex justify-center items-center rounded-md bg-[#EE5128] text-white hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200 cursor-pointer"
+                                  onClick={() =>
+                                    handleLuggageCountChange(Luggage.name, -1)
+                                  }
+                                >
+                                  <Minus />
+                                </button>
+                                <span className="text-lg font-medium">
+                                  {luggageCounts[Luggage.name] || 0}
+                                </span>
+                                <button
+                                  className="w-8 h-8 text-xl font-semibold p-2 flex justify-center items-center rounded-md bg-[#EE5128] text-white hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200 cursor-pointer"
+                                  onClick={() =>
+                                    handleLuggageCountChange(Luggage.name, 1)
                                   }
                                 >
                                   <Plus />
