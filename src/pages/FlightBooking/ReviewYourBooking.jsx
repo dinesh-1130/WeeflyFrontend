@@ -23,7 +23,11 @@ export default function ReviewYourBooking() {
   const location = useLocation();
   const [flight, setFlight] = useState(null);
 
-
+useEffect(() => {
+    if (location.state && location.state.flight) {
+      setFlight(location.state.flight);
+    }
+  }, [location]);
 
   return (
     <div className="w-full flex flex-col items-start px-4 sm:px-6 xl:px-0 font-sans">
