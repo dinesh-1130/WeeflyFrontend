@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router";
+import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
 
 import WeeFlyLogo from "../assets/Auth/OrangeWeeflyLogo.svg";
 import ForgetPasswordBg from "../assets/Auth/ForgotPasswordBg.png";
@@ -7,13 +7,40 @@ import PhoneInput from "react-phone-input-2";
 
 import LoginWithMobileBg from "../assets/Auth/Login-with-mobile-Bg.png";
 import "react-phone-input-2/lib/style.css";
+import { SendOTP } from "../features/firebase";
 
 function LoginWithMobile() {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [phone, setPhone] = useState("");
 
-  const handleSubmit = () => {
+  console.log(location.state.loginUserData);
+
+  // const [, set] = useState(second)
+
+  useEffect(() => {
+    const userData = location?.state?.loginUserData;
+
+    if (userData) {
+      console.log(userData);
+    } else {
+      navigate("/", { replace: true });
+    }
+  }, [location, navigate]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     // Handle login logic here
+    // const testdata = "9361450717";
+    // const res = await SendOTP(testdata);
+    const res = await SendOTP(`+${phone}`);
+
     console.log("Submitting phone:", phone);
+    console.log("Submitting phone:", res);
+
+    if (res) {
+      navigate("/OTP-Verification", { state: { res } });
+    }
   };
   return (
     <div className="h-screen flex relative overflow-hidden">
@@ -34,57 +61,11 @@ function LoginWithMobile() {
           <h1 className="font-jakarta font-normal text-[16px] text-[#555555] text-center max-w-[430px]">
             Please confirm your country code and enter your mobile number
           </h1>
-          <form
-            action=""
-            onSubmit={handleSubmit}
-            className="max-w-[430px] w-full"
-          >
-            {/* <div className="w-full">
-              <label
-                htmlFor=""
-                className="font-jakarta font-normal text-base text-[#555555]"
-              >
-                Mobile number
-              </label>
-              <div className="relative bg-[#F1F3F6] flex rounded-l-[8px] w-full mt-[14px]">
-                <input
-                  type="email"
-                  placeholder="+91 | "
-                  className="px-[20px] py-[14px] w-full outline-[#EE5128]"
-                />
-                <div className="px-[20px] py-[14px] rounded-[8px] bg-[#EE5128] grid place-items-center">
-                  <img src={MobileIcon} alt="Mobile Icon" />
-                </div>
-              </div>
-            </div> */}
-
+          <form onSubmit={handleSubmit} className="max-w-[430px] w-full">
             <div className="mb-4 w-full">
               <label className="font-jakarta font-normal text-base text-[#555555]">
                 Phone number
               </label>
-              {/* <PhoneInput
-                country={"in"}
-                value={phone}
-                onChange={setPhone}
-                inputProps={{
-                  name: "phone",
-                  required: true,
-                  // className:
-                  //   "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent",
-                  className:
-                    "border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent",
-                }}
-                buttonStyle={{
-                  borderTopLeftRadius: "0.375rem",
-                  borderBottomLeftRadius: "0.375rem",
-                }}
-                containerStyle={{
-                  width: "100%",
-                }}
-                dropdownStyle={{
-                  width: "200px",
-                }}
-              /> */}
               <PhoneInput
                 country={"in"}
                 value={phone}
@@ -96,10 +77,17 @@ function LoginWithMobile() {
               />
             </div>
 
-            <button className="font-jakarta font-semibold text-[18px] w-full bg-[#EE5128] py-[14px] rounded-[8px] text-white mt-[40px] drop-shadow-xl drop-shadow-[#FD74014D]">
+            {/* 🔧 This is required for Firebase to attach reCAPTCHA */}
+            <div id="recaptcha-container" className="my-2" />
+
+            <button
+              type="submit"
+              className="font-jakarta font-semibold text-[18px] w-full bg-[#EE5128] py-[14px] rounded-[8px] text-white mt-[40px] drop-shadow-xl drop-shadow-[#FD74014D]"
+            >
               Login now
             </button>
           </form>
+
           <p className="mt-[30px] font-jakarta font-normal text-[16px]">
             Don’t have an account?{" "}
             <Link

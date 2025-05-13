@@ -144,11 +144,11 @@ export default function ExploreAfrica() {
                 Explore Africa
               </h2>
 
-              <div className="flex justify-center sm:justify-end sm:relative sm:top-3 sm:left-[-250px] mt-4 sm:mt-0">
+              {/* <div className="flex justify-center sm:justify-end sm:relative sm:top-3 sm:left-[-250px] mt-4 sm:mt-0">
                 <select className="border border-red-400 text-gray-700 text-[13px] rounded-md py-[6px] px-2">
                   <option>Select country</option>
                 </select>
-              </div>
+              </div> */}
             </div>
 
             <p className="mt-6 text-gray-600 text-base sm:text-lg relative top-6 lato text-center sm:text-left leading-relaxed">
@@ -264,9 +264,9 @@ export default function ExploreAfrica() {
                 </button>
               </div>
 
-              <select className="border border-red-400 text-gray-700 text-[13px] rounded-md py-[6px] px-2">
+              {/* <select className="border border-red-400 text-gray-700 text-[13px] rounded-md py-[6px] px-2">
                 <option>Select country</option>
-              </select>
+              </select> */}
             </div>
 
             {/* Mobile Carousel */}

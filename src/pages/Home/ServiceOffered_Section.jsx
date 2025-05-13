@@ -5,7 +5,7 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
 
 import Logo from "../../assets/images/logo-small.svg";
 
@@ -24,6 +24,8 @@ import LastMinute from "../../assets/images/ServiceOffers/LastMinite.png";
 import Visa from "../../assets/images/ServiceOffers/Visa.png";
 
 import ComingSoon from "../../assets/images/ServiceOffers/comingsoon.gif";
+
+import PlusIcon from "../../assets/images/cancel-flaticon.png";
 const Offers = [
   {
     image: Tours,
@@ -94,29 +96,42 @@ function ServiceOfferedSection() {
   }, []);
 
   return (
-    <div className="sm:px-4 lg:px-20 xl:px-40 py-28 bg-white text-black overflow-hidden">
+    <div
+      id="ServicesOffered"
+      className="sm:px-4 lg:px-20 xl:px-40 py-28 bg-white text-black overflow-hidden"
+    >
       {/* title section */}
       <div className="flex items-start justify-between">
-        <div className="header ml-4 sm:ml-0 flex flex-col items-start gap-3 lg:gap-5 mb-[44px] lg:mb-16">
-          <h3
-            data-aos="fade-right"
-            className="font-jakarta font-bold text-[30px] xl:text-[45px] text-[#EE5128]"
-          >
-            Services offered
-          </h3>
-          <div className="flex flex-col items-start font-sans font-normal text-[18px] lg:text-[22px]">
-            <p data-aos="fade-right" className="font-semibold xl:font-normal">
-              Explore Africa with Ease
-            </p>
-            <p
+        <div className="flex items-start gap-4">
+          <div className=" text-white rounded-full ml-4 " data-aos="fade-right">
+            <img
+              src={PlusIcon}
+              alt="play icon"
+              className="h-[30px] w-[30px] md:h-[60px] md:w-[60px] lg:h-[100px] lg:w-[100px] rotate-45 mt-[8px]"
+            />
+          </div>
+          <div className="header sm:ml-0 flex flex-col items-start gap-3 lg:gap-5 mb-[44px] lg:mb-16">
+            <h3
               data-aos="fade-right"
-              className="text-base xl:text-[22px] font-semibold xl:font-normal text-black/50"
+              className="font-jakarta font-bold text-[30px] xl:text-[45px] text-[#EE5128]"
             >
-              Book Flights, Hotels, Cars, Trains & <br className="md:hidden" />{" "}
-              Events, Whether for Work or Play.
-            </p>
+              Services offered
+            </h3>
+            <div className="flex flex-col items-start font-sans font-normal text-[18px] lg:text-[22px]">
+              <p data-aos="fade-right" className="font-semibold xl:font-normal">
+                Explore Africa with Ease
+              </p>
+              <p
+                data-aos="fade-right"
+                className="text-base xl:text-[22px] font-semibold xl:font-normal text-black/50"
+              >
+                Book Flights, Hotels, Cars, Trains &{" "}
+                <br className="md:hidden" /> Events, Whether for Work or Play.
+              </p>
+            </div>
           </div>
         </div>
+
         {/* <Image */}
         <img
           src={ComingSoon}

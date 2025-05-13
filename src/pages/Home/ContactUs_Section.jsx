@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import DesktopTopWrap from "../../assets/images/travel/Vector.png";
 import MobileTopWrap from "../../assets/images/travel/Topwrap.png";
@@ -18,6 +18,8 @@ export default function TravelSection() {
     buttons: false,
     contactBtn: false,
   });
+
+  const [openForm, setOpenForm] = useState(null);
 
   // Create refs for all elements we want to track
   const sectionRef = useRef(null);
@@ -266,6 +268,13 @@ export default function TravelSection() {
                         className={`flex items-center justify-start gap-x-3 ${
                           text === "Apply for Partnership" ? "mt-[4px]" : ""
                         }`}
+                        onClick={() => {
+                          if (text === "Become an Agent") setOpenForm("agent");
+                          else if (text === "Register as Vendor")
+                            setOpenForm("vendor");
+                          else if (text === "Apply for Partnership")
+                            setOpenForm("partnership");
+                        }}
                       >
                         {/* Text + Underline */}
                         <div className="flex flex-col">
@@ -275,8 +284,8 @@ export default function TravelSection() {
                           <span className="block h-[1px] w-full bg-[#F15623] mt-[2px]" />
                         </div>
 
-                        <a
-                          href="#"
+                        <p
+                          // href="#"
                           className="flex items-center justify-center rounded-full border border-[#F15623] text-[#F15623] hover:bg-[#F15623] hover:text-white transition"
                           style={{
                             width: "32px",
@@ -286,7 +295,7 @@ export default function TravelSection() {
                           }}
                         >
                           <ArrowUpRight size={18} />
-                        </a>
+                        </p>
                       </div>
                     ))}
                   </div>
@@ -371,7 +380,17 @@ export default function TravelSection() {
                       "Register as Vendor",
                       "Apply for Partnership",
                     ].map((text, idx) => (
-                      <div key={idx} className="flex items-center">
+                      <div
+                        key={idx}
+                        className="flex items-center"
+                        onClick={() => {
+                          if (text === "Become an Agent") setOpenForm("agent");
+                          else if (text === "Register as Vendor")
+                            setOpenForm("vendor");
+                          else if (text === "Apply for Partnership")
+                            setOpenForm("partnership");
+                        }}
+                      >
                         <div className="flex items-center gap-[4px]">
                           <span className="text-[#F15623] font-semibold text-[12px] min-[400px]:text-[13px] leading-snug block whitespace-normal break-words [@media(min-width:351px)]:whitespace-nowrap">
                             {text}
@@ -484,7 +503,17 @@ export default function TravelSection() {
                       "Register as Vendor",
                       "Apply for Partnership",
                     ].map((text, idx) => (
-                      <div key={idx} className="flex items-center gap-[5px]">
+                      <div
+                        key={idx}
+                        className="flex items-center gap-[5px]"
+                        onClick={() => {
+                          if (text === "Become an Agent") setOpenForm("agent");
+                          else if (text === "Register as Vendor")
+                            setOpenForm("vendor");
+                          else if (text === "Apply for Partnership")
+                            setOpenForm("partnership");
+                        }}
+                      >
                         <span className="text-[#F15623] font-semibold text-[13px] leading-tight block whitespace-nowrap">
                           {text}
                           <div className="h-[1px] bg-[#F15623] mt-[2px]" />
@@ -591,7 +620,17 @@ export default function TravelSection() {
                       "Register as Vendor",
                       "Apply for Partnership",
                     ].map((text, idx) => (
-                      <div key={idx} className="flex items-center gap-[5px]">
+                      <div
+                        key={idx}
+                        className="flex items-center gap-[5px]"
+                        onClick={() => {
+                          if (text === "Become an Agent") setOpenForm("agent");
+                          else if (text === "Register as Vendor")
+                            setOpenForm("vendor");
+                          else if (text === "Apply for Partnership")
+                            setOpenForm("partnership");
+                        }}
+                      >
                         <span className="text-[#F15623] font-semibold text-[13px] leading-tight block whitespace-nowrap">
                           {text}
                           <div className="h-[1px] bg-[#F15623] mt-[2px]" />
@@ -645,6 +684,330 @@ export default function TravelSection() {
           </div>
         </div>
       </div>
+
+      {openForm && (
+        <div className="absolute inset-0 bg-white/50 backdrop-blur-sm bg-opacity-50 z-10 flex items-center justify-center">
+          <div className="shadow-xl bg-white p-6 lg:p-10 rounded-2xl w-[80%] lg:max-w-2/3 z-30 text-black">
+            {openForm === "agent" && (
+              <AgentForm onClose={() => setOpenForm(null)} />
+            )}
+            {openForm === "vendor" && (
+              <VendorForm onClose={() => setOpenForm(null)} />
+            )}
+            {openForm === "partnership" && (
+              <PartnershipForm onClose={() => setOpenForm(null)} />
+            )}
+          </div>
+        </div>
+      )}
     </section>
   );
 }
+
+const AgentForm = ({ onClose }) => {
+  const [agentFormData, setAgentFormData] = useState({
+    name: "",
+    email: "",
+    phoneNumber: "",
+    category: "",
+  });
+
+  const HandleAgentFormSave = (e) => {
+    e.preventDefault();
+    console.log(agentFormData); // Collected form data
+
+    // TODO: Call your API here
+
+    onClose(); // Close modal or form
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setAgentFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  return (
+    <>
+      <p className="text-2xl font-jakarta font-bold text-primary mb-8 text-nowrap pr-10">
+        Become an Agent
+      </p>
+      <form onSubmit={HandleAgentFormSave}>
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-10">
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-sans font-semibold text-gray-500">
+              Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              value={agentFormData.name}
+              onChange={handleChange}
+              placeholder="Alex"
+              className="px-[17px] py-[15px] rounded-[5.25px] border border-[#CCCCCC]"
+              required
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-sans font-semibold text-gray-500">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={agentFormData.email}
+              onChange={handleChange}
+              placeholder="Alex@gmail.com"
+              className="px-[17px] py-[15px] rounded-[5.25px] border border-[#CCCCCC]"
+              required
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-sans font-semibold text-gray-500">
+              Phone Number
+            </label>
+            <input
+              type="tel"
+              name="phoneNumber"
+              value={agentFormData.phoneNumber}
+              onChange={handleChange}
+              placeholder="ex: 90080 70060"
+              className="px-[17px] py-[15px] rounded-[5.25px] border border-[#CCCCCC]"
+              required
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-sans font-semibold text-gray-500">
+              Category
+            </label>
+            <input
+              type="text"
+              name="category"
+              value={agentFormData.category}
+              onChange={handleChange}
+              placeholder="ex: Traveler Guide"
+              className="px-[17px] py-[15px] rounded-[5.25px] border border-[#CCCCCC]"
+              required
+            />
+          </div>
+        </div>
+        <div className="flex justify-end-safe gap-4">
+          <button
+            onClick={() => onClose()}
+            className="text-[#F15623] border-primary px-5 py-2 rounded-full font-medium hover:underline transition shadow font-sans text-sm whitespace-nowrap mt-8 flex justify-self-end"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            className="bg-[#F15623] text-white px-5 py-2 rounded-full font-medium hover:bg-[#d54417] transition shadow font-sans text-sm whitespace-nowrap mt-8 flex justify-self-end"
+          >
+            Send
+          </button>
+        </div>
+      </form>
+    </>
+  );
+};
+
+const VendorForm = ({ onClose }) => {
+  const [vendorFormData, setVendorFormData] = useState({
+    name: "",
+    email: "",
+    phoneNumber: "",
+    business: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setVendorFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(vendorFormData);
+
+    // TODO: Add API call to submit data
+
+    onClose();
+  };
+
+  return (
+    <>
+      <p className="text-2xl font-jakarta font-bold text-primary mb-8 text-nowrap pr-10">
+        Register as Vendor
+      </p>
+      <form onSubmit={handleSubmit}>
+        <div className="grid md:grid-cols-2 gap-4 lg:gap-10">
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-sans font-semibold text-gray-500">
+              Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              value={vendorFormData.name}
+              onChange={handleChange}
+              placeholder="Alex"
+              className="px-[17px] py-[15px] rounded-[5.25px] border border-[#CCCCCC]"
+              required
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-sans font-semibold text-gray-500">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={vendorFormData.email}
+              onChange={handleChange}
+              placeholder="Alex@gmail.com"
+              className="px-[17px] py-[15px] rounded-[5.25px] border border-[#CCCCCC]"
+              required
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-sans font-semibold text-gray-500">
+              Phone Number
+            </label>
+            <input
+              type="tel"
+              name="phoneNumber"
+              value={vendorFormData.phoneNumber}
+              onChange={handleChange}
+              placeholder="ex: 90080 70060"
+              className="px-[17px] py-[15px] rounded-[5.25px] border border-[#CCCCCC]"
+              required
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-sans font-semibold text-gray-500">
+              Business
+            </label>
+            <input
+              type="text"
+              name="business"
+              value={vendorFormData.business}
+              onChange={handleChange}
+              placeholder="ex: portal"
+              className="px-[17px] py-[15px] rounded-[5.25px] border border-[#CCCCCC]"
+              required
+            />
+          </div>
+        </div>
+        <div className="flex justify-end-safe gap-4">
+          <button
+            onClick={() => onClose()}
+            className="text-[#F15623] border-primary px-5 py-2 rounded-full font-medium hover:underline transition shadow font-sans text-sm whitespace-nowrap mt-8 flex justify-self-end"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            className="bg-[#F15623] text-white px-5 py-2 rounded-full font-medium hover:bg-[#d54417] transition shadow font-sans text-sm whitespace-nowrap mt-8 flex justify-self-end"
+          >
+            Send
+          </button>
+        </div>
+      </form>
+    </>
+  );
+};
+
+const PartnershipForm = ({ onClose }) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phoneNumber: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Partnership Form Data:", formData);
+
+    // TODO: Handle API call here
+    onClose();
+  };
+
+  return (
+    <>
+      <p className="text-2xl font-jakarta font-bold text-primary mb-8 text-nowrap pr-10">
+        Apply for Partnership
+      </p>
+      <form onSubmit={handleSubmit}>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-sans font-semibold text-gray-500">
+              Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Alex"
+              className="px-[17px] py-[15px] rounded-[5.25px] border border-[#CCCCCC]"
+              required
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-sans font-semibold text-gray-500">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Alex@gmail.com"
+              className="px-[17px] py-[15px] rounded-[5.25px] border border-[#CCCCCC]"
+              required
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-sans font-semibold text-gray-500">
+              Phone Number
+            </label>
+            <input
+              type="tel"
+              name="phoneNumber"
+              value={formData.phoneNumber}
+              onChange={handleChange}
+              placeholder="ex: 90080 70060"
+              className="px-[17px] py-[15px] rounded-[5.25px] border border-[#CCCCCC]"
+              required
+            />
+          </div>
+        </div>
+        <div className="flex justify-end-safe gap-4">
+          <button
+            onClick={() => onClose()}
+            className="text-[#F15623] border-primary px-5 py-2 rounded-full font-medium hover:underline transition shadow font-sans text-sm whitespace-nowrap mt-8 flex justify-self-end"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            className="bg-[#F15623] text-white px-5 py-2 rounded-full font-medium hover:bg-[#d54417] transition shadow font-sans text-sm whitespace-nowrap mt-8 flex justify-self-end"
+          >
+            Send
+          </button>
+        </div>
+      </form>
+    </>
+  );
+};

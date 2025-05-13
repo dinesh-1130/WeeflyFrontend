@@ -6,6 +6,12 @@
 @theme {
   --font-jakarta: "Plus Jakarta Sans", sans-serif;
   --font-sans: "Lato", sans-serif;
+  --color-primary: #ee5128;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
 }
 
 .no-calendar-icon::-webkit-calendar-picker-indicator {

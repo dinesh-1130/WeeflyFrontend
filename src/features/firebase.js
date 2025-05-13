@@ -1,5 +1,5 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+import { getApp, getApps, initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -7,7 +7,10 @@ import { initializeApp } from "firebase/app";
 import {
   getAuth,
   GoogleAuthProvider,
+  PhoneAuthProvider,
+  RecaptchaVerifier,
   sendPasswordResetEmail,
+  signInWithPhoneNumber,
   signInWithPopup,
   signOut,
 } from "firebase/auth";
@@ -25,11 +28,12 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
+const app = getApps.length === 0 ? initializeApp(firebaseConfig) : getApp();
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
+auth.useDeviceLanguage();
 
+auth.languageCode = "eng";
 export { auth, provider, signInWithPopup, signOut };
 
 /////////////////////////
@@ -40,10 +44,52 @@ export { auth, provider, signInWithPopup, signOut };
 export const HandleGoogleLogin = async () => {
   try {
     const result = await signInWithPopup(auth, provider);
-    console.log("User Info:", result.user);
+    const UserDetails = result.user;
+    console.log("UserDetails:", UserDetails);
+
+    if (UserDetails) {
+      const Payloads = {
+        uid: UserDetails.uid,
+        email: UserDetails.email,
+        name: UserDetails.displayName,
+        photoURL: UserDetails.photoURL,
+        phoneNumber: UserDetails.phoneNumber,
+      };
+      localStorage.setItem("loginUserDetail", JSON.stringify(Payloads));
+      localStorage.setItem("email", UserDetails.email);
+      return Payloads;
+    }
+
+    // if (!UserDetails.phoneNumber && phoneNumberInput && otpInput) {
+    //   if (!window.recaptchaVerifier) {
+    //     window.recaptchaVerifier = new RecaptchaVerifier(
+    //       "recaptcha-container",
+    //       {
+    //         size: "invisible",
+    //         callback: (response) => {
+    //           console.log("Recaptcha resolved", response);
+    //         },
+    //       },
+    //       auth
+    //     );
+    //   }
+
+    //   const phoneProvider = new PhoneAuthProvider(auth);
+    //   const verificationId = await phoneProvider.verifyPhoneNumber(
+    //     phoneNumberInput,
+    //     window.recaptchaVerifier
+    //   );
+
+    //   const credential = PhoneAuthProvider.credential(verificationId, otpInput);
+    //   await UserDetails.linkWithCredential(credential);
+
+    //   console.log("✅ Phone number linked successfully.");
+    // }
+
     return result;
   } catch (err) {
     console.error("Login Error:", err);
+    alert(err.message);
   }
 };
 
@@ -62,6 +108,27 @@ export const HandleGoogleLogout = async () => {
   }
 };
 
+/////////////////////////
+//
+// Get current user
+//
+////////////////////////
+
+export const GetCurrentUser = () => {
+  const user = auth.currentUser;
+  if (user) {
+    return {
+      uid: user.uid,
+      email: user.email,
+      name: user.displayName,
+      photoURL: user.photoURL,
+    };
+  } else {
+    console.log("No user is signed in.");
+    return null;
+  }
+};
+
 ////////////////////////
 //
 // Google Forgot Password
@@ -75,5 +142,79 @@ export const HandleGoogleForgotPassword = async ({ email }) => {
     return Message;
   } catch (err) {
     console.error("Login Error:", err);
+  }
+};
+
+/////////////////////////
+//
+// SendOTP
+//
+////////////////////////
+
+export const SendOTP = async (phoneNumber) => {
+  try {
+    window.recaptchaVerifier = new RecaptchaVerifier(
+      auth,
+      "recaptcha-container",
+      {
+        size: "invisible",
+        callback: (response) => {
+          // reCAPTCHA solved, allow signInWithPhoneNumber.
+          // ...
+          console.log(response);
+        },
+        "expired-callback": () => {
+          // Response expired. Ask user to solve reCAPTCHA again.
+          // ...
+        },
+        defaultCountry: "IN",
+      }
+    );
+    const appVerifier = window.recaptchaVerifier;
+    const confirmationResult = await signInWithPhoneNumber(
+      auth,
+      phoneNumber,
+      appVerifier
+    )
+      .then((confirmationResult) => {
+        // SMS sent. Prompt user to type the code from the message, then sign the
+        // user in with confirmationResult.confirm(code).
+        window.confirmationResult = confirmationResult;
+        console.log(confirmationResult);
+        return confirmationResult;
+
+        // ...
+      })
+      .catch((error) => {
+        // Error; SMS not sent
+        // ...
+        console.error(error);
+      });
+
+    window.confirmationResult = confirmationResult;
+    console.log("OTP sent:", confirmationResult);
+
+    return "OTP Sent";
+  } catch (err) {
+    console.error("SMS not sent:", err.message);
+    return `Error sending OTP: ${err.message}`;
+  }
+};
+
+/////////////////////////
+//
+// VerifyOTP
+//
+////////////////////////
+
+export const VerifyOTP = async (otpCode) => {
+  try {
+    const confirmationResult = window.confirmationResult;
+    const result = await confirmationResult.confirm(otpCode);
+    console.log("User signed in with phone:", result.user);
+    return result.user;
+  } catch (err) {
+    console.error("OTP verification failed", err);
+    return null;
   }
 };

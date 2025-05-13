@@ -7,11 +7,39 @@ import AppleIcon from "../assets/Auth/AppleIcon.svg";
 import LoginBg from "../assets/Auth/LoginBg.png";
 import { useState } from "react";
 import { Eye, EyeClosed, Lock, Unlock } from "lucide-react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { HandleGoogleLogin } from "../features/firebase";
 
 function LoginPage() {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [loginUserData, setLoginUserData] = useState(null);
+
+  // const HandleGoogleLoginFunction = async () => {
+  //   const userData = await HandleGoogleLogin();
+  //   setLoginUserData(userData);
+
+  //   if (loginUserData?.phoneNumber === null) {
+  //     navigate("/Login-with-mobile", { state: { loginUserData } });
+  //   } else {
+  //     navigate("/");
+  //   }
+  // };
+
+  const HandleGoogleLoginFunction = async () => {
+    const userData = await HandleGoogleLogin(); // Get user data from Google login
+    setLoginUserData(userData); // Set user data to state
+
+    // Use the local `userData` variable instead of `loginUserData`
+    if (userData) {
+      // navigate("/Login-with-mobile", { state: { loginUserData: userData } });
+      navigate("/profile", { state: { loginUserData: userData } });
+    } else {
+      navigate("/");
+    }
+  };
+
+  console.log(loginUserData);
   return (
     <div className="h-screen flex relative overflow-hidden">
       <div
@@ -28,6 +56,7 @@ function LoginPage() {
           <h1 className="font-jakarta font-semibold text-[24px]">
             Login into your account
           </h1>
+
           <form action="" className="max-w-[430px] w-full">
             <div className="w-full">
               <label
@@ -78,6 +107,7 @@ function LoginPage() {
                 </div>
               </div>
             </div>
+            <div id="recaptcha-container"></div>
             <div className="flex justify-end mt-[10px]">
               <Link
                 to={"/ForgotPassword"}
@@ -102,7 +132,7 @@ function LoginPage() {
             </div> */}
             <div
               className="px-[37px] py-[15px] border border-[#E8ECF4] rounded-[8px] w-full  flex justify-center gap-4 cursor-pointer"
-              onClick={() => HandleGoogleLogin()}
+              onClick={() => HandleGoogleLoginFunction()}
             >
               <img src={GoogleIcon} alt="Google icon" />
               <p className="font-jakarta font-medium">Login with Google</p>

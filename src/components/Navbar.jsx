@@ -1,11 +1,14 @@
-import { AlignLeft, Search, UserCircle, X } from "lucide-react";
+import { AlignLeft, Play, Plus, Search, UserCircle, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import WeeFlyLogo from "../assets/images/WeeFly-white-logo.svg";
 import AfricaFlag from "../assets/images/africaflag.png";
 import Menu from "../assets/images/menu.svg";
 import WeeFlyLogo2 from "../assets/images/Weefly-Orange.svg";
-import { useLocation, useNavigate } from "react-router";
+
+import PlayIcon from "../assets/images/play-flaticon.png";
+import PlusIcon from "../assets/images/cancel-flaticon.png";
+import { Link, useLocation, useNavigate } from "react-router";
 
 const Navbar = () => {
   const Location = useLocation();
@@ -38,16 +41,53 @@ const Navbar = () => {
           >
             <div className="">
               {isScrolled ? (
-                <img src={WeeFlyLogo2} alt="WeeFly" className="h-10 lg:h-16  cursor-pointer" onClick={()=>navigate('/')}  />
+                <img
+                  src={WeeFlyLogo2}
+                  alt="WeeFly"
+                  className="h-10 lg:h-16  cursor-pointer"
+                  onClick={() => navigate("/")}
+                />
               ) : (
-                <img src={WeeFlyLogo} alt="WeeFly" className="h-10 lg:h-16 cursor-pointer" onClick={()=>navigate('/')} />
+                <img
+                  src={WeeFlyLogo}
+                  alt="WeeFly"
+                  className="h-10 lg:h-16 cursor-pointer"
+                  onClick={() => navigate("/")}
+                />
               )}
             </div>
             <div className="items-center gap-10 hidden lg:flex">
-              <nav className="flex text-base space-x-10">
-                <a href="#">Take a tour</a>
-                <a href="about">About us</a>
-                <a href="#">Contact us</a>
+              <nav className="flex text-base items-center space-x-10">
+                {/* <a href="#">Take a tour</a> */}
+
+                <a href={"#ServicesOffered"}>
+                  <div className="rounded-md">
+                    <img
+                      src={PlusIcon}
+                      alt="play icon"
+                      className="h-[35px] rotate-45"
+                    />
+                  </div>
+                </a>
+                <Link to={"#"}>
+                  <div className="rounded-md">
+                    <img src={PlayIcon} alt="play icon" className="h-[30px]" />
+                  </div>
+                </Link>
+                <Link
+                  to={"#"}
+                  className="hover:underline hover:text-primary font-medium font-sans"
+                >
+                  News
+                </Link>
+                <Link
+                  to={"#"}
+                  className="hover:underline hover:text-primary font-medium font-sans"
+                >
+                  About us
+                </Link>
+                {/* <Link to={"Contact"}>Contact us</Link> */}
+                {/* <a href="#">Contact us</a> */}
               </nav>
               <div className="flex items-center divide-x gap-4">
                 <form>
@@ -117,13 +157,34 @@ const Navbar = () => {
             } transition-all duration-300`}
           >
             <div className="">
-              <img src={WeeFlyLogo2} alt="WeeFly" className="h-10 lg:h-16 cursor-pointer" onClick={()=>navigate('/')} />
+              <img
+                src={WeeFlyLogo2}
+                alt="WeeFly"
+                className="h-10 lg:h-16 cursor-pointer"
+                onClick={() => navigate("/")}
+              />
             </div>
             <div className="items-center gap-10 hidden lg:flex">
               <nav className="flex text-base space-x-10">
-                <a href="#">Take a tour</a>
+                {/* <a href="#">Take a tour</a>
                 <a href="about">About us</a>
-                <a href="#">Contact us</a>
+                <a href="#">Contact us</a> */}
+                <Link to={"#"}>
+                  <div className="rounded-md">
+                    <img
+                      src={PlusIcon}
+                      alt="play icon"
+                      className="h-[35px] rotate-45"
+                    />
+                  </div>
+                </Link>
+                <Link to={"#"}>
+                  <div className="">
+                    <img src={PlayIcon} alt="PlayIcon" className="h-[30px]" />
+                  </div>
+                </Link>
+                <Link to={"#"}>News</Link>
+                <Link to={"#"}>About us</Link>
               </nav>
               <div className="flex items-center divide-x gap-4">
                 <form>

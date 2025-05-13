@@ -23,6 +23,7 @@ import SeatSelectionPage from "./pages/FlightBooking/SeatSelectionPage";
 import PaymentPage from "./pages/FlightBooking/PaymentPage";
 import ProfilePage from "./pages/Profile/ProfilePage";
 import ScrollToTop from "./components/ScrollToTop";
+import ContactUsPage from "./pages/ContactUsPage/ContactUsPage";
 
 const App = () => {
   useEffect(() => {
@@ -44,6 +45,7 @@ const App = () => {
               <Route path="Payment" element={<PaymentPage />} />
             </Route>
             <Route path="profile" element={<ProfilePage />} />
+            <Route path="/Contact" element={<ContactUsPage />} />
           </Route>
           {/* Authentication Route */}
           <Route path="SignUp" element={<SignupPage />} />
