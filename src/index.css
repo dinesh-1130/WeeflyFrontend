@@ -89,6 +89,14 @@ s .no-calendar-icon {
   animation: scrollReverse 25s linear infinite;
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* .react-tel-input .form-control {
   width: 100%;
   height: 38px;

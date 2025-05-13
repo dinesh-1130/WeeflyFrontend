@@ -687,7 +687,7 @@ export default function TravelSection() {
 
       {openForm && (
         <div className="absolute inset-0 bg-white/50 backdrop-blur-sm bg-opacity-50 z-10 flex items-center justify-center">
-          <div className="shadow-xl bg-white p-6 lg:p-10 rounded-2xl w-[80%] lg:max-w-2/3 z-30 text-black">
+          <div className="shadow-xl bg-white p-6 lg:p-10 rounded-2xl w-[80%] lg:max-w-1/2 z-30 text-black">
             {openForm === "agent" && (
               <AgentForm onClose={() => setOpenForm(null)} />
             )}

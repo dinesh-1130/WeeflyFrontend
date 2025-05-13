@@ -279,17 +279,15 @@ export default function SeatSelection() {
                                   {Luggage.name}
                                 </span> */}
 
-<span className="font-base text-base whitespace-nowrap overflow-hidden text-ellipsis">
-  {Luggage.name}
-</span>
-</div>
-<div className="flex justify-center">
-  <span className="font-bold text-center">
-    ${Luggage.price}
-  </span>
-</div>
-
-                             
+                                <span className="font-base text-base whitespace-nowrap overflow-hidden text-ellipsis">
+                                  {Luggage.name}
+                                </span>
+                              </div>
+                              <div className="flex justify-center">
+                                <span className="font-bold text-center">
+                                  ${Luggage.price}
+                                </span>
+                              </div>
 
                               <div className="flex items-center justify-center space-x-4">
                                 <button
