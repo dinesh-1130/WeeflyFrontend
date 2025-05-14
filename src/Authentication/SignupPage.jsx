@@ -10,9 +10,22 @@ import SignUpBg from "../assets/Auth/SignUpBg.png";
 import { useState } from "react";
 import { Eye, EyeClosed } from "lucide-react";
 import { Link } from "react-router";
+import { HandleGoogleLogin } from "../features/firebase";
 
 function SignupPage() {
   const [showPassword, setShowPassword] = useState(false);
+  const [signinUserData, setSigninUserData] = useState(null);
+    const HandleGoogleSigninFunction = async () => {
+    const userData = await HandleGoogleLogin(); // Get user data from Google login
+    setSigninUserData(userData); // Set user data to state
+    // Use the local `userData` variable instead of `loginUserData`
+    if (userData) {
+      // navigate("/Login-with-mobile", { state: { loginUserData: userData } });
+      navigate("/profile", { state: { signinUserData: userData } });
+    } else {
+      navigate("/");
+    }
+  };
   return (
     <div className="h-screen flex relative overflow-hidden">
       <div
@@ -122,7 +135,7 @@ function SignupPage() {
                 </div>
               </div>
             </div>
-            <button className="font-jakarta font-semibold text-[18px] w-full bg-[#EE5128] py-[14px] xl:py-[10px] rounded-[8px] text-white mt-[20px] drop-shadow-xl drop-shadow-[#FD74014D]">
+            <button className="font-jakarta font-semibold text-[18px] w-full bg-[#EE5128] py-[14px] xl:py-[10px] rounded-[8px] text-white mt-[20px] drop-shadow-xl drop-shadow-[#FD74014D]"  onClick={() => HandleGoogleSigninFunction()}>
               Sign Up now
             </button>
           </form>
