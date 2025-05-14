@@ -9,10 +9,11 @@ import GoogleIcon from "../assets/Auth/GoogleIcon.svg";
 import SignUpBg from "../assets/Auth/SignUpBg.png";
 import { useState } from "react";
 import { Eye, EyeClosed } from "lucide-react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { HandleGoogleLogin } from "../features/firebase";
 
 function SignupPage() {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [signinUserData, setSigninUserData] = useState(null);
     const HandleGoogleSigninFunction = async () => {
@@ -135,7 +136,7 @@ function SignupPage() {
                 </div>
               </div>
             </div>
-            <button className="font-jakarta font-semibold text-[18px] w-full bg-[#EE5128] py-[14px] xl:py-[10px] rounded-[8px] text-white mt-[20px] drop-shadow-xl drop-shadow-[#FD74014D]"  onClick={() => HandleGoogleSigninFunction()}>
+            <button className="font-jakarta font-semibold text-[18px] w-full bg-[#EE5128] py-[14px] xl:py-[10px] rounded-[8px] text-white mt-[20px] drop-shadow-xl drop-shadow-[#FD74014D]"  >
               Sign Up now
             </button>
           </form>
@@ -148,7 +149,7 @@ function SignupPage() {
             {/* <div className="px-[37px] py-[15px] border border-[#E8ECF4] rounded-[8px]">
                 <img src={FacebookIcon} alt="Facebook icon" />
               </div> */}
-            <div className="px-[37px] py-[15px] border border-[#E8ECF4] rounded-[8px] w-full  flex justify-center gap-4">
+            <div className="px-[37px] py-[15px] border border-[#E8ECF4] rounded-[8px] w-full  flex justify-center gap-4" onClick={() => HandleGoogleSigninFunction()}>
               <img src={GoogleIcon} alt="Google icon" />
               <p className="font-jakarta font-medium">Sign up with Google</p>
             </div>
