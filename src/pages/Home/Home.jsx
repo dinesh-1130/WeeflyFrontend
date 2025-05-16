@@ -6,6 +6,7 @@ import HeroSection from "./Hero_section";
 import OurStory from "./OurStory_Section";
 import PaymentOptionSection from "./PaymentOption_Section";
 import ServiceOfferedSection from "./ServiceOffered_Section";
+import SocialMediawidget from "./SocialMediawidget";
 
 function Home() {
   return (
@@ -13,10 +14,15 @@ function Home() {
       <HeroSection />
       <ServiceOfferedSection />
       <PaymentOptionSection />
-      <AfricanExperience />
+      <div className="" id="newsSection">
+        <AfricanExperience />
+      </div>
       <AioSection />
       <TravelSection />
-      <ExploreAfrica />
+      <div id="socialMedia">
+        <SocialMediawidget />
+      </div>
+      {/* <ExploreAfrica /> */}
       <OurStory />
     </div>
   );

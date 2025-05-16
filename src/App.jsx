@@ -24,13 +24,17 @@ import PaymentPage from "./pages/FlightBooking/PaymentPage";
 import ProfilePage from "./pages/Profile/ProfilePage";
 import ScrollToTop from "./components/ScrollToTop";
 import ContactUsPage from "./pages/ContactUsPage/ContactUsPage";
+import ScrollToHash from "./components/ScrollToHash";
 
 const App = () => {
   useEffect(() => {
-    Aos.init();
+    Aos.init({
+      once: true,
+    });
   }, []);
   return (
     <>
+      <ScrollToHash />
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<RootLayout />}>

@@ -1,4 +1,5 @@
 import WeeFlyLogo from "../assets/Auth/OrangeWeeflyLogo.svg";
+import WeeFlyLogo2 from "../assets/images/WeeFly-white-logo.svg";
 import UserIcon from "../assets/Auth/UserIcon.svg";
 import MobileIcon from "../assets/Auth/MobileIcon.svg";
 import MailIcon from "../assets/Auth/MailIcon.svg";
@@ -8,15 +9,23 @@ import GoogleIcon from "../assets/Auth/GoogleIcon.svg";
 // import AppleIcon from "../assets/Auth/AppleIcon.svg";
 import SignUpBg from "../assets/Auth/SignUpBg.png";
 import { useState } from "react";
-import { Eye, EyeClosed } from "lucide-react";
+import { Eye, EyeClosed, ArrowLeft, X, AlignRight } from "lucide-react";
 import { Link, useNavigate } from "react-router";
 import { HandleGoogleLogin } from "../features/firebase";
-
+const NavLinks = [
+  { label: "Home", link: "/" },
+  { label: "About Us", link: "/" },
+  { label: "Services", link: "/#ServicesOffered" },
+  { label: "News", link: "/#newsSection" },
+  { label: "Media", link: "/" },
+  { label: "Contact Us", link: "/Contact" },
+];
 function SignupPage() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [signinUserData, setSigninUserData] = useState(null);
-    const HandleGoogleSigninFunction = async () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const HandleGoogleSigninFunction = async () => {
     const userData = await HandleGoogleLogin(); // Get user data from Google login
     setSigninUserData(userData); // Set user data to state
     // Use the local `userData` variable instead of `loginUserData`
@@ -27,20 +36,83 @@ function SignupPage() {
       navigate("/");
     }
   };
+  const HandleGoogleLoginFunction = async () => {
+    const userData = await HandleGoogleLogin(); // Get user data from Google login
+    // setLoginUserData(userData); // Set user data to state
+    // Use the local `userData` variable instead of `loginUserData`
+    if (userData) {
+      // navigate("/Login-with-mobile", { state: { loginUserData: userData } });
+      localStorage.setItem("loggedIn", "true");
+      localStorage.setItem("loginUserDetail", JSON.stringify(userData));
+      navigate("/profile", { state: { loginUserData: userData } });
+    } else {
+      navigate("/");
+    }
+  };
+
   return (
     <div className="h-screen flex relative overflow-hidden">
       <div
-        data-aos="fade-right"
-        className="left-section w-full xl:w-1/2 h-full bg-white flex flex-col px-[24px] xl:px-[136px]"
+        className={`fixed h-full transition-all duration-300 origin-right left-0 bg-black/40 backdrop-blur-md z-20 overflow-hidden ${
+          isMenuOpen ? "w-full lg:w-1/2" : "w-0"
+        }`}
       >
+        <div className="w-full z-50 top-0 px-10 xl:px-40 font-sans h-20 flex justify-between items-center text-white">
+          <div className="text-2xl font-bold">
+            <p
+              className="flex items-center gap-1 cursor-pointer"
+              onClick={() => navigate(-1)}
+            >
+              <span>
+                <ArrowLeft />
+              </span>
+              <span> Back</span>
+            </p>
+          </div>
+          <div className="" onClick={() => setIsMenuOpen(false)}>
+            <X className="h-8 w-8 -rotate-90" />
+          </div>
+        </div>
+        <div className="flex flex-col text-right top-0 px-10 xl:px-40 text-3xl font-medium text-white gap-5 mt-5">
+          {NavLinks.map((link, index) => (
+            <Link
+              to={link.link}
+              key={index}
+              onClick={() => setIsMenuOpen(false)}
+              className="transition duration-300 hover:underline hover:text-primary"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      </div>
+      <div
+        data-aos="fade-right"
+        className="left-section w-full xl:w-1/2 h-full bg-white flex flex-col px-[24px] xl:px-[136px] overflow-y-scroll"
+      >
+        {/* menu */}
+        <div className="w-full z-50 top-0 font-sans h-20 flex justify-between items-center text-primary">
+          <div
+            className="font-bold flex items-center gap-1 cursor-pointer"
+            onClick={() => navigate(-1)}
+          >
+            <span>
+              <ArrowLeft />
+            </span>
+            <span>Back</span>
+          </div>
+          <div className="" onClick={() => setIsMenuOpen(true)}>
+            <AlignRight className="h-8 w-8" />
+          </div>
+        </div>
         {/* Add form or content here */}
-        <div className=" h-full flex flex-col items-center justify-center gap-[15px] xl:gap-[10px]">
+        <div className=" h-full flex flex-col items-center justify-center gap-[10px] xl:gap-[10px]">
           <img
             src={WeeFlyLogo}
             alt="WeeFly Logo"
-            className="h-[70px] w-[92px]"
+            className="h-[50px] w-[92px]"
           />
-          <h1 className="font-jakarta font-semibold text-[24px]">
+          <h1 className="font-jakarta font-semibold text-[18px]">
             Create an account
           </h1>
           <form
@@ -54,7 +126,7 @@ function SignupPage() {
               >
                 Name
               </label>
-              <div className="relative bg-[rgb(241,243,246)] flex rounded-l-[8px] w-full mt-[14px] xl:mt-[5px]">
+              <div className="relative bg-[rgb(241,243,246)] flex rounded-l-[8px] w-full mt-[10px] xl:mt-[5px]">
                 <input
                   type="text"
                   placeholder="Alex"
@@ -72,7 +144,7 @@ function SignupPage() {
               >
                 Mobile number
               </label>
-              <div className="relative bg-[#F1F3F6] flex rounded-l-[8px] w-full mt-[14px] xl:mt-[5px]">
+              <div className="relative bg-[#F1F3F6] flex rounded-l-[8px] w-full mt-[10px] xl:mt-[5px]">
                 <input
                   type="tel"
                   placeholder="+91 | "
@@ -90,7 +162,7 @@ function SignupPage() {
               >
                 Email address
               </label>
-              <div className="relative bg-[#F1F3F6] flex rounded-l-[8px] w-full mt-[14px] xl:mt-[5px]">
+              <div className="relative bg-[#F1F3F6] flex rounded-l-[8px] w-full mt-[10px] xl:mt-[5px]">
                 <input
                   type="email"
                   placeholder="alex@email.com"
@@ -101,14 +173,14 @@ function SignupPage() {
                 </div>
               </div>
             </div>
-            <div className="w-full mt-[10px]">
+            <div className="w-full">
               <label
                 htmlFor=""
                 className="font-jakarta font-normal text-base text-[#555555]"
               >
                 Password
               </label>
-              <div className="relative bg-[#F1F3F6] flex rounded-l-[8px] w-full mt-[14px] xl:mt-[5px]">
+              <div className="relative bg-[#F1F3F6] flex rounded-l-[8px] w-full mt-[10px] xl:mt-[5px]">
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter your password"
@@ -136,7 +208,7 @@ function SignupPage() {
                 </div>
               </div>
             </div>
-            <button className="font-jakarta font-semibold text-[18px] w-full bg-[#EE5128] py-[14px] xl:py-[10px] rounded-[8px] text-white mt-[20px] drop-shadow-xl drop-shadow-[#FD74014D]"  >
+            <button className="font-jakarta font-semibold text-[18px] w-full bg-[#EE5128] py-[14px] xl:py-[10px] rounded-[8px] text-white mt-[20px] drop-shadow-xl drop-shadow-[#FD74014D]">
               Sign Up now
             </button>
           </form>
@@ -149,7 +221,10 @@ function SignupPage() {
             {/* <div className="px-[37px] py-[15px] border border-[#E8ECF4] rounded-[8px]">
                 <img src={FacebookIcon} alt="Facebook icon" />
               </div> */}
-            <div className="px-[37px] py-[15px] border border-[#E8ECF4] rounded-[8px] w-full  flex justify-center gap-4" onClick={() => HandleGoogleSigninFunction()}>
+            <div
+              className="px-[37px] py-[10px] border border-[#E8ECF4] rounded-[8px] w-full  flex justify-center gap-4"
+              onClick={() => HandleGoogleSigninFunction()}
+            >
               <img src={GoogleIcon} alt="Google icon" />
               <p className="font-jakarta font-medium">Sign up with Google</p>
             </div>
@@ -157,27 +232,34 @@ function SignupPage() {
                 <img src={AppleIcon} alt="Apple icon" />
               </div> */}
           </div>
-          <p className="mt-[30px] xl:mt-[5px] font-jakarta font-normal text-[16px]">
+          <p className="mt-[10px] xl:mt-[5px] font-jakarta font-normal text-[16px]">
             Already have an account?
             <Link
               to={"/Login"}
-              className="font-bold text-[18px] text-[#EE5128]"
+              className="font-bold pl-1 text-[18px] text-[#EE5128]"
             >
               Login
+            </Link>
+          </p>
+          <p className="font-jakarta font-normal text-[16px]">
+            Are you a business?
+            <Link
+              to={"/#travel-section"}
+              className="font-bold pl-1 text-[18px] text-[#EE5128]"
+            >
+              Register here
             </Link>
           </p>
         </div>
       </div>
       <div
         data-aos="fade-left"
-        className="right-section hidden xl:block xl:w-1/2 h-full bg-black relative"
+        className="right-section hidden xl:block xl:w-1/2 w-full h-full bg-black relative"
       >
-        {/* <div className=""></div> */}
-        <img
-          src={SignUpBg}
-          alt="SignUp Background"
-          className="object-cover object-right w-full h-full"
-        />
+        <div
+          className="w-full h-full bg-cover bg-right bg-no-repeat bg-black"
+          style={{ backgroundImage: `url(${SignUpBg})` }}
+        ></div>
       </div>
     </div>
   );

@@ -895,7 +895,7 @@ const VendorForm = ({ onClose }) => {
               name="business"
               value={vendorFormData.business}
               onChange={handleChange}
-              placeholder="ex: portal"
+              placeholder="ex: hotel"
               className="px-[17px] py-[15px] rounded-[5.25px] border border-[#CCCCCC]"
               required
             />
