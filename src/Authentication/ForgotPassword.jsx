@@ -23,43 +23,43 @@ function ForgotPassword() {
   return (
     <div className="h-screen flex relative overflow-hidden">
       <div
-        className={`fixed h-full transition-all duration-300 origin-right left-0 bg-black/40 backdrop-blur-md z-20 overflow-hidden ${
-          isMenuOpen ? "w-full lg:w-1/2" : "w-0"
-        }`}
-      >
-        <div className="w-full z-50 top-0 px-10 xl:px-40 font-sans h-20 flex justify-between items-center text-white">
-          <div className="text-2xl font-bold">
-            <p
-              className="flex items-center gap-1 cursor-pointer"
-              onClick={() => navigate(-1)}
-            >
-              <span>
-                <ArrowLeft />
-              </span>
-              <span> Back</span>
-            </p>
-          </div>
-          <div className="" onClick={() => setIsMenuOpen(false)}>
-            <X className="h-8 w-8 -rotate-90" />
-          </div>
-        </div>
-        <div className="flex flex-col text-right top-0 px-10 xl:px-40 text-3xl font-medium text-white gap-5 mt-5">
-          {NavLinks.map((link, index) => (
-            <Link
-              to={link.link}
-              key={index}
-              onClick={() => setIsMenuOpen(false)}
-              className="transition duration-300 hover:underline hover:text-primary"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </div>
-      </div>
-      <div
         data-aos="fade-right"
         className="left-section w-full xl:w-1/2 h-full bg-white flex flex-col px-[24px] xl:px-[136px]"
       >
+        <div
+          className={`fixed h-full transition-all duration-300 origin-left right-0 bg-black/40 backdrop-blur-md z-[60] overflow-hidden ${
+            isMenuOpen ? "w-full" : "w-0"
+          }`}
+        >
+          <div className="w-full z-50 top-0 px-10 xl:px-40 font-sans h-20 flex justify-between items-center text-white">
+            <div className="text-2xl font-bold">
+              <p
+                className="flex items-center gap-1 cursor-pointer"
+                onClick={() => navigate(-1)}
+              >
+                <span>
+                  <ArrowLeft />
+                </span>
+                <span> Back</span>
+              </p>
+            </div>
+            <div className="" onClick={() => setIsMenuOpen(false)}>
+              <X className="h-8 w-8 -rotate-90" />
+            </div>
+          </div>
+          <div className="flex flex-col text-right top-0 px-10 xl:px-40 text-3xl font-medium text-white gap-5 mt-5">
+            {NavLinks.map((link, index) => (
+              <Link
+                to={link.link}
+                key={index}
+                onClick={() => setIsMenuOpen(false)}
+                className="transition duration-300 hover:underline hover:text-primary"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </div>
         {/* menu */}
         <div className="w-full z-50 top-0 font-sans h-20 flex justify-between items-center text-primary">
           <div
