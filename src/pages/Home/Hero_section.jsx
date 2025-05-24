@@ -504,8 +504,10 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router";
 import LoadingScreen from "../../components/LoadingScreen";
+import { useTranslation } from "react-i18next";
 
 const HeroSection = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
@@ -626,7 +628,8 @@ const HeroSection = () => {
               data-aos="fade-up"
               className="text-4xl xl:text-5xl font-semibold text-center font-jakarta text-white"
             >
-              Transforming <br className="sm:hidden" /> African Travel
+              {/* Transforming <br className="sm:hidden" /> African Travel */}
+              {t("hero.title")}
             </h1>
             <div data-aos="fade-up" className="relative pl-20 hidden lg:block">
               <img
@@ -637,7 +640,8 @@ const HeroSection = () => {
                 className="relative h-20 mix-blend-screen"
               />
               <p className="absolute top-7 left-36 z-[1px] text-black font-semibold text-base font-sans">
-                Hassle Free Local Payment Options with Lowest Prices!
+                {/* Hassle Free Local Payment Options with Lowest Prices! */}
+                {t("hero.description")}
               </p>
             </div>
             <div
@@ -652,8 +656,9 @@ const HeroSection = () => {
                 className="relative h-20 -mb-10"
               />
               <p className="absolute top-5 left-13 leading-5 z-[1px] text-black font-semibold text-sm sm:text-base font-sans text-center">
-                Hassle Free Local Payment Options{" "}
-                <br className="block lg:hidden" /> with Lowest Prices!
+                {/* Hassle Free Local Payment Options{" "}
+                <br className="block lg:hidden" /> with Lowest Prices! */}
+                {t("hero.description")}
               </p>
             </div>
 
@@ -662,7 +667,8 @@ const HeroSection = () => {
                 data-aos="fade-left"
                 className="text-[18px] tracking-wider text-white font-bold mb-6 font-sans"
               >
-                Book your Trip now!
+                {/* Book your Trip now! */}
+                {t("hero.bookNow")}
               </p>
 
               <form
@@ -693,7 +699,7 @@ const HeroSection = () => {
                             className="block max-w-[100px] placeholder:text-gray-400 text-black focus:outline-none appearance-none"
                             value={from}
                             onChange={(e) => setFrom(e.target.value)}
-                            placeholder="Leaving From"
+                            placeholder={`${t("hero.leaving")}`}
                           />
                         </div>
                       </div>
@@ -734,7 +740,7 @@ const HeroSection = () => {
                             className="block max-w-[100px] placeholder:text-gray-400 text-black font-normal focus:outline-none appearance-none"
                             value={to}
                             onChange={(e) => setTo(e.target.value)}
-                            placeholder="Going to"
+                            placeholder={`${t("hero.going")}`}
                           />
                         </div>
                       </div>
@@ -757,7 +763,7 @@ const HeroSection = () => {
                           <DatePicker
                             selected={flightDepatureDate}
                             onChange={(date) => setflightDepatureDate(date)}
-                            placeholderText="Date from"
+                            placeholderText={`${t("hero.dateForm")}`}
                             className="block max-w-[100px] placeholder:text-gray-400 text-black z-20 focus:outline-none"
                             dateFormat="MMM d, yyyy"
                             popperClassName="z-[50px]"
@@ -798,7 +804,7 @@ const HeroSection = () => {
                           <DatePicker
                             selected={flightReturnDate}
                             onChange={(date) => setflightReturnDate(date)}
-                            placeholderText="Return Date"
+                            placeholderText={`${t("hero.dateReturn")}`}
                             className="block max-w-[100px] placeholder:text-gray-400 text-black focus:outline-none"
                             dateFormat="MMM d, yyyy"
                             minDate={flightDepatureDate}
@@ -843,10 +849,21 @@ const HeroSection = () => {
                                 <option value="" className="text-gray-400">
                                   Select
                                 </option>
-                                <option value="Economy"className="text-black">Economy</option>
-                                <option value="Premium Economy"className="text-black">Premium</option>
-                                <option value="Business"className="text-black">Business</option>
-                                <option value="First"className="text-black">First</option>
+                                <option value="Economy" className="text-black">
+                                  {t("hero.class.class1")}
+                                </option>
+                                <option
+                                  value="Premium Economy"
+                                  className="text-black"
+                                >
+                                  {t("hero.class.class2")}
+                                </option>
+                                <option value="Business" className="text-black">
+                                  {t("hero.class.class3")}
+                                </option>
+                                <option value="First" className="text-black">
+                                  {t("hero.class.class4")}
+                                </option>
                               </select>
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -868,15 +885,19 @@ const HeroSection = () => {
                           <div className="flex flex-col items-end gap-2">
                             <div className="flex items-center relative">
                               <select
-                                 className="placeholder:text-grey-100 appearance-none w-[100px] text-gray-500 focus:outline-none bg-transparent"
+                                className="placeholder:text-grey-100 appearance-none w-[100px] text-gray-500 focus:outline-none bg-transparent"
                                 value={travelType}
                                 onChange={(e) => setTravelType(e.target.value)}
                               >
                                 <option value="" className="text-gray-400">
                                   Select
                                 </option>
-                                <option value="Adult" className="text-black">Adult</option>
-                                <option value="Child" className="text-black">Child</option>
+                                <option value="Adult" className="text-black">
+                                  {t("hero.travaler-type.type1")}
+                                </option>
+                                <option value="Child" className="text-black">
+                                  {t("hero.travaler-type.type2")}
+                                </option>
                               </select>
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -923,7 +944,7 @@ const HeroSection = () => {
                         type="submit"
                         className="w-full text-2xl font-jakarta sm:min-w-[200px] max-w-[200px] h-full bg-[#EE5128] text-white font-semibold py-2 px-8 md:px-12 rounded-none rounded-r-md hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200"
                       >
-                        Search
+                        {t("hero.search")}
                       </button>
                     </div>
                   </div>
@@ -952,12 +973,12 @@ const HeroSection = () => {
                             className="block max-w-[100px] placeholder:text-gray-400 text-black focus:outline-none appearance-none"
                             value={from}
                             onChange={(e) => setFrom(e.target.value)}
-                            placeholder="Leaving From"
+                            placeholder={`${t("hero.leaving")}`}
                           />
                         </div>
                       </div>
                     </div>
-                    
+
                     {/* Swap Icon */}
                     <div className="flex items-center justify-center p-2 my-auto mr-4">
                       <button
@@ -972,7 +993,7 @@ const HeroSection = () => {
                         <ArrowLeftRightIcon className="h-5 w-5 text-white" />
                       </button>
                     </div>
-                    
+
                     <div className="flex items-center p-4 border-b border-gray-200 flex-1">
                       <div>
                         <label className="block text-xs text-black">
@@ -992,17 +1013,17 @@ const HeroSection = () => {
                             className="block max-w-[100px] placeholder:text-gray-400 text-black font-normal focus:outline-none appearance-none"
                             value={to}
                             onChange={(e) => setTo(e.target.value)}
-                            placeholder="Going to"
+                            placeholder={`${t("hero.going")}`}
                           />
                         </div>
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* Dates */}
                   <div className="flex flex-row w-full">
                     <div className="flex items-center p-4 border-b border-r border-gray-200 flex-1 ">
-                     <div className="relative w-full flex-col ml-5 mr-4 ">
+                      <div className="relative w-full flex-col ml-5 mr-4 ">
                         <label className="block text-xs text-gray-500">
                           <img
                             src={DateFrom}
@@ -1015,7 +1036,7 @@ const HeroSection = () => {
                           <DatePicker
                             selected={flightDepatureDate}
                             onChange={(date) => setflightDepatureDate(date)}
-                            placeholderText="Date from"
+                            placeholderText={`${t("hero.dateForm")}`}
                             className="block max-w-[100px] placeholder:text-gray-400 text-black z-20 focus:outline-none"
                             dateFormat="MMM d, yyyy"
                             popperClassName="z-[50px]"
@@ -1038,11 +1059,11 @@ const HeroSection = () => {
                             />
                           </svg>
                         </div>
-                        </div>
+                      </div>
                     </div>
-                    
+
                     <div className="flex items-center p-4 border-b border-gray-200 flex-1">
-                       <div className="relative">
+                      <div className="relative">
                         <label className="block text-xs text-gray-500">
                           <img
                             src={DateTo}
@@ -1055,7 +1076,7 @@ const HeroSection = () => {
                           <DatePicker
                             selected={flightReturnDate}
                             onChange={(date) => setflightReturnDate(date)}
-                            placeholderText="Return Date"
+                            placeholderText={`${t("hero.dateReturn")}`}
                             className="block max-w-[100px] placeholder:text-gray-400 text-black focus:outline-none"
                             dateFormat="MMM d, yyyy"
                             minDate={flightDepatureDate}
@@ -1075,10 +1096,10 @@ const HeroSection = () => {
                             />
                           </svg>
                         </div>
-                        </div>
+                      </div>
                     </div>
                   </div>
-                  
+
                   {/* Travel Options */}
                   <div className="flex flex-row w-full">
                     <div className="flex items-center p-4 border-b border-r border-gray-200 flex-1">
@@ -1100,12 +1121,18 @@ const HeroSection = () => {
                             <option value="" className="text-gray-400">
                               Select
                             </option>
-                            <option value="Economy">Economy</option>
-                            <option value="Premium Economy">
-                              Premium Economy
+                            <option value="Economy">
+                              {t("hero.class.class1")}
                             </option>
-                            <option value="Business">Business</option>
-                            <option value="First">First</option>
+                            <option value="Premium Economy">
+                              {t("hero.class.class2")}
+                            </option>
+                            <option value="Business">
+                              {t("hero.class.class3")}
+                            </option>
+                            <option value="First">
+                              {t("hero.class.class4")}
+                            </option>
                           </select>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -1124,28 +1151,32 @@ const HeroSection = () => {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className="flex items-center p-4 border-b border-gray-200 flex-1">
                       <div className="flex  relative w-full flex-col ">
                         <label className="block  text-gray-500">
                           <div className="flex items-center justify-between gap-8">
-                              <img
-                            src={TravelerIcon}
-                            alt="TravelerIcon"
-                            height={32}
-                            width={32}
-                          />
+                            <img
+                              src={TravelerIcon}
+                              alt="TravelerIcon"
+                              height={32}
+                              width={32}
+                            />
                             <div className="flex items-center relative">
                               <select
-                                 className="placeholder:text-grey-100 appearance-none w-[100px] text-gray-500 focus:outline-none bg-transparent"
+                                className="placeholder:text-grey-100 appearance-none w-[100px] text-gray-500 focus:outline-none bg-transparent"
                                 value={travelType}
                                 onChange={(e) => setTravelType(e.target.value)}
                               >
                                 <option value="" className="text-gray-400">
                                   Select
                                 </option>
-                                <option value="Adult" className="text-black">Adult</option>
-                                <option value="Child" className="text-black">Child</option>
+                                <option value="Adult" className="text-black">
+                                  {t("hero.travaler-type.type1")}
+                                </option>
+                                <option value="Child" className="text-black">
+                                  {t("hero.travaler-type.type2")}
+                                </option>
                               </select>
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -1163,7 +1194,6 @@ const HeroSection = () => {
                               </svg>
                             </div>
                           </div>
-                        
                         </label>
                         <div className="flex items-center mt-3.5 gap-2 relative font-jakarta">
                           <div
@@ -1185,14 +1215,14 @@ const HeroSection = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* Search Button - Mobile */}
                   <div className="w-full">
                     <button
                       type="submit"
                       className="w-full text-xl font-jakarta bg-[#EE5128] text-white font-semibold py-3 rounded-b-md hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200"
                     >
-                      Search
+                      {t("hero.search")}
                     </button>
                   </div>
                 </div>

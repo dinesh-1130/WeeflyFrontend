@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import BottomWrapper from "../assets/images/subscribe/Vector.png";
+import { useTranslation } from "react-i18next";
 export default function Subscribe() {
+  const { t } = useTranslation();
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -52,27 +54,31 @@ export default function Subscribe() {
             <div className="text-left sm:pl-10 md:pl-[88px]">
               {/* ✅ Heading */}
               <h2 className="sm:hidden text-2xl font-jakarta font-bold text-gray-900 mb-4 leading-snug">
-                Subscribe for <br />
+                {/* Subscribe for <br />
                 Exclusive Flight <br />
-                Deals & Travel Tips
+                Deals & Travel Tips */}
+                {t("subscribe.title")}
               </h2>
 
               <h2 className="hidden sm:block text-3xl md:text-4xl font-jakarta font-bold text-gray-900 mb-4 leading-snug whitespace-pre-line">
-                Subscribe for Exclusive{"\n"}
-                Flight Deals & Travel Tips
+                {/* Subscribe for Exclusive{"\n"}
+                Flight Deals & Travel Tips */}
+                {t("subscribe.title")}
               </h2>
 
               {/* ✅ Subheading */}
               <p className="text-base text-gray-800 font-lato max-w-lg mb-6 md:mb-0 leading-relaxed">
-                Join our travel community and be the first to know about flash
+                {/* Join our travel community and be the first to know about flash
                 sales, last-minute discounts, and insider tips to make your
-                journey smoother.
+                journey smoother. */}
+                {t("subscribe.description")}
               </p>
 
               {/* ✅ Mobile Button */}
               <div className="sm:hidden flex justify-start">
                 <button className="bg-white text-[#ff4a26] font-lato font-semibold px-6 py-3 rounded-md shadow hover:bg-[#ffece9] transition duration-300">
-                  Subscribe now
+                  {/* Subscribe now */}
+                  {t("subscribe.button")}
                 </button>
               </div>
             </div>
@@ -81,7 +87,8 @@ export default function Subscribe() {
           {/* ✅ Desktop Button */}
           <div className="w-full md:w-auto md:mr-16 hidden sm:block">
             <button className="w-full md:w-auto bg-white text-[#ff4a26] font-lato font-semibold px-6 py-3 rounded-md shadow hover:bg-[#ffece9] transition">
-              Subscribe now
+              {/* Subscribe now */}
+              {t("subscribe.button")}
             </button>
           </div>
         </div>

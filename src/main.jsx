@@ -5,6 +5,8 @@ import App from "./App.jsx";
 import { BrowserRouter } from "react-router";
 import "react-datepicker/dist/react-datepicker.css";
 import "aos/dist/aos.css";
+import "./hook/i18n.js";
+("./hook/I18n.js");
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

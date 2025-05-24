@@ -26,59 +26,62 @@ import Visa from "../../assets/images/ServiceOffers/Visa.png";
 import ComingSoon from "../../assets/images/ServiceOffers/comingsoon.gif";
 
 import PlusIcon from "../../assets/images/cancel-flaticon.png";
-const Offers = [
-  {
-    image: Tours,
-    title: "Tours",
-  },
-  {
-    image: Events,
-    title: "Events",
-  },
-  {
-    image: LastMinute,
-    title: "Last minute",
-  },
-  {
-    image: Visa,
-    title: "Visa",
-  },
-];
-const Services = [
-  {
-    image: ConciergeImg,
-    maskImage: ConciergeImgMask,
-    title: "Concierge",
-    description:
-      "Personalized assistance anytime, anywhere simplifying your lifestyle.",
-  },
-  {
-    image: MoneyExchangeImg,
-    maskImage: MoneyExchangeImgMask,
-    title: "Money exchange",
-    description:
-      "Fast, secure, and reliable currency exchange for global transactions.",
-  },
-  {
-    image: ESimImg,
-    maskImage: ESimImgMask,
-    title: "E-sim / Internet",
-    description:
-      "Stay connected globally with instant eSIM internet—fast, secure, reliable.",
-  },
-  {
-    image: ExtraLuggage,
-    maskImage: ExtraLuggageMask,
-    title: "Extra luggage",
-    description:
-      "Carry more with ease affordable extra luggage for your journey.",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 function ServiceOfferedSection() {
+  const { t } = useTranslation();
   const [isMobile, setIsMobile] = useState(false);
   const offersSwiperRef = useRef(null);
   const servicesSwiperRef = useRef(null);
+
+  const Offers = [
+    {
+      image: Tours,
+      // title: "Tours",
+      title: `${t("service.offer.tours")}`,
+    },
+    {
+      image: Events,
+      // title: "Events",
+      title: `${t("service.offer.events")}`,
+    },
+    {
+      image: LastMinute,
+      // title: "Last minute",
+      title: `${t("service.offer.lastminute")}`,
+    },
+    {
+      image: Visa,
+      title: `${t("service.offer.visa")}`,
+    },
+  ];
+  const Services = [
+    {
+      image: ConciergeImg,
+      maskImage: ConciergeImgMask,
+      // title: "Concierge",
+      title: `${t("service.services.concierge.title")}`,
+      description: `${t("service.services.concierge.description")}`,
+    },
+    {
+      image: MoneyExchangeImg,
+      maskImage: MoneyExchangeImgMask,
+      title: `${t("service.services.moneyexchange.title")}`,
+      description: `${t("service.services.moneyexchange.description")}`,
+    },
+    {
+      image: ESimImg,
+      maskImage: ESimImgMask,
+      title: `${t("service.services.esim.title")}`,
+      description: `${t("service.services.esim.description")}`,
+    },
+    {
+      image: ExtraLuggage,
+      maskImage: ExtraLuggageMask,
+      title: `${t("service.services.luggage.title")}`,
+      description: `${t("service.services.luggage.description")}`,
+    },
+  ];
 
   useEffect(() => {
     Aos.init({
@@ -115,18 +118,21 @@ function ServiceOfferedSection() {
               data-aos="fade-right"
               className="font-jakarta font-bold text-[30px] xl:text-[45px] text-[#EE5128]"
             >
-              Services offered
+              {/* Services offered */}
+              {t("service.heading")}
             </h3>
             <div className="flex flex-col items-start font-sans font-normal text-[18px] lg:text-[22px]">
               <p data-aos="fade-right" className="font-semibold xl:font-normal">
-                Explore Africa with Ease
+                {/* Explore Africa with Ease */}
+                {t("service.subHeading")}
               </p>
               <p
                 data-aos="fade-right"
-                className="text-base xl:text-[22px] font-semibold xl:font-normal text-black/50"
+                className="text-base xl:text-[22px] font-semibold xl:font-normal text-black/50 line-clamp-3"
               >
-                Book Flights, Hotels, Cars, Trains &{" "}
-                <br className="md:hidden" /> Events, Whether for Work or Play.
+                {/* Book Flights, Hotels, Cars, Trains &{" "}
+                <br className="md:hidden" /> Events, Whether for Work or Play. */}
+                {t("service.description")}
               </p>
             </div>
           </div>

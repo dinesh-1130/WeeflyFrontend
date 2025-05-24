@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import OurStoryImg from "../../assets/images/ourstory/ourstory-img.png";
+import { useTranslation } from "react-i18next";
 export default function OurStory() {
+  const { t } = useTranslation();
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -60,25 +62,19 @@ export default function OurStory() {
 
         <div className="text-left px-2 sm:px-4">
           <h4 className="text-lg font-jakarta text-[#0F172A] mb-1">
-            Our Story
+            {t("story-section.heading")}
           </h4>
           <h2 className="text-3xl font-jakarta text-[#F15623] font-semibold mb-5 leading-snug">
-            Born in Africa, Built for the World
+            {t("story-section.subheading")}
           </h2>
           <p className="text-base text-gray-700 font-lato mb-6 leading-[1.7rem] tracking-tight">
-            What started as a simple idea for making travel across Africa
-            easier, smarter, and more connected, has now taken form into a
-            powerful and comprehensive booking platform. We’re a team of
-            passionate travelers, tech innovators, and local experts united by a
-            shared vision: to unlock the beauty, culture, and opportunity within
-            Africa through seamless and convenient travel experiences.
+            {t("story-section.description")}
           </p>
           <p className="text-base text-black font-lato font-bold mb-6 leading-[1.8rem] tracking-tight">
-            This is more than a platform. It’s a movement. A celebration of
-            Africa, built by Africans, for the world.
+            {t("story-section.highlight")}
           </p>
           <button className="bg-[#F15623] text-white font-lato px-5 py-2 rounded-md hover:bg-[#d54417] transition">
-            Know more
+            {t("story-section.button")}
           </button>
         </div>
       </div>
@@ -89,22 +85,19 @@ export default function OurStory() {
           className={`w-[52%] text-left px-2 transition-all duration-1000 ease-in-out ${textAnimationClass}`}
         >
           <h4 className="text-base font-jakarta text-[#0F172A] mb-1">
-            Our Story
+            {t("story-section.heading")}
           </h4>
           <h2 className="text-[26px] font-jakarta text-[#F15623] font-semibold mb-4 leading-snug">
-            Born in Africa, Built for the World
+            {t("story-section.subheading")}
           </h2>
           <p className="text-[14px] text-gray-700 font-lato mb-5 leading-[1.6rem] tracking-tight">
-            What started as a simple idea for making travel across Africa
-            easier, smarter, and more connected, has now taken form into a
-            powerful and comprehensive booking platform.
+            {t("story-section.description")}
           </p>
           <p className="text-[14px] text-black font-lato font-bold mb-6 leading-[1.7rem] tracking-tight">
-            This is more than a platform. It’s a movement. A celebration of
-            Africa, built by Africans, for the world.
+            {t("story-section.highlight")}
           </p>
           <button className="bg-[#F15623] text-white font-lato px-4 py-2 rounded-md hover:bg-[#d54417] transition text-sm">
-            Know more
+            {t("story-section.button")}
           </button>
         </div>
 
@@ -134,26 +127,20 @@ export default function OurStory() {
           className={`w-full  md:w-[60%] text-center md:text-left px-2 sm:px-4 md:px-0 transition-all duration-1000 ease-in-out ${textAnimationClass}`}
         >
           <h4 className="text-lg font-jakarta text-[#0F172A] mb-1">
-            Our Story
+            {t("story-section.heading")}
           </h4>
           <h2 className="text-[40px] font-jakarta text-[#F15623] font-semibold mb-5 leading-tight">
-            Born in Africa, Built for
-            <br className="hidden md:inline" /> the World
+            {t("story-section.subheading")}
+            {/* <br className="hidden md:inline" /> the World */}
           </h2>
           <p className="text-base md:text-[18px]  max-w-[580px]  text-gray-800 font-lato mb-6 leading-[1.7rem] tracking-wide">
-            What started as a simple idea for making travel across Africa
-            easier, smarter, and more connected, has now taken form into a
-            powerful and comprehensive booking platform. We’re a team of
-            passionate travelers, tech innovators, and local experts united by a
-            shared vision to unlock the beauty, culture, and opportunity within
-            Africa through seamless and convenient travel experiences.
+            {t("story-section.description")}
           </p>
           <p className="text-base md:text-[25px] max-w-[520px] text-black font-lato font-bold mb-14 leading-snug tracking-normal">
-            This is more than a platform. It’s a movement. A celebration of
-            Africa, built by Africans, for the world.
+            {t("story-section.highlight")}
           </p>
           <button className="bg-[#F15623] text-white font-lato px-5 py-2 rounded-md hover:bg-[#d54417] transition">
-            Know more
+            {t("story-section.button")}
           </button>
         </div>
 

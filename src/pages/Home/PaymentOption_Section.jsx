@@ -13,6 +13,7 @@ import Brand10 from "../../assets/images/PaymentBrands/brand10.png";
 import Brand11 from "../../assets/images/PaymentBrands/brand11.png";
 
 import BannerBottom from "../../assets/images/banner-bottom.png";
+import { useTranslation } from "react-i18next";
 
 const PaymentBrands = [
   { id: 1, src: Brand1, alt: "Visa" },
@@ -29,6 +30,7 @@ const PaymentBrands = [
 ];
 
 export default function PaymentOptionSection() {
+  const { t } = useTranslation();
   return (
     <div className="relative flex items-center justify-center px-[12px] sm:px-8 md:px-10 lg:px-20 xl:px-40 py-16 sm:py-20 pb-[169px] bg-white">
       <div className="flex flex-col gap-10 sm:gap-14 w-full">
@@ -37,15 +39,13 @@ export default function PaymentOptionSection() {
             data-aos="zoom-in-up"
             className="text-[31px] sm:text-3xl lg:text-4xl font-semibold text-black font-jakarta"
           >
-            Enjoy Secure & Flexible Payment Options
+            {t("payment-section.title")}
           </h2>
           <p
             data-aos="zoom-in-up"
             className="mt-4 text-[17px] sm:text-base lg:text-xl text-black/80 leading-relaxed sm:leading-8 xl:px-40"
           >
-            We make paying for your travel easy and stress free. Choose from a
-            wide range of trusted local and international payment methods as
-            well as debit/credit cards.
+            {t("payment-section.description")}
           </p>
         </div>
 

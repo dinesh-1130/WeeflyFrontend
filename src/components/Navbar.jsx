@@ -24,17 +24,11 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { FaFacebookF, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { HandleGoogleLogout } from "../features/firebase";
-
-const NavLinks = [
-  { label: "Home", link: "/" },
-  { label: "About Us", link: "/" },
-  { label: "Services", link: "/#ServicesOffered" },
-  { label: "News", link: "/#newsSection" },
-  { label: "Media", link: "/#socialMedia" },
-  { label: "Contact Us", link: "/Contact" },
-];
+import TranslatorSwitch from "./TranslatorSwitch";
+import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
+  const { t } = useTranslation();
   const Location = useLocation();
   const navigate = useNavigate();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -42,6 +36,15 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const LoggedIn = JSON.parse(localStorage.getItem("loggedIn") || "false");
   const LoginDetail = JSON.parse(localStorage.getItem("loginUserDetail"));
+
+  const NavLinks = [
+    { label: `${t("navbar.home")}`, link: "/" },
+    { label: `${t("navbar.aboutus")}`, link: "/" },
+    { label: `${t("navbar.services")}`, link: "/#ServicesOffered" },
+    { label: `${t("navbar.news")}`, link: "/#newsSection" },
+    { label: `${t("navbar.media")}`, link: "/#socialMedia" },
+    { label: `${t("navbar.contactus")}`, link: "/Contact" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -118,19 +121,19 @@ const Navbar = () => {
                   to={"/"}
                   className="hover:underline hover:text-primary font-medium font-sans"
                 >
-                  Home
+                  {t("navbar.home")}
                 </Link>
                 <Link
                   to={"#newsSection"}
                   className="hover:underline hover:text-primary font-medium font-sans"
                 >
-                  News
+                  {t("navbar.news")}
                 </Link>
                 <Link
                   to={"/Contact"}
                   className="hover:underline hover:text-primary font-medium font-sans"
                 >
-                  Contact us
+                  {t("navbar.contactus")}
                 </Link>
                 {/* <Link
                   to={"#"}
@@ -189,7 +192,7 @@ const Navbar = () => {
                       onClick={() => navigate("/login")}
                     >
                       <UserCircle />
-                      <span>Login/Register</span>
+                      <span>{t("navbar.login/register")}</span>
                     </button>
                   )}
 
@@ -210,6 +213,7 @@ const Navbar = () => {
                       alt="africa flag"
                     />
                   )}
+                  <TranslatorSwitch />
                 </div>
               </div>
             </div>
@@ -229,7 +233,7 @@ const Navbar = () => {
                 <Link to={"/Login"}>
                   <div className="bg-orange-600 px-3.5 py-2 flex items-center rounded-md gap-2 text-white hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200">
                     <UserCircle />
-                    <span>Signin</span>
+                    <span>{t("navbar.signin")}</span>
                   </div>
                 </Link>
               )}
@@ -300,11 +304,11 @@ const Navbar = () => {
                   to={"/"}
                   className="hover:underline hover:text-primary font-medium font-sans"
                 >
-                  Home
+                  {t("navbar.home")}
                 </Link>
-                <Link to={"/#newsSection"}>News</Link>
+                <Link to={"/#newsSection"}>{t("navbar.news")}</Link>
                 {/* <Link to={"#"}>About us</Link> */}
-                <Link to={"/Contact"}>Contact Us</Link>
+                <Link to={"/Contact"}>{t("navbar.contactus")}</Link>
               </nav>
               <div className="flex items-center divide-x gap-4">
                 {/* <form>
@@ -358,7 +362,7 @@ const Navbar = () => {
                       onClick={() => navigate("/Login")}
                     >
                       <UserCircle />
-                      <span>Login/Register</span>
+                      <span>{t("navbar.login/register")}</span>
                     </button>
                   )}
                   {LoggedIn ? (
@@ -378,6 +382,7 @@ const Navbar = () => {
                       alt="africa flag"
                     />
                   )}
+                  <TranslatorSwitch />
                 </div>
               </div>
             </div>
@@ -396,7 +401,7 @@ const Navbar = () => {
                 <Link to={"/Login"} onClick={() => setIsMenuOpen(false)}>
                   <div className="bg-orange-600 px-3.5 py-2 flex items-center rounded-md gap-2 text-white hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200">
                     <UserCircle />
-                    <span>Signin</span>
+                    <span>{t("navbar.signin")}</span>
                   </div>
                 </Link>
               )}
@@ -450,7 +455,7 @@ const Navbar = () => {
                 <Link to={"/login"} onClick={() => setIsMenuOpen(false)}>
                   <div className="bg-orange-600 px-3.5 py-2 flex items-center rounded-md gap-2 text-white hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200">
                     <UserCircle />
-                    <span>Signin</span>
+                    <span>{t("navbar.signin")}</span>
                   </div>
                 </Link>
               )}
@@ -486,8 +491,9 @@ const Navbar = () => {
                 }}
               >
                 <LogOut />
-                <span>Logout</span>
+                <span>{t("navbar.logout")}</span>
               </div>
+              <TranslatorSwitch />
             </div>
             <div className="flex flex-col justify-between p-4 gap-8 text-white">
               <div className="flex flex-col gap-4">

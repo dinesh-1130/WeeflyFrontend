@@ -6,8 +6,10 @@ import {
 } from "react-icons/fa";
 import { useState, useEffect, useRef } from "react";
 import WeeFlyLogo from "../assets/images/footer/weefly-logo.png";
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
+  const { t } = useTranslation();
   const [openIndex, setOpenIndex] = useState(null);
   const openTimer = useRef(null);
   const closeTimer = useRef(null);
@@ -40,19 +42,19 @@ export default function Footer() {
 
   const footerSections = [
     {
-      title: "Quick links",
+      title: `${t("footer.quick")}`,
       content: [
-        "Home",
-        "Flights",
-        "Hotels",
-        "Destinations",
-        "About us",
-        "Contact us",
+        `${t("footer.links.link1")}`,
+        `${t("footer.links.link2")}`,
+        `${t("footer.links.link3")}`,
+        `${t("footer.links.link4")}`,
+        `${t("footer.links.link5")}`,
+        `${t("footer.links.link6")}`,
       ],
       isLinks: true,
     },
     {
-      title: "Top Destination",
+      title: `${t("footer.topDestination")}`,
       content: [
         "Tanzania",
         "South Africa",
@@ -65,11 +67,14 @@ export default function Footer() {
     },
     {
       title: "Contact Us",
-      content: ["Mobile: +(1) 123 456 7890", "Email: weefly@gmail.com"],
+      content: [
+        `${t("footer.mobile")}: +(1) 123 456 7890`,
+        `${t("footer.email")}: weefly@gmail.com`,
+      ],
       isLinks: false,
     },
     {
-      title: "Follow us",
+      title: `${t("footer.follow")}`,
       content: [FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram],
       isLinks: false,
       isIcons: true,
@@ -157,15 +162,17 @@ export default function Footer() {
         {/* Desktop Version */}
         <div className="hidden md:grid grid-cols-4 gap-6 sm:gap-8 md:gap-12 items-start">
           <div className="flex flex-col items-start text-left">
-            <h4 className="text-lg font-bold font-jakarta mb-3">Quick links</h4>
+            <h4 className="text-lg font-bold font-jakarta mb-3">
+              {t("footer.quick")}
+            </h4>
             <ul className="space-y-2 text-[15px] text-[#444] font-lato">
               {[
-                "Home",
-                "Flights",
-                "Hotels",
-                "Destinations",
-                "About us",
-                "Contact us",
+                `${t("footer.links.link1")}`,
+                `${t("footer.links.link2")}`,
+                `${t("footer.links.link3")}`,
+                `${t("footer.links.link4")}`,
+                `${t("footer.links.link5")}`,
+                `${t("footer.links.link6")}`,
               ].map((item) => (
                 <li key={item}>
                   <a href="#" className="hover:text-black">
@@ -178,7 +185,7 @@ export default function Footer() {
 
           <div className="flex flex-col items-start text-left">
             <h4 className="text-lg font-bold font-jakarta mb-3">
-              Top Destination
+              {t("footer.topDestination")}
             </h4>
             <ul className="space-y-2 text-[15px] text-[#444] font-lato">
               {[
@@ -200,13 +207,13 @@ export default function Footer() {
 
           <div className="flex flex-col items-start text-left">
             <h4 className="text-lg font-bold font-jakarta mb-3">
-              Mobile number
+              {t("footer.mobile")}
             </h4>
             <p className="text-[15px] text-[#444] font-lato mb-5">
               +(1) 123 456 7890
             </p>
             <h4 className="text-lg font-bold font-jakarta mb-2">
-              Email Support
+              {t("footer.email")}
             </h4>
             <p className="text-[15px] text-[#444] font-lato">
               weefly@gmail.com
@@ -214,7 +221,9 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col items-start text-left">
-            <h4 className="text-lg font-bold font-jakarta mb-3">Follow us</h4>
+            <h4 className="text-lg font-bold font-jakarta mb-3">
+              {t("footer.follow")}
+            </h4>
             <div className="flex items-center gap-5 text-[#0A0A23] text-xl">
               <a href="#">
                 <FaFacebookF />

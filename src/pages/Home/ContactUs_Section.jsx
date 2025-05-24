@@ -9,8 +9,10 @@ import RightImage from "../../assets/images/travel/Vector-2.png";
 
 import DesktopBottomWrap from "../../assets/images/travel/bottopwrap.png";
 import MobileBottomWrap from "../../assets/images/travel/bottomwrap.png";
+import { useTranslation } from "react-i18next";
 
 export default function TravelSection() {
+  const { t } = useTranslation();
   const [visibleElements, setVisibleElements] = useState({
     image: false,
     card: false,
@@ -245,10 +247,10 @@ export default function TravelSection() {
                       visibleElements.heading ? "visible" : ""
                     }`}
                   >
-                    Be Part Of The African
+                    {t("contactUs-section.heading")}
                     <br />
                     <span className="font-semibold text-black lg:text-[40px]">
-                      Travel Tech Revolution
+                      {t("contactUs-section.subHeading")}
                     </span>
                   </h2>
 
@@ -259,20 +261,25 @@ export default function TravelSection() {
                     }`}
                   >
                     {[
-                      "Become an Agent",
-                      "Register as Vendor",
-                      "Apply for Partnership",
+                      `${t("contactUs-section.agent")}`,
+                      `${t("contactUs-section.vendor")}`,
+                      `${t("contactUs-section.Partnership")}`,
                     ].map((text) => (
                       <div
                         key={text}
                         className={`flex items-center justify-start gap-x-3 ${
-                          text === "Apply for Partnership" ? "mt-[4px]" : ""
+                          text === `${t("contactUs-section.Partnership")}`
+                            ? "mt-[4px]"
+                            : ""
                         }`}
                         onClick={() => {
-                          if (text === "Become an Agent") setOpenForm("agent");
-                          else if (text === "Register as Vendor")
+                          if (text === `${t("contactUs-section.agent")}`)
+                            setOpenForm("agent");
+                          else if (text === `${t("contactUs-section.vendor")}`)
                             setOpenForm("vendor");
-                          else if (text === "Apply for Partnership")
+                          else if (
+                            text === `${t("contactUs-section.Partnership")}`
+                          )
                             setOpenForm("partnership");
                         }}
                       >
@@ -309,7 +316,7 @@ export default function TravelSection() {
                   }`}
                 >
                   <button className="min-w-[160px] bg-[#F15623] text-white px-6 py-3 rounded-full font-medium hover:bg-[#d54417] transition shadow-md font-lato text-base whitespace-nowrap">
-                    Contact us
+                    {t("contactUs-section.contact-us")}
                   </button>
                 </div>
               </div>
@@ -361,10 +368,10 @@ export default function TravelSection() {
                     }`}
                   >
                     <div className="text-[18px] text-[#0F172A] font-semi-bold whitespace-nowrap">
-                      Be Part Of The African
+                      {t("contactUs-section.heading")}
                     </div>
                     <span className="text-[20px] text-black font-bold whitespace-nowrap tracking-tighter -mr-3">
-                      Travel Tech Revolution
+                      {t("contactUs-section.SubHeading")}
                     </span>
                   </h2>
 
@@ -376,18 +383,21 @@ export default function TravelSection() {
                     }`}
                   >
                     {[
-                      "Become an Agent",
-                      "Register as Vendor",
-                      "Apply for Partnership",
+                      `${t("contactUs-section.agent")}`,
+                      `${t("contactUs-section.vendor")}`,
+                      `${t("contactUs-section.Partnership")}`,
                     ].map((text, idx) => (
                       <div
                         key={idx}
                         className="flex items-center"
                         onClick={() => {
-                          if (text === "Become an Agent") setOpenForm("agent");
-                          else if (text === "Register as Vendor")
+                          if (text === `${t("contactUs-section.agent")}`)
+                            setOpenForm("agent");
+                          else if (text === `${t("contactUs-section.vendor")}`)
                             setOpenForm("vendor");
-                          else if (text === "Apply for Partnership")
+                          else if (
+                            text === `${t("contactUs-section.Partnership")}`
+                          )
                             setOpenForm("partnership");
                         }}
                       >
@@ -421,7 +431,7 @@ export default function TravelSection() {
                 }`}
               >
                 <button className="bg-[#F15623] text-white px-4 sm:px-5 py-2 rounded-full font-medium hover:bg-[#d54417] transition shadow font-lato text-xs sm:text-sm">
-                  Contact us
+                  {t("contactUs-section.contact-us")}
                 </button>
               </div>
             </div>
@@ -484,10 +494,10 @@ export default function TravelSection() {
                     }`}
                   >
                     <span className="text-[15px] text-[#0F172A] font-medium whitespace-nowrap">
-                      Be Part Of The African
+                      {t("contactUs-section.heading")}
                     </span>
                     <span className="text-[17px] text-black font-bold whitespace-nowrap -mr-[2px]">
-                      Travel Tech Revolution
+                      {t("contactUs-section.subHeading")}
                     </span>
                   </div>
 
@@ -499,18 +509,21 @@ export default function TravelSection() {
                     }`}
                   >
                     {[
-                      "Become an Agent",
-                      "Register as Vendor",
-                      "Apply for Partnership",
+                      `${t("contactUs-section.agent")}`,
+                      `${t("contactUs-section.vendor")}`,
+                      `${t("contactUs-section.Partnership")}`,
                     ].map((text, idx) => (
                       <div
                         key={idx}
                         className="flex items-center gap-[5px]"
                         onClick={() => {
-                          if (text === "Become an Agent") setOpenForm("agent");
-                          else if (text === "Register as Vendor")
+                          if (text === `${t("contactUs-section.agent")}`)
+                            setOpenForm("agent");
+                          else if (text === `${t("contactUs-section.vendor")}`)
                             setOpenForm("vendor");
-                          else if (text === "Apply for Partnership")
+                          else if (
+                            text === `${t("contactUs-section.Partnership")}`
+                          )
                             setOpenForm("partnership");
                         }}
                       >
@@ -539,7 +552,7 @@ export default function TravelSection() {
               }`}
             >
               <button className="bg-[#F15623] text-white px-5 py-2 rounded-full font-medium hover:bg-[#d54417] transition shadow font-lato text-sm whitespace-nowrap">
-                Contact us
+                {t("contactUs-section.contact-us")}
               </button>
             </div>
           </div>
@@ -601,10 +614,10 @@ export default function TravelSection() {
                     }`}
                   >
                     <span className="text-[15px] text-[#0F172A] font-medium whitespace-nowrap">
-                      Be Part Of The African
+                      ${t("contactUs-section.heading")}
                     </span>
                     <span className="text-[17px] text-black font-bold whitespace-nowrap -mr-[2px]">
-                      Travel Tech Revolution
+                      {t("contactUs-section.subHeading")}
                     </span>
                   </div>
 
@@ -616,18 +629,21 @@ export default function TravelSection() {
                     }`}
                   >
                     {[
-                      "Become an Agent",
-                      "Register as Vendor",
-                      "Apply for Partnership",
+                      `${t("contactUs-section.agent")}`,
+                      `${t("contactUs-section.vendor")}`,
+                      `${t("contactUs-section.Partnership")}`,
                     ].map((text, idx) => (
                       <div
                         key={idx}
                         className="flex items-center gap-[5px]"
                         onClick={() => {
-                          if (text === "Become an Agent") setOpenForm("agent");
-                          else if (text === "Register as Vendor")
+                          if (text === `${t("contactUs-section.agent")}`)
+                            setOpenForm("agent");
+                          else if (text === `${t("contactUs-section.vendor")}`)
                             setOpenForm("vendor");
-                          else if (text === "Apply for Partnership")
+                          else if (
+                            text === `${t("contactUs-section.Partnership")}`
+                          )
                             setOpenForm("partnership");
                         }}
                       >
@@ -656,7 +672,7 @@ export default function TravelSection() {
               }`}
             >
               <button className="bg-[#F15623] text-white px-5 py-2 rounded-full font-medium hover:bg-[#d54417] transition shadow font-lato text-sm whitespace-nowrap">
-                Contact us
+                {t("contactUs-section.contact-us")}
               </button>
             </div>
           </div>
@@ -705,6 +721,7 @@ export default function TravelSection() {
 }
 
 const AgentForm = ({ onClose }) => {
+  const { t } = useTranslation();
   const [agentFormData, setAgentFormData] = useState({
     name: "",
     email: "",
@@ -732,13 +749,13 @@ const AgentForm = ({ onClose }) => {
   return (
     <>
       <p className="text-2xl font-jakarta font-bold text-primary mb-8 text-nowrap pr-10">
-        Become an Agent
+        {t("contactUs-section.agent")}
       </p>
       <form onSubmit={HandleAgentFormSave}>
         <div className="grid md:grid-cols-2 gap-6 lg:gap-10">
           <div className="flex flex-col gap-1">
             <label className="text-sm font-sans font-semibold text-gray-500">
-              Name
+              {t("contactUs-section.name")}
             </label>
             <input
               type="text"
@@ -752,7 +769,7 @@ const AgentForm = ({ onClose }) => {
           </div>
           <div className="flex flex-col gap-1">
             <label className="text-sm font-sans font-semibold text-gray-500">
-              Email
+              {t("contactUs-section.email")}
             </label>
             <input
               type="email"
@@ -766,7 +783,7 @@ const AgentForm = ({ onClose }) => {
           </div>
           <div className="flex flex-col gap-1">
             <label className="text-sm font-sans font-semibold text-gray-500">
-              Phone Number
+              {t("contactUs-section.phone")}
             </label>
             <input
               type="tel"
@@ -780,7 +797,7 @@ const AgentForm = ({ onClose }) => {
           </div>
           <div className="flex flex-col gap-1">
             <label className="text-sm font-sans font-semibold text-gray-500">
-              Category
+              {t("contactUs-section.category")}
             </label>
             <input
               type="text"
@@ -798,13 +815,13 @@ const AgentForm = ({ onClose }) => {
             onClick={() => onClose()}
             className="text-[#F15623] border-primary px-5 py-2 rounded-full font-medium hover:underline transition shadow font-sans text-sm whitespace-nowrap mt-8 flex justify-self-end"
           >
-            Cancel
+            {t("contactUs-section.cancel")}
           </button>
           <button
             type="submit"
             className="bg-[#F15623] text-white px-5 py-2 rounded-full font-medium hover:bg-[#d54417] transition shadow font-sans text-sm whitespace-nowrap mt-8 flex justify-self-end"
           >
-            Send
+            {t("contactUs-section.send")}
           </button>
         </div>
       </form>
@@ -813,6 +830,7 @@ const AgentForm = ({ onClose }) => {
 };
 
 const VendorForm = ({ onClose }) => {
+  const { t } = useTranslation();
   const [vendorFormData, setVendorFormData] = useState({
     name: "",
     email: "",
@@ -840,13 +858,13 @@ const VendorForm = ({ onClose }) => {
   return (
     <>
       <p className="text-2xl font-jakarta font-bold text-primary mb-8 text-nowrap pr-10">
-        Register as Vendor
+        {t("contactUs-section.vendor")}
       </p>
       <form onSubmit={handleSubmit}>
         <div className="grid md:grid-cols-2 gap-4 lg:gap-10">
           <div className="flex flex-col gap-1">
             <label className="text-sm font-sans font-semibold text-gray-500">
-              Name
+              {t("contactUs-section.name")}
             </label>
             <input
               type="text"
@@ -860,7 +878,7 @@ const VendorForm = ({ onClose }) => {
           </div>
           <div className="flex flex-col gap-1">
             <label className="text-sm font-sans font-semibold text-gray-500">
-              Email
+              {t("contactUs-section.email")}
             </label>
             <input
               type="email"
@@ -874,7 +892,7 @@ const VendorForm = ({ onClose }) => {
           </div>
           <div className="flex flex-col gap-1">
             <label className="text-sm font-sans font-semibold text-gray-500">
-              Phone Number
+              {t("contactUs-section.phone")}
             </label>
             <input
               type="tel"
@@ -888,7 +906,7 @@ const VendorForm = ({ onClose }) => {
           </div>
           <div className="flex flex-col gap-1">
             <label className="text-sm font-sans font-semibold text-gray-500">
-              Business
+              {t("contactUs-section.business")}
             </label>
             <input
               type="text"
@@ -906,13 +924,13 @@ const VendorForm = ({ onClose }) => {
             onClick={() => onClose()}
             className="text-[#F15623] border-primary px-5 py-2 rounded-full font-medium hover:underline transition shadow font-sans text-sm whitespace-nowrap mt-8 flex justify-self-end"
           >
-            Cancel
+            {t("contactUs-section.cancel")}
           </button>
           <button
             type="submit"
             className="bg-[#F15623] text-white px-5 py-2 rounded-full font-medium hover:bg-[#d54417] transition shadow font-sans text-sm whitespace-nowrap mt-8 flex justify-self-end"
           >
-            Send
+            {t("contactUs-section.send")}
           </button>
         </div>
       </form>
@@ -921,6 +939,7 @@ const VendorForm = ({ onClose }) => {
 };
 
 const PartnershipForm = ({ onClose }) => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -946,13 +965,13 @@ const PartnershipForm = ({ onClose }) => {
   return (
     <>
       <p className="text-2xl font-jakarta font-bold text-primary mb-8 text-nowrap pr-10">
-        Apply for Partnership
+        {t("contactUs-section.Partnership")}
       </p>
       <form onSubmit={handleSubmit}>
         <div className="grid md:grid-cols-2 gap-6">
           <div className="flex flex-col gap-1">
             <label className="text-sm font-sans font-semibold text-gray-500">
-              Name
+              {t("contactUs-section.name")}
             </label>
             <input
               type="text"
@@ -966,7 +985,7 @@ const PartnershipForm = ({ onClose }) => {
           </div>
           <div className="flex flex-col gap-1">
             <label className="text-sm font-sans font-semibold text-gray-500">
-              Email
+              {t("contactUs-section.email")}
             </label>
             <input
               type="email"
@@ -980,7 +999,7 @@ const PartnershipForm = ({ onClose }) => {
           </div>
           <div className="flex flex-col gap-1">
             <label className="text-sm font-sans font-semibold text-gray-500">
-              Phone Number
+              {t("contactUs-section.phone")}
             </label>
             <input
               type="tel"
@@ -998,13 +1017,13 @@ const PartnershipForm = ({ onClose }) => {
             onClick={() => onClose()}
             className="text-[#F15623] border-primary px-5 py-2 rounded-full font-medium hover:underline transition shadow font-sans text-sm whitespace-nowrap mt-8 flex justify-self-end"
           >
-            Cancel
+            {t("contactUs-section.cancel")}
           </button>
           <button
             type="submit"
             className="bg-[#F15623] text-white px-5 py-2 rounded-full font-medium hover:bg-[#d54417] transition shadow font-sans text-sm whitespace-nowrap mt-8 flex justify-self-end"
           >
-            Send
+            {t("contactUs-section.send")}
           </button>
         </div>
       </form>

@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import PlayIcon from "../../assets/images/play-flaticon.png";
+import { useTranslation } from "react-i18next";
 const SocialMediawidget = () => {
+  const { t } = useTranslation();
   useEffect(() => {
     // Check if the Elfsight script already exists to prevent duplicates
     if (
@@ -21,10 +23,10 @@ const SocialMediawidget = () => {
       <div className="flex justify-between items-center mb-16">
         <h2 className="text-orange-600 font-bold text-2xl flex items-center gap-4">
           <img src={PlayIcon} alt="PlayIcon" className="h-[30px] w-[30px]" />
-          <span>Media</span>
+          <span>{t("media-section.heading")}</span>
         </h2>
         <span className="text-orange-600 text-lg font-medium">
-          Discover Cape Verde
+          {t("media-section.sideHeading")}
         </span>
       </div>
 

@@ -1,6 +1,7 @@
 import { Dot } from "lucide-react";
 import BannerBottom from "../../assets/images/banner-bottom.png";
 import DesktopLeftBg from "../../assets/images/new-3.png";
+import { useTranslation } from "react-i18next";
 
 const NewsDatas = [
   {
@@ -21,6 +22,7 @@ const NewsDatas = [
 ];
 
 const AfricanExperience_Section = () => {
+  const { t } = useTranslation();
   return (
     <div className="h-screen bg-red-50 relative w-full bg-gradient-to-r from-[rgb(250,217,207)] to-[#f28c72] px-4 overflow-hidden">
       <div className="max-w-7xl h-full mx-auto flex flex-col-reverse md:flex-row">
@@ -31,7 +33,7 @@ const AfricanExperience_Section = () => {
         <div className="right image-section h-full w-full relative flex justify-center items-center">
           <span className="font-jakarta font-semibold text-[18px] lg:text-[30px] text-center lg:leading-[35px] pl-8">
             {/* Discover Local Options, <br /> Experience the Unexplored! */}
-            All Your African Travel <br /> Needs in One Platform!
+            {t("news.title.line1")} <br /> {t("news.title.line2")}
           </span>
           <img
             src={DesktopLeftBg}
@@ -54,6 +56,7 @@ const AfricanExperience_Section = () => {
 export default AfricanExperience_Section;
 
 const NEWSSection = ({ newsData }) => {
+  const { t } = useTranslation();
   return (
     <>
       <div
@@ -62,13 +65,13 @@ const NEWSSection = ({ newsData }) => {
       >
         <div className="flex items-center justify-between w-full ">
           <div className="bg-gradient-to-r to-[#fad9cf]/0 from-[#f28c72] px-6 p-4 max-w-fit uppercase font-semibold font-jakarta">
-            featured news
+            {t("news.feature")}
           </div>
           <a
             href=""
             className="uppercase text-sm pr-[12px] hover:underline font-jakarta font-medium text-primary"
           >
-            View more
+            {t("news.view")}
           </a>
         </div>
         <div className="max-h-[70%] lg:max-h-[70%] overflow-y-scroll no-scrollbar flex flex-col gap-4 mt-10">
