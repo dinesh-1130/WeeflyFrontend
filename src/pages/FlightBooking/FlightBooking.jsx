@@ -131,8 +131,10 @@
 // }
 
 // export default FlightBooking;
+import { useTranslation } from "react-i18next";
 import { Outlet, useLocation, useNavigate } from "react-router";
 function FlightBooking() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   return (
@@ -140,7 +142,7 @@ function FlightBooking() {
       <div className="sticky md:relative z-10 top-20 md:top-0 w-full bg-neutral-100">
         <div className="flex justify-between items-center">
           <h3 className="hidden lg:block font-jakarta font-semibold text-[30px]">
-            Complete Your Booking
+            {t("complete-your-booking")}
           </h3>
           {/* <button
             className="hidden lg:block font-jakarta text-[18px] px-[22px] py-[10px] rounded-[5px] text-[#EE5128] hover:underline"
@@ -171,7 +173,7 @@ function FlightBooking() {
             className="hidden lg:block font-jakarta text-[18px] px-[22px] py-[10px] rounded-[5px] text-[#EE5128] hover:underline"
             onClick={() => navigate(-1)}
           >
-            Back
+            {t("back")}
           </button>
         </div>
         {/* Stages */}
@@ -193,7 +195,7 @@ function FlightBooking() {
                   : "text-neutral-400"
               }`}
             >
-              Review your <br /> Booking
+              {t("stages.review-your-booking")}
             </p>
           </div>
           <div className="w-full border border-dashed h-px mt-[28px] sm:mt-[36px]"></div>
@@ -214,7 +216,7 @@ function FlightBooking() {
                   : "text-neutral-400"
               }`}
             >
-              Travellers <br /> Details
+              {t("stages.traveller-details")}
             </p>
           </div>
           <div className="w-full border border-dashed h-px mt-[28px] sm:mt-[36px]"></div>
@@ -235,7 +237,7 @@ function FlightBooking() {
                   : "text-neutral-400"
               }`}
             >
-              Extras
+              {t("stages.extras")}
             </p>
           </div>
           <div className="w-full border border-dashed h-px mt-[28px] sm:mt-[36px]"></div>
@@ -256,7 +258,7 @@ function FlightBooking() {
                   : "text-neutral-400"
               }`}
             >
-              Payment
+              {t("stages.payment")}
             </p>
           </div>
         </div>

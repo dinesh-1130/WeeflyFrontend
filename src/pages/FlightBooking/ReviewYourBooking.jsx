@@ -9,6 +9,7 @@ import White_Money_Exchange from "../../assets/images/ReviewYourBooking/white_mo
 import White_eSim from "../../assets/images/ReviewYourBooking/white_eSim.svg";
 import White_Extra_Luggage from "../../assets/images/ReviewYourBooking/White_Extra_luggage.svg";
 import White_Visa_Process from "../../assets/images/ReviewYourBooking/White_Visa_process.svg";
+import { useTranslation } from "react-i18next";
 
 const ServicesOfferedIcons = [
   { Image: White_Concierge, label: "Meal" },
@@ -19,11 +20,12 @@ const ServicesOfferedIcons = [
 ];
 
 export default function ReviewYourBooking() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const [flight, setFlight] = useState(null);
 
-useEffect(() => {
+  useEffect(() => {
     if (location.state && location.state.flight) {
       setFlight(location.state.flight);
     }
@@ -33,14 +35,26 @@ useEffect(() => {
     <div className="w-full flex flex-col items-start px-4 sm:px-6 xl:px-0 font-sans">
       {/* Desktop Layout */}
       <div className="hidden xl:block w-full">
-        <FlightDetailCard title="Leaving from" flight={flight} />
-        <FlightDetailCard title="Returning from" flight={flight} />
+        <FlightDetailCard
+          title={`${t("booking-card.leaving-from")}`}
+          flight={flight}
+        />
+        <FlightDetailCard
+          title={`${t("booking-card.returning-from")}`}
+          flight={flight}
+        />
       </div>
 
       {/* Mobile Layout */}
       <div className="xl:hidden w-full">
-        <FlightPriceCard title="Leaving from" flight={flight} />
-        <FlightPriceCard title="Returning from" flight={flight} />
+        <FlightPriceCard
+          title={`${t("booking-card.leaving-from")}`}
+          flight={flight}
+        />
+        <FlightPriceCard
+          title={`${t("booking-card.returning-from")}`}
+          flight={flight}
+        />
       </div>
 
       {/* Services Section */}
@@ -78,7 +92,7 @@ useEffect(() => {
           }
           className="bg-[#EE5128] text-white text-[15px] px-[37px] py-[14px] rounded-[5px] font-semibold text-nowrap hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200"
         >
-          Continue Booking
+          {t("continue-booking")}
         </button>
       </div>
     </div>
@@ -86,6 +100,7 @@ useEffect(() => {
 }
 
 function FlightDetailCard({ title, flight }) {
+  const { t } = useTranslation();
   return (
     <div className="rounded-[17px] bg-white px-[44px] py-[38px] mt-6">
       <h4 className="text-[20px] font-semibold flex gap-2 items-center mb-4">
@@ -95,9 +110,11 @@ function FlightDetailCard({ title, flight }) {
       <div className="max-w-[636px] font-semibold text-base text-white bg-[#EE5128] rounded-[7px] flex flex-col sm:flex-row items-center justify-between px-[22px] py-[14px] mb-[24px]">
         <p>
           {flight?.departureCity} - {flight?.arrivalCity} | {flight?.stops}{" "}
-          stops
+          {t("booking-card.stops")}
         </p>
-        <p>Duration : {flight?.duration}</p>
+        <p>
+          {t("booking-card.duration")} : {flight?.duration}
+        </p>
       </div>
 
       <div className="flex justify-between items-center mt-6 px-[44px]">
@@ -161,17 +178,18 @@ function FlightDetailCard({ title, flight }) {
       </div>
 
       <div className="flex gap-[42px] text-[18px]">
-        <p>Flight Details</p>
-        <p>Price Details</p>
-        <p>Policy</p>
-        <p>Refund</p>
-        <p>Reschedule</p>
+        <p>{t("booking-card.Flight-details")}</p>
+        <p>{t("booking-card.price-details")}</p>
+        <p>{t("booking-card.policy")}</p>
+        <p>{t("booking-card.refund")}</p>
+        <p>{t("booking-card.reschedule")}</p>
       </div>
     </div>
   );
 }
 
 function FlightPriceCard({ title, flight }) {
+  const { t } = useTranslation();
   return (
     <div className="bg-white rounded-xl shadow-sm mb-4 overflow-hidden w-full p-4">
       <div className="flex items-center gap-2 mb-3">
@@ -182,9 +200,11 @@ function FlightPriceCard({ title, flight }) {
       <div className="bg-[#EE5128] text-white text-xs font-medium rounded-lg px-4 py-2">
         <p>
           {flight?.departureCity} - {flight?.arrivalCity} | {flight?.stops}{" "}
-          stops
+          {t("booking-card.stops")}
         </p>
-        <span className="ml-2">Duration : {flight?.duration}</span>
+        <span className="ml-2">
+          {t("booking-card.duration")} : {flight?.duration}
+        </span>
       </div>
 
       <div className="flex flex-col items-center mt-4 gap-1">
@@ -241,10 +261,10 @@ function FlightPriceCard({ title, flight }) {
 
       <div className="flex justify-between items-center mt-4 border-t pt-3 border-gray-100">
         <button className="text-[#EE5128] text-sm font-medium">
-          Flight Details ▼
+          {t("booking-card.Flight-details")} ▼
         </button>
         <button className="bg-[#EE5128] text-white text-sm font-semibold px-4 py-2 rounded">
-          Book now
+          {t("booking-card.book-now")}
         </button>
       </div>
     </div>

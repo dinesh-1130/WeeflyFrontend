@@ -20,22 +20,23 @@ import {
 import { Link, useNavigate } from "react-router";
 import { HandleGoogleLogin } from "../features/firebase";
 import Navbar from "../components/Navbar";
-
-const NavLinks = [
-  { label: "Home", link: "/" },
-  { label: "About Us", link: "/" },
-  { label: "Services", link: "/#ServicesOffered" },
-  { label: "News", link: "/#newsSection" },
-  { label: "Media", link: "/" },
-  { label: "Contact Us", link: "/Contact" },
-];
+import { useTranslation } from "react-i18next";
 
 function LoginPage() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [loginUserData, setLoginUserData] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const NavLinks = [
+    { label: t("navbar.home"), link: "/" },
+    { label: t("navbar.aboutus"), link: "/" },
+    { label: t("navbar.services"), link: "/#ServicesOffered" },
+    { label: t("navbar.news"), link: "/#newsSection" },
+    { label: t("navbar.media"), link: "/" },
+    { label: t("navbar.contactus"), link: "/Contact" },
+  ];
   // const HandleGoogleLoginFunction = async () => {
   //   const userData = await HandleGoogleLogin();
   //   setLoginUserData(userData);
@@ -83,7 +84,7 @@ function LoginPage() {
                   <span>
                     <ArrowLeft />
                   </span>
-                  <span> Back</span>
+                  <span> {t("back")}</span>
                 </p>
               </div>
               <div className="" onClick={() => setIsMenuOpen(false)}>
@@ -112,7 +113,7 @@ function LoginPage() {
               <span>
                 <ArrowLeft />
               </span>
-              <span>Back</span>
+              <span>{t("back")}</span>
             </div>
             <div className="" onClick={() => setIsMenuOpen(true)}>
               <AlignRight className="h-8 w-8" />
@@ -127,7 +128,7 @@ function LoginPage() {
               className="h-[70px] w-[92px]"
             />
             <h1 className="font-jakarta font-semibold text-[24px]">
-              Login into your account
+              {t("login.title")}
             </h1>
 
             <form action="" className="max-w-[430px] w-full">
@@ -136,7 +137,7 @@ function LoginPage() {
                   htmlFor=""
                   className="font-jakarta font-normal text-base text-[#555555]"
                 >
-                  Email address
+                  {t("login.email")}
                 </label>
                 <div className="relative bg-[#F1F3F6] flex rounded-l-[8px] w-full mt-[14px]">
                   <input
@@ -154,12 +155,12 @@ function LoginPage() {
                   htmlFor=""
                   className="font-jakarta font-normal text-base text-[#555555]"
                 >
-                  Password
+                  {t("login.password")}
                 </label>
                 <div className="relative bg-[#F1F3F6] flex rounded-l-[8px] w-full mt-[14px]">
                   <input
                     type={showPassword ? "text" : "password"}
-                    placeholder="Enter your password"
+                    placeholder="********"
                     className="px-[20px] py-[14px] w-full outline-[#EE5128] relative"
                   />
                   <div
@@ -186,12 +187,12 @@ function LoginPage() {
                   to={"/ForgotPassword"}
                   className="font-sans font-bold text-[14px] underline text-[#EE5128] underline-[#EE5128]"
                 >
-                  Forgot Password
+                  {t("login.forgotPassword")}
                 </Link>
               </div>
 
               <button className="font-jakarta font-semibold text-[18px] w-full bg-[#EE5128] py-[14px] rounded-[8px] text-white mt-[20px] drop-shadow-xl drop-shadow-[#FD74014D]">
-                Login now
+                {t("login.button")}
               </button>
             </form>
             <div className="flex items-center w-full gap-[11px] mt-[10px] max-w-[430px]">
@@ -208,19 +209,19 @@ function LoginPage() {
                 onClick={() => HandleGoogleLoginFunction()}
               >
                 <img src={GoogleIcon} alt="Google icon" />
-                <p className="font-jakarta font-medium">Login with Google</p>
+                <p className="font-jakarta font-medium">{t("login.google")}</p>
               </div>
               {/* <div className="px-[37px] py-[15px] border border-[#E8ECF4] rounded-[8px]">
               <img src={AppleIcon} alt="Apple icon" />
             </div> */}
             </div>
             <p className=" font-jakarta font-normal text-[16px]">
-              Don’t have an account?{" "}
+              {t("login.signup-content")}
               <Link
                 to={"/SignUp"}
                 className="font-bold text-[18px] text-[#EE5128]"
               >
-                Signup
+                {t("login.signup")}
               </Link>
             </p>
             <p className="font-jakarta font-normal text-[16px]">

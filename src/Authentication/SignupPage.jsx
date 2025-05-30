@@ -12,19 +12,21 @@ import { useState } from "react";
 import { Eye, EyeClosed, ArrowLeft, X, AlignRight } from "lucide-react";
 import { Link, useNavigate } from "react-router";
 import { HandleGoogleLogin } from "../features/firebase";
-const NavLinks = [
-  { label: "Home", link: "/" },
-  { label: "About Us", link: "/" },
-  { label: "Services", link: "/#ServicesOffered" },
-  { label: "News", link: "/#newsSection" },
-  { label: "Media", link: "/" },
-  { label: "Contact Us", link: "/Contact" },
-];
+import { useTranslation } from "react-i18next";
 function SignupPage() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [signinUserData, setSigninUserData] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const NavLinks = [
+    { label: t("navbar.home"), link: "/" },
+    { label: t("navbar.aboutus"), link: "/" },
+    { label: t("navbar.services"), link: "/#ServicesOffered" },
+    { label: t("navbar.news"), link: "/#newsSection" },
+    { label: t("navbar.media"), link: "/" },
+    { label: t("navbar.contactus"), link: "/Contact" },
+  ];
   const HandleGoogleSigninFunction = async () => {
     const userData = await HandleGoogleLogin(); // Get user data from Google login
     setSigninUserData(userData); // Set user data to state
@@ -70,7 +72,7 @@ function SignupPage() {
                 <span>
                   <ArrowLeft />
                 </span>
-                <span> Back</span>
+                <span> {t("back")}</span>
               </p>
             </div>
             <div className="" onClick={() => setIsMenuOpen(false)}>
@@ -99,7 +101,7 @@ function SignupPage() {
             <span>
               <ArrowLeft />
             </span>
-            <span>Back</span>
+            <span>{t("back")}</span>
           </div>
           <div className="" onClick={() => setIsMenuOpen(true)}>
             <AlignRight className="h-8 w-8" />
@@ -113,7 +115,7 @@ function SignupPage() {
             className="h-[50px] w-[92px]"
           />
           <h1 className="font-jakarta font-semibold text-[18px]">
-            Create an account
+            {t("signup.title")}
           </h1>
           <form
             action=""
@@ -124,7 +126,7 @@ function SignupPage() {
                 htmlFor=""
                 className="font-jakarta font-normal text-base text-[#555555]"
               >
-                Name
+                {t("signup.fields.name")}
               </label>
               <div className="relative bg-[rgb(241,243,246)] flex rounded-l-[8px] w-full mt-[10px] xl:mt-[5px]">
                 <input
@@ -142,7 +144,7 @@ function SignupPage() {
                 htmlFor=""
                 className="font-jakarta font-normal text-base text-[#555555]"
               >
-                Mobile number
+                {t("signup.fields.phone")}
               </label>
               <div className="relative bg-[#F1F3F6] flex rounded-l-[8px] w-full mt-[10px] xl:mt-[5px]">
                 <input
@@ -160,7 +162,7 @@ function SignupPage() {
                 htmlFor=""
                 className="font-jakarta font-normal text-base text-[#555555]"
               >
-                Email address
+                {t("signup.fields.email")}
               </label>
               <div className="relative bg-[#F1F3F6] flex rounded-l-[8px] w-full mt-[10px] xl:mt-[5px]">
                 <input
@@ -178,7 +180,7 @@ function SignupPage() {
                 htmlFor=""
                 className="font-jakarta font-normal text-base text-[#555555]"
               >
-                Password
+                {t("signup.fields.password")}
               </label>
               <div className="relative bg-[#F1F3F6] flex rounded-l-[8px] w-full mt-[10px] xl:mt-[5px]">
                 <input
@@ -209,7 +211,7 @@ function SignupPage() {
               </div>
             </div>
             <button className="font-jakarta font-semibold text-[18px] w-full bg-[#EE5128] py-[14px] xl:py-[10px] rounded-[8px] text-white mt-[20px] drop-shadow-xl drop-shadow-[#FD74014D]">
-              Sign Up now
+              {t("signup.button")}
             </button>
           </form>
           <div className="flex items-center w-full gap-[11px] mt-[10px] max-w-[430px]">
@@ -233,12 +235,12 @@ function SignupPage() {
               </div> */}
           </div>
           <p className="mt-[10px] xl:mt-[5px] font-jakarta font-normal text-[16px]">
-            Already have an account?
+            {t("signup.options.login-content")}
             <Link
               to={"/Login"}
               className="font-bold pl-1 text-[18px] text-[#EE5128]"
             >
-              Login
+              {t("signup.options.login")}
             </Link>
           </p>
           <p className="font-jakarta font-normal text-[16px]">

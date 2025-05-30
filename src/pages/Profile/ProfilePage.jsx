@@ -11,10 +11,12 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import { FaUser, FaCog, FaQuestionCircle, FaSignOutAlt } from "react-icons/fa";
 import { ArrowLeftRightIcon, MapPin, Minus, Plus, Search } from "lucide-react";
+import { useTranslation } from "react-i18next";
 // import { useLocation } from "react-router";
 const LoggedIn = JSON.parse(localStorage.getItem("loggedIn") || "false");
 const LoginDetail = JSON.parse(localStorage.getItem("loginUserDetail"));
 export default function ProfilePage() {
+  const { t } = useTranslation();
   // const location = useLocation();
   const profile = {
     name: "John Brevis",
@@ -46,7 +48,7 @@ export default function ProfilePage() {
   return (
     <>
       <div className="w-full">
-        <SearchBox />
+        <SearchBox t={t} />
       </div>
       <div className="min-h-screen w-full flex flex-col md:flex-row font-poppins max-w-7xl mx-auto ">
         {/* Left Sidebar */}
@@ -73,22 +75,32 @@ export default function ProfilePage() {
           {/* Offer Box */}
           <div className="p-4 rounded-lg bg-[#ffe9e3] mb-6">
             <p className="text-sm font-medium mb-1">
-              Get trip inspiration and offers
+              {t("profile-offer.title")}
             </p>
             <p className="text-xs text-gray-600">
-              Receive deals, tips, and insights from Expedia
+              {t("profile-offer.description")}
             </p>
             <button className="mt-3 px-4 py-1 bg-[#ff5a3c] text-white text-sm rounded-md">
-              Get now
+              {t("profile-offer.button")}
             </button>
           </div>
 
           {/* Navigation */}
           <div className="space-y-3 text-sm">
-            <NavItem icon={<FaUser />} label="Profile" active />
-            <NavItem icon={<FaCog />} label="Security & Settings" />
-            <NavItem icon={<FaQuestionCircle />} label="Help & feedback" />
-            <NavItem icon={<FaSignOutAlt />} label="Logout" />
+            <NavItem
+              icon={<FaUser />}
+              label={`${t("options.profile")}`}
+              active
+            />
+            <NavItem
+              icon={<FaCog />}
+              label={`${t("options.security-settings")}`}
+            />
+            <NavItem
+              icon={<FaQuestionCircle />}
+              label={`${t("options.help-feedback")}`}
+            />
+            <NavItem icon={<FaSignOutAlt />} label={`${t("options.logout")}`} />
           </div>
         </div>
 
@@ -97,21 +109,32 @@ export default function ProfilePage() {
           <div className="w-full bg-white rounded-2xl">
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 rounded-t-2xl bg-[#ffe9e3]">
-              <h2 className="text-xl font-bold font-jakarta">Profile</h2>
+              <h2 className="text-xl font-bold font-jakarta">
+                {t("options.profile")}
+              </h2>
               <button className="text-xl">✏️</button>
             </div>
 
             {/* Profile Details with Dividers */}
             <div className="divide-y divide-gray-200">
               <Detail
-                label="Full name"
+                label={`${t("profile.fullname")}`}
                 value={userDetails.name ? userDetails.name : profile.name}
               />
-              <Detail label="DOB" value={profile.dob} />
-              <Detail label="Gender" value={profile.gender} />
-              <Detail label="Passport no" value={profile.passport} />
-              <Detail label="Full Address" value={profile.address} />
-              <Detail label="Pincode" value={profile.pincode} />
+              <Detail label={`${t("profile.dob")}`} value={profile.dob} />
+              <Detail label={`${t("profile.gender")}`} value={profile.gender} />
+              <Detail
+                label={`${t("profile.passportNo")}`}
+                value={profile.passport}
+              />
+              <Detail
+                label={`${t("profile.fullAddress")}`}
+                value={profile.address}
+              />
+              <Detail
+                label={`${t("profile.pinCode")}`}
+                value={profile.pincode}
+              />
             </div>
           </div>
         </div>
@@ -152,6 +175,7 @@ const SearchBox = ({
   setDestination,
   setSearchdata,
   SearchProps,
+  t,
 }) => {
   // const [flightDepatureDate, setflightDepatureDate] = useState(null);
   const [flightDepatureDate, setflightDepatureDate] = useState(null);
@@ -277,7 +301,7 @@ const SearchBox = ({
                     type="text"
                     name="leavingFrom"
                     id="leavingFrom"
-                    placeholder="leavingFrom"
+                    placeholder={`${t("search.leaving")}`}
                     className="block w-full placeholder:text-gray-400 text-black focus:outline-none appearance-none"
                     value={from}
                     onChange={(e) => setFrom(e.target.value)}
@@ -322,7 +346,7 @@ const SearchBox = ({
                     className="block w-full placeholder:text-gray-400 text-black focus:outline-none appearance-none"
                     value={to}
                     onChange={(e) => setTo(e.target.value)}
-                    placeholder="Going to"
+                    placeholder={`${t("search.going")}`}
                   />
                 </div>
               </div>
@@ -341,7 +365,7 @@ const SearchBox = ({
                   <DatePicker
                     selected={flightDepatureDate}
                     onChange={(date) => setflightDepatureDate(date)}
-                    placeholderText="Date from"
+                    placeholderText={`${t("search.dateForm")}`}
                     className="block w-full placeholder:text-gray-400 text-black z-20 focus:outline-none"
                     dateFormat="MMM d, yyyy"
                     popperClassName="z-[50px]"
@@ -378,7 +402,7 @@ const SearchBox = ({
                   <DatePicker
                     selected={flightReturnDate}
                     onChange={(date) => setflightReturnDate(date)}
-                    placeholderText="Return Date"
+                    placeholderText={`${t("search.dateReturn")}`}
                     className="block w-full placeholder:text-gray-400 text-black focus:outline-none"
                     dateFormat="MMM d, yyyy"
                     minDate={flightDepatureDate}
@@ -425,10 +449,18 @@ const SearchBox = ({
                       <option value="" className="text-gray-400">
                         Select
                       </option>
-                      <option value="Economy">Economy</option>
-                      <option value="Premium Economy">Premium Economy</option>
-                      <option value="Business">Business</option>
-                      <option value="First">First</option>
+                      <option value="Economy">{`${t(
+                        "search.class.class1"
+                      )}`}</option>
+                      <option value="Premium Economy">{`${t(
+                        "search.class.class2"
+                      )}`}</option>
+                      <option value="Business">{`${t(
+                        "search.class.class3"
+                      )}`}</option>
+                      <option value="First">{`${t(
+                        "search.class.class4"
+                      )}`}</option>
                     </select>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -469,10 +501,10 @@ const SearchBox = ({
                             Select
                           </option>
                           <option value="Adult" className="text-black">
-                            Adult
+                            {`${t("search.travaler-type.type1")}`}
                           </option>
                           <option value="Child" className="text-black">
-                            Child
+                            {`${t("search.travaler-type.type2")}`}
                           </option>
                         </select>
                         <svg
@@ -520,7 +552,7 @@ const SearchBox = ({
                 className="w-full text-[14px] font-jakarta bg-[#FFE2DA] hover:bg-orange-600 text-black hover:text-white font-medium py-2 px-8 rounded-md flex items-center justify-center gap-2"
               >
                 <Search />
-                Search Flights
+                {`${t("search.search")}`} Flights
               </button>
             </div>
           </div>

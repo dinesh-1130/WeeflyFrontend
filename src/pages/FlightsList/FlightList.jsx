@@ -34,8 +34,10 @@ import SunSetIcon from "../../assets/images/SunSetIcon.svg";
 import MoonRiseIcon from "../../assets/images/MoonRiseIcon.svg";
 import MoonSetIcon from "../../assets/images/MoonSetIcon.svg";
 import { useLocation, useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 
 function FlightList() {
+  const { t } = useTranslation();
   const location = useLocation();
   const [flightsData, setFlightsData] = useState([]);
   const [origin, setOrigin] = useState("");
@@ -74,18 +76,20 @@ function FlightList() {
       />
       <div className="min-h-screen px-4 lg:px-20 xl:px-40 bg-neutral-100 flex relative py-[66px] gap-[43px] flex-col xl:flex-row">
         <div className="sticky top-0 flex-col gap-[29px] hidden xl:flex ">
-          <RecentlyBookedTickets />
+          <RecentlyBookedTickets t={t} />
           <FilterFlight
             searchData={searchData}
             setFlightsData={setFlightsData}
             flights={flightsData}
+            t={t}
           />
         </div>
         <div className="flex-1 flex flex-col gap-[50px]">
           <div className="hidden xl:block">
-            <FlightDatePicker flights={flightsData} />
+            <FlightDatePicker flights={flightsData} t={t} />
           </div>
           <FlightResults
+            t={t}
             flights={flightsData}
             origin={origin}
             destination={destination}
@@ -111,6 +115,7 @@ const SearchBox = ({
   setSearchdata,
   SearchProps,
 }) => {
+  const { t } = useTranslation();
   // const [flightDepatureDate, setflightDepatureDate] = useState(null);
   const [flightDepatureDate, setflightDepatureDate] = useState(null);
   // const [flightReturnDate, setflightReturnDate] = useState(null);
@@ -235,7 +240,7 @@ const SearchBox = ({
                     type="text"
                     name="leavingFrom"
                     id="leavingFrom"
-                    placeholder="leavingFrom"
+                    placeholder={`${t("search.leaving")}`}
                     className="block w-full placeholder:text-gray-400 text-black focus:outline-none appearance-none"
                     value={from}
                     onChange={(e) => setFrom(e.target.value)}
@@ -280,7 +285,7 @@ const SearchBox = ({
                     className="block w-full placeholder:text-gray-400 text-black focus:outline-none appearance-none"
                     value={to}
                     onChange={(e) => setTo(e.target.value)}
-                    placeholder="Going to"
+                    placeholder={`${t("search.going")}`}
                   />
                 </div>
               </div>
@@ -299,7 +304,7 @@ const SearchBox = ({
                   <DatePicker
                     selected={flightDepatureDate}
                     onChange={(date) => setflightDepatureDate(date)}
-                    placeholderText="Date from"
+                    placeholderText={`${t("search.dateForm")}`}
                     className="block w-full placeholder:text-gray-400 text-black z-20 focus:outline-none"
                     dateFormat="MMM d, yyyy"
                     popperClassName="z-[50px]"
@@ -336,7 +341,7 @@ const SearchBox = ({
                   <DatePicker
                     selected={flightReturnDate}
                     onChange={(date) => setflightReturnDate(date)}
-                    placeholderText="Return Date"
+                    placeholderText={`${t("search.dateReturn")}`}
                     className="block w-full placeholder:text-gray-400 text-black focus:outline-none"
                     dateFormat="MMM d, yyyy"
                     minDate={flightDepatureDate}
@@ -383,10 +388,16 @@ const SearchBox = ({
                       <option value="" className="text-gray-400">
                         Select
                       </option>
-                      <option value="Economy">Economy</option>
-                      <option value="Premium Economy">Premium Economy</option>
-                      <option value="Business">Business</option>
-                      <option value="First">First</option>
+                      <option value="Economy">
+                        {t("search.class.class1")}
+                      </option>
+                      <option value="Premium Economy">
+                        {t("search.class.class2")}
+                      </option>
+                      <option value="Business">
+                        {t("search.class.class3")}
+                      </option>
+                      <option value="First">{t("search.class.class4")}</option>
                     </select>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -427,10 +438,10 @@ const SearchBox = ({
                             Select
                           </option>
                           <option value="Adult" className="text-black">
-                            Adult
+                            {t("search.travaler-type.type1")}
                           </option>
                           <option value="Child" className="text-black">
-                            Child
+                            {t("search.travaler-type.type2")}
                           </option>
                         </select>
                         <svg
@@ -478,7 +489,7 @@ const SearchBox = ({
                 className="w-full text-[14px] font-jakarta bg-[#FFE2DA] hover:bg-orange-600 text-black hover:text-white font-medium py-2 px-8 rounded-md flex items-center justify-center gap-2"
               >
                 <Search />
-                Search Flights
+                {t("search.search.search")} Flights
               </button>
             </div>
           </div>
@@ -505,7 +516,7 @@ const SearchBox = ({
 //
 // ////////////////////////////////////////////////
 
-const RecentlyBookedTickets = () => {
+const RecentlyBookedTickets = ({ t }) => {
   return (
     <div className=" w-full bg-white rounded-lg p-4">
       {/* Recently booked header */}
@@ -514,7 +525,7 @@ const RecentlyBookedTickets = () => {
           <img src={TicketIcon} alt="TicketIcon" />
         </div>
         <h2 className="text-[18px] font-semibold text-gray-800 font-jakarta">
-          Recently booked
+          {t("recently.title")}
         </h2>
       </div>
 
@@ -526,7 +537,7 @@ const RecentlyBookedTickets = () => {
           </div>
           <div className="flex flex-col gap-2">
             <h3 className="text-[15px] font-medium font-jakarta text-gray-800">
-              Departure Flight
+              {t("recently.departure")}
             </h3>
             <p className="text-[14px] font-jakarta text-gray-500">
               Thu, 06 Jul, 2025
@@ -596,7 +607,7 @@ const RecentlyBookedTickets = () => {
 
       {/* Reschedule button */}
       <button className="w-full py-3 font-jakarta bg-red-100 text-gray-800 font-medium rounded-lg hover:bg-red-200 transition-colors">
-        Reschedule
+        {t("recently.reschedule")}
       </button>
     </div>
   );
@@ -609,6 +620,7 @@ const RecentlyBookedTickets = () => {
 // ////////////////////////////////////////////////
 
 const FilterFlight = ({ searchData, setFlightsData, flights }) => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(true);
   const [priceRange, setPriceRange] = useState(7000);
   const [travelClassFilters, setTravelClassFilters] = useState([]);
@@ -745,7 +757,7 @@ const FilterFlight = ({ searchData, setFlightsData, flights }) => {
         className="flex items-center justify-between p-4 cursor-pointer "
         onClick={toggleFilter}
       >
-        <h2 className="font-medium text-gray-800">Filter</h2>
+        <h2 className="font-medium text-gray-800">{t("filter.filter")}</h2>
         {isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
       </div>
       <div className="h-px bg-gray-300 mx-4 "></div>
@@ -756,7 +768,7 @@ const FilterFlight = ({ searchData, setFlightsData, flights }) => {
           {/* Preferred Class */}
           <div>
             <h3 className="text-sm font-medium text-gray-700 mb-2">
-              Preferred class
+              {t("filter.class.title")}
             </h3>
             <div className="space-y-2">
               <label className="flex items-center">
@@ -766,7 +778,7 @@ const FilterFlight = ({ searchData, setFlightsData, flights }) => {
                   value="Business"
                   onChange={(e) => handleCheckboxChange(e)}
                 />
-                <span className="ml-2 text-sm">Business</span>
+                <span className="ml-2 text-sm">{t("filter.class.class1")}</span>
               </label>
               <label className="flex items-center">
                 <input
@@ -775,7 +787,9 @@ const FilterFlight = ({ searchData, setFlightsData, flights }) => {
                   value="Economy"
                   onChange={(e) => handleCheckboxChange(e)}
                 />
-                <span className="ml-2 text-sm text-gray-500">Economy</span>
+                <span className="ml-2 text-sm text-gray-500">
+                  {t("filter.class.class2")}
+                </span>
               </label>
               <label className="flex items-center">
                 <input
@@ -784,7 +798,20 @@ const FilterFlight = ({ searchData, setFlightsData, flights }) => {
                   value="Firstclass"
                   onChange={(e) => handleCheckboxChange(e)}
                 />
-                <span className="ml-2 text-sm text-gray-500">First class</span>
+                <span className="ml-2 text-sm text-gray-500">
+                  {t("filter.class.class3")}
+                </span>
+              </label>
+              <label className="flex items-center">
+                <input
+                  type="checkbox"
+                  className="w-5 h-5 accent-orange-600"
+                  value="Firstclass"
+                  onChange={(e) => handleCheckboxChange(e)}
+                />
+                <span className="ml-2 text-sm text-gray-500">
+                  {t("filter.class.class4")}
+                </span>
               </label>
             </div>
           </div>
@@ -792,7 +819,9 @@ const FilterFlight = ({ searchData, setFlightsData, flights }) => {
 
           {/* Airlines */}
           <div className="mb-6">
-            <h3 className="text-sm font-medium text-gray-700 mb-2">Airlines</h3>
+            <h3 className="text-sm font-medium text-gray-700 mb-2">
+              {t("filter.airlines")}
+            </h3>
             <div className="space-y-2">
               {uniqueAirlines.map((airline, index) => (
                 <label key={index} className="flex items-center">
@@ -873,7 +902,7 @@ const FilterFlight = ({ searchData, setFlightsData, flights }) => {
           {/* Leaving at */}
           <div className="mb-6 hidden">
             <h3 className="text-sm font-medium text-gray-700 mb-2">
-              Leaving at
+              {t("filter.leaving-at")}
             </h3>
             <p className="text-xs text-gray-500 mb-2">
               Departure to {searchData.from}
@@ -917,7 +946,7 @@ const FilterFlight = ({ searchData, setFlightsData, flights }) => {
           {/* Arrival */}
           <div className="mb-6 hidden">
             <h3 className="text-sm font-medium text-gray-700 mb-2">
-              Arrival to {searchData.to}
+              {t("filter.arrival-to")} {searchData.to}
             </h3>
             <div className="grid grid-cols-2 gap-2">
               <div className="bg-gray-100 rounded p-2 flex flex-col items-center">
@@ -954,7 +983,7 @@ const FilterFlight = ({ searchData, setFlightsData, flights }) => {
           {/* Leaving at */}
           <div className="mb-6">
             <h3 className="text-sm font-medium text-gray-700 mb-2">
-              Leaving at
+              {t("filter.leaving-at")}
             </h3>
             <p className="text-xs text-gray-500 mb-2">
               Departure to {searchData.from}
@@ -990,7 +1019,7 @@ const FilterFlight = ({ searchData, setFlightsData, flights }) => {
           {/* Arrival */}
           <div className="mb-6">
             <h3 className="text-sm font-medium text-gray-700 mb-2">
-              Arrival to {searchData.to}
+              {t("filter.arrival-to")} {searchData.to}
             </h3>
             <div className="grid grid-cols-2 gap-2">
               {Object.keys(timeSlotMap).map((label, idx) => (
@@ -1024,7 +1053,9 @@ const FilterFlight = ({ searchData, setFlightsData, flights }) => {
 
           {/* Stops */}
           <div className="mb-6">
-            <h3 className="text-sm font-medium text-gray-700 mb-2">Stops</h3>
+            <h3 className="text-sm font-medium text-gray-700 mb-2">
+              {t("filter.stop-title")}
+            </h3>
             <div className="space-y-2">
               <label className="flex items-center">
                 <input
@@ -1033,7 +1064,9 @@ const FilterFlight = ({ searchData, setFlightsData, flights }) => {
                   value="Nonstop"
                   onChange={(e) => handleCheckboxChangeStops(e)}
                 />
-                <span className="ml-2 text-sm">Non - Stop</span>
+                <span className="ml-2 text-sm">
+                  {t("filter.stop.non-stop")}
+                </span>
               </label>
               <label className="flex items-center">
                 <input
@@ -1042,7 +1075,9 @@ const FilterFlight = ({ searchData, setFlightsData, flights }) => {
                   value="1Stop"
                   onChange={(e) => handleCheckboxChangeStops(e)}
                 />
-                <span className="ml-2 text-sm text-gray-500">1 Stop</span>
+                <span className="ml-2 text-sm text-gray-500">
+                  1 {t("filter.stop.stop")}
+                </span>
               </label>
               <label className="flex items-center">
                 <input
@@ -1051,7 +1086,9 @@ const FilterFlight = ({ searchData, setFlightsData, flights }) => {
                   value="2stop"
                   onChange={(e) => handleCheckboxChangeStops(e)}
                 />
-                <span className="ml-2 text-sm text-gray-500">2+ Stop</span>
+                <span className="ml-2 text-sm text-gray-500">
+                  2+ {t("filter.stop.stop")}
+                </span>
               </label>
             </div>
           </div>
@@ -1492,7 +1529,8 @@ const FlightDatePicker = ({ flights }) => {
 // import { ChevronDown } from "lucide-react";
 // import Pagination from "./Pagination"; // Adjust path based on your project
 
-const FlightResults = ({ flights, origin, destination }) => {
+const FlightResults = ({ flights, origin, destination, t }) => {
+  // const { t } = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -1722,16 +1760,22 @@ const FlightResults = ({ flights, origin, destination }) => {
                     } font-sans`}
                   >
                     <div className="flex items-center space-x-1 ml-2">
-                      <span>Flight Details</span>
+                      <span>{t("booking-card.Flight-details")}</span>
                       <ChevronDown size={14} />
                     </div>
                     <div className="hidden lg:flex items-center space-x-1">
-                      <span>Price Details</span>
+                      <span>{t("booking-card.price-details")}</span>
                       <ChevronDown size={14} />
                     </div>
-                    <span className="hidden lg:flex">Policy</span>
-                    <span className="hidden lg:flex">Refund</span>
-                    <span className="hidden lg:flex">Reschedule</span>
+                    <span className="hidden lg:flex">
+                      {t("booking-card.policy")}
+                    </span>
+                    <span className="hidden lg:flex">
+                      {t("booking-card.refund")}
+                    </span>
+                    <span className="hidden lg:flex">
+                      {t("booking-card.reschedule")}
+                    </span>
                   </div>
 
                   {isSelected ? (
@@ -1744,7 +1788,7 @@ const FlightResults = ({ flights, origin, destination }) => {
                       }}
                       className="bg-[#EE5128] text-white px-4 py-1.5 rounded font-jakarta font-semibold hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200"
                     >
-                      Book now
+                      {t("booking-card.book-now")}
                     </button>
                   ) : (
                     <button
@@ -1752,7 +1796,7 @@ const FlightResults = ({ flights, origin, destination }) => {
                       className="bg-gray-300 text-white px-4 py-1.5 rounded font-jakarta font-semibold cursor-not-allowed"
                       disabled
                     >
-                      Book now
+                      {t("booking-card.book-now")}
                     </button>
                   )}
                 </div>

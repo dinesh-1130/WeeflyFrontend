@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router";
 
 function TravelersDetails() {
+  const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const [flight, setFlight] = useState(null);
@@ -23,7 +25,9 @@ function TravelersDetails() {
           {/* Travelers Details */}
           <div className="max-w-[656px] w-full min-h-[339px] bg-white rounded-md">
             <div className="bg-[#FFE4DB] p-3 rounded-t-md">
-              <h2 className="font-semibold font-jakarta">Travellers Details</h2>
+              <h2 className="font-semibold font-jakarta">
+                {t("traveller-details.title")}
+              </h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-4 px-6 py-4">
               {[
@@ -51,7 +55,7 @@ function TravelersDetails() {
           <div className="max-w-[377px] w-full h-[280px] bg-white rounded-[12px]">
             <div className="bg-[#FFE4DB] p-3 rounded-t-[12px]">
               <h2 className="font-semibold text-[18px] font-jakarta">
-                Booking Details
+                {t("booking-details.title")}
               </h2>
             </div>
 
@@ -100,7 +104,7 @@ function TravelersDetails() {
             <div className="flex justify-between px-6 mt-6">
               <div className="text-left w-1/2 border-r pr-4">
                 <p className="text-sm font-semibold text-black font-jakarta m">
-                  Departure Flight
+                  {t("booking-details.departure")}
                 </p>
                 <p className="text-xs text-gray-500 mt-[2px]">
                   Thu, 06 jul, 2025
@@ -108,7 +112,7 @@ function TravelersDetails() {
               </div>
               <div className="text-left w-1/2 pl-4">
                 <p className="text-sm font-semibold text-black font-jakarta ml-5">
-                  Departure Flight
+                  {t("booking-details.landing")}
                 </p>
                 <p className="text-xs text-gray-500 mt-[2px] ml-5">
                   Thu, 06 jul, 2025
@@ -117,9 +121,9 @@ function TravelersDetails() {
             </div>
 
             <div className="flex justify-around mt-6 text-sm font-medium font-jakarta">
-              <span>Policy</span>
-              <span className="ml-10">Refund</span>
-              <span>Reschedule</span>
+              <span>{t("booking-details.policy")}</span>
+              <span className="ml-10">{t("booking-details.refund")}</span>
+              <span>{t("booking-details.reschedule")}</span>
             </div>
           </div>
         </div>
@@ -127,16 +131,15 @@ function TravelersDetails() {
         {/* Save Details Section */}
         <div className="w-full max-w-[656px] bg-white rounded-md p-6 mt-6 font-sans">
           <h3 className="font-semibold text-black mb-1 font-jakarta">
-            Save your details!
+            {t("traveller-details.save-details.title")}
           </h3>
           <p className="text-sm text-gray-500 mb-3">
-            Use your contact details to create an account and speed up future
-            bookings. (We won’t save your payment information.)
+            {t("traveller-details.save-details.description")}
           </p>
           <label className="flex items-start gap-2">
             <input type="checkbox" className="accent-[#EE5128] mt-[3px]" />
             <span className="text-sm">
-              Save my detail so I can book faster next time.
+              {t("traveller-details.save-details.term")}
             </span>
           </label>
         </div>
@@ -149,7 +152,7 @@ function TravelersDetails() {
             }
             className="bg-[#EE5128] text-white px-6 py-2 relative rounded font-semibold font-jakarta hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200"
           >
-            Continue booking
+            {t("continue-booking")}
           </button>
         </div>
       </div>

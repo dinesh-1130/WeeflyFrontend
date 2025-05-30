@@ -1,17 +1,19 @@
 import { useLocation, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const paymentIcons = {
-  UPI: "/assets/paymentpage/upi.png",
-  "Debit & credit cards": "/assets/paymentpage/card.png",
-  "Net Banking": "/assets/paymentpage/netbanking.png",
-  Wallet: "/assets/paymentpage/wallet.png",
-  EMI: "/assets/paymentpage/emi.png",
-  "Pay later": "/assets/paymentpage/paylater.png",
+  upi: "/assets/paymentpage/upi.png",
+  "debit-creditCard": "/assets/paymentpage/card.png",
+  netBanking: "/assets/paymentpage/netbanking.png",
+  wallet: "/assets/paymentpage/wallet.png",
+  emi: "/assets/paymentpage/emi.png",
+  payLater: "/assets/paymentpage/paylater.png",
 };
 
 export default function PaymentPage() {
+  const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const [flight, setFlight] = useState(null);
@@ -26,8 +28,6 @@ export default function PaymentPage() {
   if (!flight)
     return <p className="text-center mt-20 font-['Lato']">Loading...</p>;
 
-
-  
   return (
     <div className=" font-sans flex justify-center">
       <div className="w-full px-4">
@@ -123,17 +123,25 @@ export default function PaymentPage() {
               </div>
               <div className="flex justify-between items-center px-4 py-2 border-t border-[#CCCCCC] text-sm font-medium text-[#EE5128]">
                 <div className="flex space-x-8">
-                  <span>Flight Details</span>
-                  <span className="hidden lg:block">Price Details</span>
-                  <span className="hidden lg:block">Policy</span>
-                  <span className="hidden lg:block">Refund</span>
-                  <span className="hidden lg:block">Reschedule</span>
+                  <span>{t("booking-card.Flight-details")}</span>
+                  <span className="hidden lg:block">
+                    {t("booking-card.price-details")}
+                  </span>
+                  <span className="hidden lg:block">
+                    {t("booking-card.policy")}
+                  </span>
+                  <span className="hidden lg:block">
+                    {t("booking-card.refund")}
+                  </span>
+                  <span className="hidden lg:block">
+                    {t("booking-card.reschedule")}
+                  </span>
                 </div>
                 <button
                   className="bg-[#EE5128] text-white px-4 py-1.5 rounded font-semibold
              hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200"
                 >
-                  Book now
+                  {t("booking-card.book-now")}
                 </button>
               </div>
             </div>
@@ -141,7 +149,7 @@ export default function PaymentPage() {
             {/* Payment Timing */}
             <div className="bg-white p-6 rounded-md shadow-sm ">
               <h2 className="text-[18px] font-semibold text-black mb-1">
-                When would you like to pay?
+                {t("paytime.title")}
               </h2>
               <p className="text-sm text-gray-500 mb-3">
                 Lorem ipsum Lorem ipsum Lorem ipsum
@@ -153,9 +161,13 @@ export default function PaymentPage() {
                   className="accent-[#EE5128]"
                   readOnly
                 />
-                <span className="text-sm text-black">Pay now</span>
+                <span className="text-sm text-black">
+                  {t("paytime.payNow")}
+                </span>
                 <input type="checkbox" disabled className="accent-[#ccc]" />
-                <span className="text-sm text-gray-400">Pay later</span>
+                <span className="text-sm text-gray-400">
+                  {t("paytime.payLater")}
+                </span>
               </label>
             </div>
 
@@ -178,7 +190,9 @@ export default function PaymentPage() {
                         className="w-6 h-6 object-contain"
                       />
                       <div>
-                        <p className="font-semibold">{method}</p>
+                        <p className="font-semibold">
+                          {t(`payment-methods.${method}`)}
+                        </p>
                         <p className="text-sm text-gray-500">
                           Lorem ipsum Lorem ipsum Lorem
                         </p>
@@ -195,7 +209,9 @@ export default function PaymentPage() {
           <div className="w-full relative lg:max-w-[360px] space-y-6">
             <div className="w-[360px] h-[280px] bg-white rounded-[12px]  shadow-sm overflow-hidden">
               <div className="bg-[#FFE4DB] p-3 rounded-t-[12px]">
-                <h2 className="font-semibold text-[18px]">Booking Details</h2>
+                <h2 className="font-semibold text-[18px]">
+                  {t("booking-details.title")}
+                </h2>
               </div>
               <div className="flex justify-between items-center px-6 mt-[20px]">
                 <div className="text-center">
@@ -239,22 +255,28 @@ export default function PaymentPage() {
               </div>
               <div className="flex justify-between px-6 mt-6">
                 <div className="text-left w-1/2 border-r pr-4">
-                  <p className="text-sm font-semibold">Departure Flight</p>
+                  <p className="text-sm font-semibold">
+                    {t("booking-details.departure")}
+                  </p>
                   <p className="text-xs text-gray-500 mt-[2px]">
                     Thu, 06 Jul, 2025
                   </p>
                 </div>
                 <div className="text-left w-1/2 pl-4">
-                  <p className="text-sm font-semibold">Departure Flight</p>
+                  <p className="text-sm font-semibold">
+                    {t("booking-details.landing")}
+                  </p>
                   <p className="text-xs text-gray-500 mt-[2px]">
                     Thu, 06 Jul, 2025
                   </p>
                 </div>
               </div>
               <div className="flex justify-around mt-6 text-sm font-medium ml-2">
-                <span className="relative mr-8">Policy</span>
-                <span>Refund</span>
-                <span>Reschedule</span>
+                <span className="relative mr-8">
+                  {t("booking-details.policy")}
+                </span>
+                <span>{t("booking-details.refund")}</span>
+                <span>{t("booking-details.reschedule")}</span>
               </div>
             </div>
 
@@ -284,31 +306,31 @@ export default function PaymentPage() {
 
             <div className="bg-white rounded-md shadow-sm">
               <div className="bg-[#FFE4DB] p-4 font-semibold font-['Plus Jakarta Sans']">
-                Price Summary
+                {t("summary.title")}
               </div>
               <div className="p-4 space-y-3 text-[14px] text-black font-['Lato']">
                 <div className="flex justify-between">
-                  <span>Adult x 1</span>
+                  <span>{t("summary.adult")} x 1</span>
                   <span className="font-semibold flex gap-1">
                     <span>{flight.currency}</span>
                     <span>{flight.price.toLocaleString()}</span>
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Total taxes +</span>
+                  <span>{t("summary.totalTax")} +</span>
                   <span className="font-semibold flex gap-1">
                     <span>{flight.currency}</span> <span>500.00</span>
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Other Charged</span>
+                  <span>{t("summary.otherCharged")}</span>
                   <span className="font-semibold flex gap-1">
                     {" "}
                     <span>{flight.currency}</span> <span>200.00</span>
                   </span>
                 </div>
                 <div className="flex justify-between border-t pt-3 text-[#EE5128] font-semibold">
-                  <span>Total</span>
+                  <span>{t("summary.total")}</span>
                   <span>
                     {" "}
                     <span>{flight.currency}</span>{" "}

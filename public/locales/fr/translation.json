@@ -11,6 +11,7 @@
     "login/register": "Connexion/Inscription",
     "signin": "Se Connecter",
     "logout": "Se Déconnecter"
+
   },
   "hero": {
     "title": "On transforme les voyages en Afrique",
@@ -124,5 +125,213 @@
     "mobile": "Numéro de téléphone",
     "email": "Assistance par e-mail",
     "follow": "Suivez-nous"
+  },
+  "contactus-page":{
+    "title":"NOUS CONTACTER",
+    "form":{
+      "title":"NOUS CONTACTER",
+      "fullname":"Nom",
+      "lastname":"Prénom",
+      "email":"Email",
+      "phone":"Téléphone",
+      "message":"Message",
+      "button":"Envoyer"
+    },
+    "support":{
+      "title":"NOUS CONTACTER",
+      "contact":"Téléphone",
+      "email":"Email",
+      "Adresse":"Address"
+    }
+  },
+   "login":{
+    "title":"Connectez-vous à votre compte",
+    "email":"Adresse email",
+    "password":"Mot de passe",
+    "forgotPassword":"Mot de passe oublié ?",      
+    "button":"Se connecter",
+    "google":"Login with Google",
+    "signup-content":"Pas de compte ?",
+    "signup":"Inscription",
+    "register-content":"Are you a business?",
+    "register":"Register here"
+  },
+  "signup":{
+    "title":"Créez un compte",
+    "fields":{
+      "name":"Nom complet",
+      "email":"Adresse email",
+      "phone":"Numéro de téléphone",
+      "password":"Mot de passe"
+    },
+    "button":"Inscription",
+    "options":{
+      "login-content":"Déjà inscrit ?",
+      "login":"Connexion",
+       "register-content":"Are you a business?",
+    "register":"Register here"
+    }
+  },
+  "forgotPassword": {
+  "title": "Mot de passe oublié ?",
+  "description": "Entrez votre adresse e-mail enregistrée et nous vous enverrons un lien pour réinitialiser votre mot de passe",
+  "email": "Adresse e-mail",
+  "send": "Envoyer le code",
+  "resend-msg": "Vous n'avez pas reçu le code ?",
+  "resend": "Renvoyer"
+},
+  "search":{
+  "leaving": "Départ de",
+    "going": "Aller à",
+    "dateForm": "Formulaire de date",
+    "dateReturn": "Date de retour",
+    "class": {
+      "class1": "Économie",
+      "class2": "Premium",
+      "class3": "Affaires ",
+      "class4": "Première"
+    },
+    "travaler-type": {
+      "type1": "Adulte ",
+      "type2": "Enfant"
+    },
+    "search": "recherche"
+  },
+  "filter": {
+  "filter": "Filtrer",
+  "class": {
+    "title": "Classe préférée",
+    "class1": "Économie",
+    "class2": "Premium",
+    "class3": "Affaires",
+    "class4": "Première"
+  },
+  "airlines": "Compagnies aériennes",
+  "leaving-at": "Départ à",
+  "arrival-to": "Arrivée à",
+  "stop": {
+    "title": "Escales",
+    "non-stop": "Sans escale",
+    "stop": "Escale"
   }
+},
+"recently": {
+  "title": "Réservé récemment",
+  "departure": "Vol de départ",
+  "reschedule": "Reprogrammer"
+},
+"complete-your-booking": "Complétez votre réservation",
+"back": "Retour",
+"stages": {
+  "review-your-booking": "Vérifiez votre réservation",
+  "traveller-details": "Détails du voyageur",
+  "extras": "Suppléments",
+  "payment": "Paiement"
+},
+"booking-card": {
+  "leaving-from": "Départ de",
+  "returning-from": "Retour de",
+  "stops": "Escales",
+  "duration": "Durée",
+  "Flight-details": "Détails du vol",
+  "price-details": "Détails du prix",
+  "policy": "Politique",
+  "refund": "Remboursement",
+  "reschedule": "Reprogrammer",
+  "book-now": "Réserver maintenant"
+},
+  "continue-booking": "Continuer la réservation",
+  "traveller-details": {
+    "title": "Détails du voyageur",
+    "form": {
+      "fullname": "Nom complet",
+      "lastname": "Nom de famille",
+      "nationality": "Nationalité",
+      "email": "Email",
+      "phone": "Numéro de téléphone",
+      "passport-number": "Numéro de passeport",
+      "passport-issuing-country": "Pays émetteur du passeport",
+      "passport-entry": "Entrée du passeport",
+      "visa-details": "Détails du visa",
+      "cancellation-policy": "Politique d'annulation"
+    },
+    "save-details": {
+      "title": "Enregistrez vos informations !",
+      "description": "Utilisez vos coordonnées pour créer un compte et accélérer vos futures réservations. (Nous n’enregistrerons pas vos informations de paiement.)",
+      "term": "Enregistrer mes informations pour réserver plus rapidement la prochaine fois."
+    }
+  },
+  "booking-details": {
+    "title": "Détails de la réservation",
+    "departure": "Vol de départ",
+    "landing": "Vol principal",
+    "policy": "Politique",
+    "refund": "Remboursement",
+    "reschedule": "Replanifier"
+  },
+  "seats": {
+    "title": "Sièges",
+    "seatFare": "Tarif du siège",
+    "adult": "Adulte",
+    "child": "Enfant",
+    "totalFare": "Tarif total",
+    "type": {
+      "title": "Type de siège",
+      "free": "Gratuit",
+      "non-reclining": "Non inclinable",
+      "exit-seats": "Sièges de sortie"
+    }
+  },
+  "meals": {
+    "title": "Repas",
+    "vegMeal": "Repas végétarien",
+    "nonVegMeal": "Repas non végétarien",
+    "kidsMeal": "Repas enfant",
+    "specialMeal": "Repas spécial"
+  },
+  "luggages": {
+    "title": "Bagages supplémentaires",
+    "luggage": "Bagage"
+  },
+  "skip-extra": "Passer les options supplémentaires",
+  "summary": {
+    "title": "Résumé des prix",
+    "adult": "Adulte",
+    "totalTax": "Taxes totales",
+    "otherCharged": "Autres frais",
+    "total": "Total"
+  },
+  "payment-methods": {
+    "upi": "UPI",
+    "debit-creditCard": "Cartes de débit et de crédit",
+    "netBanking": "Virement bancaire en ligne",
+    "wallet": "Portefeuille électronique",
+    "emi": "Paiement en plusieurs fois",
+    "payLater": "Payer plus tard"
+  },
+  "paytime": {
+  "title": "Quand souhaitez-vous payer ?",
+  "payNow": "Payer maintenant",
+  "payLater": "Payer plus tard"
+},
+"profile": {
+  "fullname": "Nom complet",
+  "dob": "Date de naissance",
+  "gender": "Genre",
+  "passportNo": "N° de passeport",
+  "fullAddress": "Adresse complète",
+  "pinCode": "Code postal"
+},
+"profile-offer": {
+  "title": "Inspirez-vous pour votre voyage et recevez des offres",
+  "description": "Recevez des offres, des conseils et des informations d’Expedia",
+  "button": "Recevoir maintenant"
+},
+"options": {
+  "profile": "Profil",
+  "security-settings": "Sécurité et paramètres",
+  "help-feedback": "Aide et commentaires",
+  "logout": "Se déconnecter"
+}
+
 }

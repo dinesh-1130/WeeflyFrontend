@@ -124,5 +124,212 @@
     "mobile": "Mobile Number",
     "email": "Email Support",
     "follow": "Follow us"
+  },
+  "contactus-page":{
+    "title":"Contact us",
+    "form":{
+      "title":"Customer Support",
+      "fullname":"Full Name",
+      "lastname":"Last Name",
+      "email":"Email",
+      "phone":"Phone Number",
+      "message":"Write your message",
+      "button":"Submit now"
+    },
+    "support":{
+      "title":"Customer Support",
+      "contact":"contact",
+      "email":"Email",
+      "Address":"Address"
+    }
+  },
+  "login":{
+    "title":"Login into your account",
+    "email":"Email address",
+    "password":"Password",
+    "forgotPassword":"Forgot Password",
+    "button":"Login now",
+    "google":"Login with Google",
+    "signup-content":"Don’t have an account?",
+    "signup":"Signup",
+    "register-content":"Are you a business?",
+    "register":"Register here"
+  },
+  "signup":{
+    "title":"Create an account",
+    "fields":{
+      "name":"Name",
+      "email":"Email address",
+      "phone":"Phone Number",
+      "password":"Password"
+    },
+    "button":"Signup",
+    "options":{
+      "login-content":"Already have an account?",
+      "login":"Login",
+       "register-content":"Are you a business?",
+    "register":"Register here"
+    }
+  },
+  "forgotPassword":{
+    "title":"Forgot password?",
+    "description":"Enter your Registered Email address and we’ll send a link to reset password",
+    "email":"Email address",
+    "send":"send Code",
+    "resend-msg":"Didn't receive code ?",
+    "resend":"Resend"
+  },
+  "search":{
+    "leaving": "Leaving From",
+    "going": "Going To",
+    "dateForm": "Date From",
+    "dateReturn": "Return Date",
+    "class": {
+      "class1": "Economy",
+      "class2": "Premium",
+      "class3": "Business",
+      "class4": "First"
+    },
+    "travaler-type": {
+      "type1": "Adult",
+      "type2": "Child"
+    },
+    "search": "Search"
+  },
+  "filter":{
+    "filter":"Filter",
+    "class": {
+      "title":"Preffered class",
+      "class1": "Economy",
+      "class2": "Premium",
+      "class3": "Business",
+      "class4": "First"
+    },
+    "airlines":"Airlines",
+    "leaving-at":"Leaving at",
+    "arrival-to":"Arrival to",
+    "stop":{
+      "title":"Stops",
+      "non-stop":"Non-Stop",
+      "stop":"stop"
+    }
+  },
+  "recently":{
+    "title":"Recently booked",
+    "departure":"Departure Flight",
+    "reschedule":"Reschedule"
+  },
+  "complete-your-booking":"Complte your booking",
+"back":"Back",
+  "stages":{
+    "review-your-booking":"Review your booking",
+  "traveller-details":"Traveller Details",
+  "extras":"Extras",
+  "payment":"Payment"
+  },
+  "booking-card":{
+    "leaving-from":"Leaving from",
+    "returning-from":"Returning From",
+    "stops":"stops",
+    "duration":"Duration",
+    "Flight-details":"Flight Details",
+    "price-details":"price Details",
+    "policy":"Policy",
+    "refund":"Refund",
+    "reschedule":"Reschedule",
+    "book-now":"Book now"
+  },
+  "continue-booking":"Continue booking",
+  "traveller-details":{
+    "title":"Traveller Details",
+    "form":{
+      "fullname":"Full Name",
+      "lastname":"Last Name",
+      "nationality":"Nationality",
+      "email":"Email",
+      "phone":"Phone Number",
+      "passport-number":"Passport Number",
+      "passport-issuing-country":"Passport issuing country",
+      "passport-entry":"Passport entry",
+      "visa-details":"Visa details",
+      "cancellation-policy":"Cancellation policy"
+    },
+    "save-details":{
+      "title":"Save your details!",
+      "description":"Use your contact details to create an account and speed up future bookings. (We won’t save your payment information.)",
+      "term":"Save my detail so I can book faster next time."
+    }
+  },
+  "booking-details":{
+    "title":"Booking Details",
+    "departure":"Departure Flight",
+    "landing":"Leading Flight",
+    "policy":"Policy",
+    "refund":"Refund",
+    "reschedule":"Reschedule"
+  },
+  "seats":{
+    "title":"Seats",
+    "seatFare":"Sear Fare",
+    "adult":"Adult",
+    "child":"Child",
+    "totalFare":"Total Fare",
+    "type":{
+      "title":"Seat type",
+      "free":"Free",
+      "non-reclining":"Non-Reclining",
+      "exit-seats":"Exit Seats"
+    }
+  },
+  "meals":{
+    "title":"Meals",
+    "vegMeal":"Veg Meal",
+    "nonVegMeal":"Non-Veg Meal",
+    "kidsMeal":"Kids Meal",
+    "specialMeal":"Special Meal"
+  },
+  "luggages":{
+    "title":"Extra luggage",
+    "luggage":"Luggage"
+  },
+"skip-extra":"Skip extra",
+"summary":{
+  "title":"Price Summary",
+  "adult":"Adult",
+  "totalTax":"Total Tax",
+  "otherCharged":"Other Charged",
+  "total":"Total"
+},
+"payment-metheds":{
+  "upi":"UPI",
+  "debit-creditCard":"Debit & credit cards",
+  "netBanking":"Net Banking",
+  "wallet":"Wallet",
+  "emi":"EMI",
+  "payLater":"Pay Later"
+},
+"paytime":{
+    "title":"When would you like to pay?",
+    "payNow":"Pay now",
+    "payLater":"Pay Later"
+  },
+  "profile":{
+    "fullname":"Full Name",
+    "dob": "DOB",
+    "gender":"Gender",
+    "passportNo":"Passport no",
+    "fullAddress":"Full Address",
+    "pinCode":"Pin Code"
+  },
+  "profile-offer":{
+    "title":"Get trip inspiration and offers",
+    "description":"Receive deals, tips, and insights from Expedia",
+    "button":"Get now"
+  },
+  "options":{
+    "profile":"Profile",
+    "security-settings":"Security & Settings",
+    "help-feedback":"Help & Feedback",
+    "logout":"Logout"
   }
 }

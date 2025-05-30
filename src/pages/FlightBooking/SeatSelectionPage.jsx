@@ -6,8 +6,10 @@ import KidsMeal from "../../assets/images/meals/KidsMeal.jpg";
 import NonVegMeal from "../../assets/images/meals/NonVegMeal.jpg";
 import SpecialMeal from "../../assets/images/meals/SpecialMeal.jpg";
 import VegMeal from "../../assets/images/meals/VegMeal.jpg";
+import { useTranslation } from "react-i18next";
 
 export default function SeatSelection() {
+  const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const [flight, setFlight] = useState(null);
@@ -18,32 +20,32 @@ export default function SeatSelection() {
 
   const mealsList = [
     {
-      name: "Veg Meal",
+      name: `${t("meals.vegMeal")}`,
       src: VegMeal,
       price: 12,
     },
-    { name: "Non-Veg Meal", src: NonVegMeal, price: 15 },
-    { name: "Kids Meal", src: KidsMeal, price: 10 },
-    { name: "Special Meal", src: SpecialMeal, price: 20 },
+    { name: `${t("meals.nonVegMeal")}`, src: NonVegMeal, price: 15 },
+    { name: `${t("meals.kidsMeal")}`, src: KidsMeal, price: 10 },
+    { name: `${t("meals.specialMeal")}`, src: SpecialMeal, price: 20 },
   ];
   const ExtraLuggages = [
     {
-      name: "Luggage 5KG",
+      name: `${t("luggages.luggage")} 5KG`,
       src: "https://t4.ftcdn.net/jpg/04/66/06/43/360_F_466064335_04MRapnpqJgXlXEKZaYPMhrUVxDt1OYV.jpg",
       price: 12,
     },
     {
-      name: " Luggage 15KG",
+      name: `${t("luggages.luggage")} 15KG`,
       src: "https://t4.ftcdn.net/jpg/12/18/68/43/360_F_1218684354_iksVUo0R81UUcvZ55iNeCExPrvtgZcMk.jpg",
       price: 20,
     },
     {
-      name: "Luggage 25KG",
+      name: `${t("luggages.luggage")} 25KG`,
       src: "https://t4.ftcdn.net/jpg/01/16/94/15/360_F_116941514_j9jLAQMxaZczLoh5uV0LaoNaPaPAlkgL.jpg",
       price: 25,
     },
     {
-      name: "Luggage 35KG",
+      name: `${t("luggages.luggage")} 35KG`,
       src: "https://www.shutterstock.com/image-photo/two-stylish-plastic-luggage-suitcases-600nw-2176706263.jpg",
       price: 35,
     },
@@ -156,23 +158,23 @@ export default function SeatSelection() {
                         </p>
                         <div className="border rounded-md bg-white px-3 py-4 text-sm h-full flex flex-col justify-between">
                           <div className="flex justify-between">
-                            <span>Adult 2 :</span>
+                            <span>{t("seats.adult")} 2 :</span>
                             <span>$800</span>
                           </div>
                           <div className="flex justify-between font-bold">
-                            <span>Total fare :</span>
+                            <span>{t("seats.totalFare")} :</span>
                             <span>$800</span>
                           </div>
                         </div>
                       </div>
                       <div className="mt-12">
                         <p className="font-semibold text-[14px] mb-2">
-                          Seat type :
+                          {t("seats.type.title")} :
                         </p>
                         <div className="grid grid-cols-2 text-[12px] gap-y-2 gap-x-4">
                           <span>
                             <span className="inline-block w-6 h-4 bg-green-700 mr-2" />
-                            Free
+                            {t("seats.type.free")}
                           </span>
                           <span>
                             <span className="inline-block w-6 h-4 bg-blue-500 mr-2" />
@@ -196,11 +198,11 @@ export default function SeatSelection() {
                           </span>
                           <span>
                             <span className="inline-block w-6 h-4 bg-sky-500 mr-2" />
-                            Non-Reclining
+                            {t("seats.type.non-reclining")}
                           </span>
                           <span>
                             <span className="inline-block w-6 h-4 bg-black mr-2" />
-                            Exit seats
+                            {t("seats.type.exit-seats")}
                           </span>
                         </div>
                       </div>
@@ -210,7 +212,7 @@ export default function SeatSelection() {
                   {activeTab === "Meals" && (
                     <div className="w-full">
                       <p className="font-semibold text-[16px] mb-4">
-                        Select Your Meal
+                        {t("meals.title")}
                       </p>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full overflow-auto h-[400px] no-scrollbar">
                         {mealsList.map((meal, index) => (
@@ -260,7 +262,7 @@ export default function SeatSelection() {
                   {activeTab === "Extra luggages" && (
                     <div className="w-full">
                       <p className="font-semibold text-[16px] mb-4">
-                        Extra luggages
+                        {t("luggages.title")}
                       </p>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full overflow-auto h-[400px] no-scrollbar">
                         {ExtraLuggages.map((Luggage, index) => (
@@ -435,7 +437,7 @@ export default function SeatSelection() {
             <div className="h-auto md:h-[280px] bg-white rounded-[12px] shadow-sm overflow-hidden">
               <div className="bg-[#FFE4DB] p-3 rounded-t-[12px]">
                 <h2 className="font-semibold text-[18px] font-['Plus Jakarta Sans']">
-                  Booking Details
+                  {t("booking-details.title")}
                 </h2>
               </div>
               <div className="flex justify-between items-center px-6 mt-[20px]">
@@ -482,7 +484,7 @@ export default function SeatSelection() {
               <div className="flex justify-between px-6 mt-6">
                 <div className="text-left w-1/2 border-r pr-4">
                   <p className="text-sm font-semibold text-black font-['Plus Jakarta Sans']">
-                    Departure Flight
+                    {t("booking-details.departure")}
                   </p>
                   <p className="text-xs text-gray-500 mt-[2px] font-['Lato']">
                     Thu, 06 Jul, 2025
@@ -490,7 +492,7 @@ export default function SeatSelection() {
                 </div>
                 <div className="text-left w-1/2 pl-4">
                   <p className="text-sm font-semibold text-black font-['Plus Jakarta Sans']">
-                    Departure Flight
+                    {t("booking-details.landing")}
                   </p>
                   <p className="text-xs text-gray-500 mt-[2px] font-['Lato']">
                     Thu, 06 Jul, 2025
@@ -498,40 +500,42 @@ export default function SeatSelection() {
                 </div>
               </div>
               <div className="flex justify-around mt-6 mb-4 text-sm font-medium font-['Plus Jakarta Sans'] ml-2">
-                <span className="relative mr-8">Policy</span>
-                <span>Refund</span>
-                <span>Reschedule</span>
+                <span className="relative mr-8">
+                  {t("booking-details.policy")}
+                </span>
+                <span>{t("booking-details.refund")}</span>
+                <span>{t("booking-details.reschedule")}</span>
               </div>
             </div>
 
             {/* Price Summary - Second on mobile */}
             <div className="bg-white rounded-md shadow-sm">
               <div className="bg-[#FFE4DB] p-4 font-semibold font-['Plus Jakarta Sans']">
-                Price Summary
+                {t("summary.title")}
               </div>
               <div className="p-4 space-y-3 text-[14px] text-black font-['Lato']">
                 <div className="flex justify-between">
-                  <span>Adult x 1</span>
+                  <span>{t("summary.adult")} x 1</span>
                   <span className="font-semibold flex gap-1">
                     <span>{flight.currency}</span>
                     <span>{flight.price.toLocaleString()}</span>
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Total taxes +</span>
+                  <span>{t("summary.totalTax")} +</span>
                   <span className="font-semibold flex gap-1">
                     <span>{flight.currency}</span> <span>500.00</span>
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Other Charged</span>
+                  <span>{t("summary.otherCharged")}</span>
                   <span className="font-semibold flex gap-1">
                     {" "}
                     <span>{flight.currency}</span> <span>200.00</span>
                   </span>
                 </div>
                 <div className="flex justify-between border-t pt-3 text-[#EE5128] font-semibold">
-                  <span>Total</span>
+                  <span>{t("summary.total")}</span>
                   <span>
                     {" "}
                     <span>{flight.currency}</span>{" "}
@@ -554,10 +558,10 @@ export default function SeatSelection() {
             onClick={() => navigate("/booking/payment", { state: { flight } })}
             className="bg-[#EE5128] text-white px-6 py-2 lg:relative lg:left-5 rounded font-semibold font-['Plus Jakarta Sans'] w-full md:w-auto hover:bg-[#d64520] active:bg-[#b83b1c] transition-colors duration-200"
           >
-            Continue booking
+            {t("continue-booking")}
           </button>
           <button className="text-[#EE5128] font-semibold text-sm lg:relative lg:left-16 mt-2 md:mt-0 hover:underline">
-            Skip extras
+            {t("skip-extra")}
           </button>
         </div>
       </div>

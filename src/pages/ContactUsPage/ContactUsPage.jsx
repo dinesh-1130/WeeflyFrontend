@@ -10,14 +10,16 @@ import LinkedinIcon from "../../assets/images/ContactUsPage/linkedinIcon.svg";
 import InstagramIcon from "../../assets/images/ContactUsPage/InstagramIcon.svg";
 import { Link } from "react-router";
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
+import { useTranslation } from "react-i18next";
 
 function ContactUsPage() {
+  const { t } = useTranslation();
   return (
     <div className="min-h-screen px-4 md:px-20 lg:px-40 bg-neutral-50 overflow-hidden flex flex-col gap-[50px]">
       {/* header */}
       <div className="flex py-[50px]  items-start lg:items-center justify-between flex-col lg:flex-row">
         <h1 className="font-jakarta text-[24px] lg:text-[40px] uppercase font-semibold">
-          Contact Us
+          {t("contactus-page.title")}
         </h1>
         <img
           src={FlightFlyBg}
@@ -46,50 +48,51 @@ function ContactUsPage() {
 export default ContactUsPage;
 
 const CustomerSupport = () => {
+  const { t } = useTranslation();
   return (
     <>
       <div className="flex flex-col gap-[30px]">
         <h3 className="font-jakarta font-semibold text-[26px] px-6 py-4 bg-[#FFE2DA] rounded-t-2xl">
-          Customer Support
+          {t("contactus-page.form.title")}
         </h3>
         <div className="font-sans font-normal text-[14px] grid lg:grid-cols-2 gap-[30px]">
           <input
             type="text"
             name=""
             id=""
-            placeholder="Full name"
+            placeholder={`${t("contactus-page.form.fullname")}`}
             className="px-[17px] py-[15px] rounded-[5.25px] border border-[#CCCCCC]"
           />
           <input
             type="text"
             name=""
             id=""
-            placeholder="Last name"
+            placeholder={`${t("contactus-page.form.lastname")}`}
             className="px-[17px] py-[15px] rounded-[5.25px] border border-[#CCCCCC]"
           />
           <input
             type="text"
             name=""
             id=""
-            placeholder="Email"
+            placeholder={`${t("contactus-page.form.email")}`}
             className="px-[17px] py-[15px] rounded-[5.25px] border border-[#CCCCCC]"
           />
           <input
             type="text"
             name=""
             id=""
-            placeholder="Phone number"
+            placeholder={`${t("contactus-page.form.phone")}`}
             className="px-[17px] py-[15px] rounded-[5.25px] border border-[#CCCCCC]"
           />
         </div>
         <textarea
           name=""
           id=""
-          placeholder="Write your message"
+          placeholder={`${t("contactus-page.form.message")}`}
           className="px-[17px] py-[15px] rounded-[5.25px] border border-[#CCCCCC] h-[141px]"
         ></textarea>
         <button className="bg-[#EE5128] text-white px-[34px] py-[11px] rounded-[4px] max-w-fit font-jakarta font-semibold text-[18px]">
-          Submit now
+          {`${t("contactus-page.form.button")}`}
         </button>
       </div>
     </>
@@ -97,6 +100,7 @@ const CustomerSupport = () => {
 };
 
 const GetInTouch = () => {
+  const { t } = useTranslation();
   const SocialMediaLinks = [
     { logo: FaceBookIcon, link: "#" },
     { logo: TwitterXIcon, link: "#" },
@@ -107,7 +111,7 @@ const GetInTouch = () => {
     <>
       <div className="">
         <h3 className="font-jakarta font-semibold text-[26px] py-4 mb-[23px]">
-          Customer Support
+          {`${t("contactus-page.support.title")}`}
         </h3>
         <div className="flex flex-col gap-[35px]">
           <div className="flex gap-[11px]">
@@ -123,7 +127,7 @@ const GetInTouch = () => {
                 htmlFor=""
                 className="font-jakarta font-medium text-[20px]"
               >
-                Contact
+                {`${t("contactus-page.support.contact")}`}
               </label>
               <p className="font-sans text-[17px] font-normal">
                 +(1) 123 456 7890
@@ -143,7 +147,7 @@ const GetInTouch = () => {
                 htmlFor=""
                 className="font-jakarta font-medium text-[20px]"
               >
-                Email
+                {`${t("contactus-page.support.email")}`}
               </label>
               <p className="font-sans text-[17px] font-normal">
                 werfly@gmail.com
@@ -163,7 +167,7 @@ const GetInTouch = () => {
                 htmlFor=""
                 className="font-jakarta font-medium text-[20px]"
               >
-                Address
+                {`${t("contactus-page.support.Address")}`}
               </label>
               <p className="font-sans text-[17px] font-normal">
                 loremipsum <br /> loreispumloreiosdisnmfds

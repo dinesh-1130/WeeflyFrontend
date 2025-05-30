@@ -7,19 +7,20 @@ import { AlignRight, ArrowLeft, X } from "lucide-react";
 // import { Link, useNavigate } from "react-router";
 // import { HandleGoogleLogin } from "../features/firebase";
 import { useState } from "react";
-
-const NavLinks = [
-  { label: "Home", link: "/" },
-  { label: "About Us", link: "/" },
-  { label: "Services", link: "/#ServicesOffered" },
-  { label: "News", link: "/#newsSection" },
-  { label: "Media", link: "/" },
-  { label: "Contact Us", link: "/Contact" },
-];
+import { useTranslation } from "react-i18next";
 
 function ForgotPassword() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const NavLinks = [
+    { label: t("navbar.home"), link: "/" },
+    { label: t("navbar.aboutus"), link: "/" },
+    { label: t("navbar.services"), link: "/#ServicesOffered" },
+    { label: t("navbar.news"), link: "/#newsSection" },
+    { label: t("navbar.media"), link: "/" },
+    { label: t("navbar.contactus"), link: "/Contact" },
+  ];
   return (
     <div className="h-screen flex relative overflow-hidden">
       <div
@@ -40,7 +41,7 @@ function ForgotPassword() {
                 <span>
                   <ArrowLeft />
                 </span>
-                <span> Back</span>
+                <span> {t("back")}</span>
               </p>
             </div>
             <div className="" onClick={() => setIsMenuOpen(false)}>
@@ -69,7 +70,7 @@ function ForgotPassword() {
             <span>
               <ArrowLeft />
             </span>
-            <span>Back</span>
+            <span>{t("back")}</span>
           </div>
           <div className="" onClick={() => setIsMenuOpen(true)}>
             <AlignRight className="h-8 w-8" />
@@ -83,11 +84,10 @@ function ForgotPassword() {
             className="h-[70px] w-[92px]"
           />
           <h1 className="font-jakarta font-semibold text-[24px]">
-            Forgot password?
+            {t("forgotPassword.title")}
           </h1>
           <h1 className="font-jakarta font-normal text-[16px] text-[#555555] text-center max-w-[430px]">
-            Enter your Registered Email address and we’ll send a link to reset
-            password
+            {t("forgotPassword.description")}
           </h1>
           <form action="" className="max-w-[430px] w-full">
             <div className="w-full">
@@ -95,7 +95,7 @@ function ForgotPassword() {
                 htmlFor=""
                 className="font-jakarta font-normal text-base text-[#555555]"
               >
-                Email address
+                {t("forgotPassword.email")}
               </label>
               <div className="relative bg-[#F1F3F6] flex rounded-l-[8px] w-full mt-[14px]">
                 <input
@@ -110,13 +110,13 @@ function ForgotPassword() {
             </div>
 
             <button className="font-jakarta font-semibold text-[18px] w-full bg-[#EE5128] py-[14px] rounded-[8px] text-white mt-[40px] drop-shadow-xl drop-shadow-[#FD74014D]">
-              Login now
+              {t("forgotPassword.send")}
             </button>
           </form>
           <p className="mt-[30px] font-jakarta font-normal text-[16px]">
-            Didn't receive code?
+            {t("forgotPassword.resend-msg")}
             <Link to={"#"} className="font-bold text-[18px] text-[#EE5128]">
-              Resend
+              {t("forgotPassword.resend")}
             </Link>
           </p>
           <p className="font-jakarta font-normal text-[16px]">
