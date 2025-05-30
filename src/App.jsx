@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router";
 import { useEffect } from "react";
 import Aos from "aos";
+import "./hook/I18n";
 
 import RootLayout from "./RootLayout";
 import WebsiteLayout from "./Layouts/WebsiteLayout";
